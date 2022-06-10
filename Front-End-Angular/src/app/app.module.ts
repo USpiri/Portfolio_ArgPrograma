@@ -1,0 +1,36 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './components/header/header.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { EducationComponent } from './components/education/education.component';
+import { ExperienceComponent } from './components/experience/experience.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { NavbarComponent } from './components/header/navbar/navbar.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    AboutComponent,
+    ContactComponent,
+    EducationComponent,
+    ExperienceComponent,
+    FooterComponent,
+    ProjectsComponent,
+    SkillsComponent,
+    NavbarComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgbModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

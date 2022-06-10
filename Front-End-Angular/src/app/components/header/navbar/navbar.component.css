@@ -1,0 +1,36 @@
+.nav_logo > span {
+    font-size: medium;
+    font-weight: 800;
+    vertical-align: middle;
+}
+
+.nav_logo{
+    transition: all .3s;
+}
+
+.nav_logo_img{
+    width: 100px;
+}
+
+.nav{
+    background: #1f2233;
+	box-shadow: 0 0 15px rgba(0, 0, 0, .12);
+}
+
+.nav-toggle-icon{
+    width: auto;
+    height: auto;
+}
+
+.nav_link{
+    color: white;
+    transition: all .3s;
+}
+
+.nav_link:hover{
+    color: #dc3545;
+}
+
+.nav_user{
+    cursor: pointer;
+}

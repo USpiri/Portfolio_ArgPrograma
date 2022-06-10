@@ -1,0 +1,154 @@
+{
+
+    "name": "Uriel Spiridione",
+    "profile_img": "/../assets/img/perfil.jpg",
+    "lit_description": "Photographer and Full Stack Developer",
+    "about": "My name is Uriel Spiridione. I'm student of economic sciences, photographer and Full Stack Developer based in Córdoba, Argentina.",
+    "age": "22",
+    "address": "Córdoba, Argentina",
+    "location_link": "https://goo.gl/maps/cRDATver98pUvuBd8",
+    "birth_date": "August 4, 1999",
+    "dni": "42052783",
+    "phone": "+54 351 213-6765",
+    "email": "urielspiridione135@gmail.com",
+    "curriculum": "",
+    "experience":[
+        {
+            "position": "Experience 1",
+            "img": "https://images.unsplash.com/photo-1614787913206-a35b1d883eaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+            "company": "CompanyName",
+            "start": "(start date)",
+            "end": "(end date)",
+            "link": "#",
+            "enabled_link": false
+        },
+        {
+            "position": "Experience 2",
+            "img": "https://images.unsplash.com/photo-1614787913206-a35b1d883eaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+            "company": "CompanyName",
+            "start": "(start date)",
+            "end": "(end date)",
+            "link": "#",
+            "enabled_link": false
+        },
+        {
+            "position": "Experience 3",
+            "img": "https://images.unsplash.com/photo-1614787913206-a35b1d883eaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+            "company": "CompanyName",
+            "start": "(start date)",
+            "end": "(end date)",
+            "link": "#",
+            "enabled_link": false
+        }
+    ],
+    "education":[
+        {
+            "school": "School 1",
+            "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80",
+            "title": "Title",
+            "start": "start date",
+            "end": "end date",
+            "link": "#",
+            "enabled_link": false
+        },
+        {
+            "school": "School 2",
+            "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80",
+            "title": "Title",
+            "start": "start date",
+            "end": "end date",
+            "link": "#",
+            "enabled_link": false
+        },
+        {
+            "school": "School 3",
+            "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80",
+            "title": "Title",
+            "start": "start date",
+            "end": "end date",
+            "link": "#",
+            "enabled_link": false
+        }
+    ],
+    "skills":[
+        {
+            "name": "HTML",
+            "icon": "fa-brands fa-html5 skill_icon skill_1",
+            "percentage": "90%"
+        },
+        {
+            "name": "CSS",
+            "icon": "fa-brands fa-css3-alt skill_2 skill_icon",
+            "percentage": "70%"
+        },
+        {
+            "name": "JS / Typescript",
+            "icon": "fa-solid fa-file-code skill_icon skill_3",
+            "percentage": "60%"
+        },
+        {
+            "name": "Angular",
+            "icon": "fa-brands fa-angular skill_icon skill_4",
+            "percentage": "50%"
+        },
+        {
+            "name": "Photoshop",
+            "icon": "fa-solid fa-image skill_icon skill_5",
+            "percentage": "90%"
+        },
+        {
+            "name": "Skill 6",
+            "icon": "fa-brands fa-html5 skill_icon skill_6",
+            "percentage": "0%"
+        }
+    ],
+    "projects":[
+        {
+            "title": "Project 1",
+            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
+            "link": "#",
+            "enabled_link": true
+        },
+        {
+            "title": "Project 2",
+            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
+            "link": "#",
+            "enabled_link": true
+        },
+        {
+            "title": "Project 3",
+            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
+            "link": "#",
+            "enabled_link": true
+        },
+        {
+            "title": "Project 4",
+            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
+            "link": "#",
+            "enabled_link": true
+        },
+        {
+            "title": "Project 5",
+            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
+            "link": "#",
+            "enabled_link": true
+        },
+        {
+            "title": "Project 6",
+            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
+            "link": "#",
+            "enabled_link": true
+        }
+    ],
+    "faceboook": "https://www.facebook.com/UrieLSpiridion3",
+    "twitter": "https://twitter.com/UrielSpiridione",
+    "instagram": "https://www.instagram.com/urielspiridione/",
+    "github": "https://github.com/USpiri"
+
+}
