@@ -4,7 +4,7 @@
     vertical-align: middle;
 }
 
-.nav_logo{
+.nav_container{
     transition: all .3s;
 }
 
@@ -12,8 +12,8 @@
     width: 100px;
 }
 
-.nav{
-    background: #1f2233;
+nav{
+    background-color: #24283d;
 	box-shadow: 0 0 15px rgba(0, 0, 0, .12);
 }
 
