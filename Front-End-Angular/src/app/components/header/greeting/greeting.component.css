@@ -1,0 +1,35 @@
+.home_presentation_name{
+    font-weight: 800;
+    font-size: 60px;
+    color: white;
+}
+
+.home_presentation_text{
+    font-weight: 600;
+    font-size: 19px;
+    color: #b3bab9;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.home_presentation_text > span{
+    color: #dc3545;
+    font-weight: 800;
+}
+
+.home_presentation{
+    /* margin: 50px; */
+}
+
+.image_container{
+    background-color: white;
+    border-radius: 50%;
+    margin: 50px;
+}
+.profile_img{
+    border-radius: 50%;
+    width: 380px;
+    border-style: none;
+    border: 6px solid white;
+    background-color: white;
+}
