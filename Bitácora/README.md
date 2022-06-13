@@ -34,7 +34,5 @@ Me encontré con un problema a la hora de instalar Bootstrap ya que la versión 
 Al archivo genérico styles.css le agregue dos clases, una para los botones de edición y otro para los botones comunes que use durante el desarrollo de la página (no son muchos, pero me voy a evitar hacerlos cada vez, y van a mantener todos la misma estética haciéndolos en este archivo). El margin y el padding de ser necesarios los puedo cambar con las clases de Bootstrap.  
 **“Lista de tareas”**  
     + ~~**Componente Header**~~
+    + ~~**Agregar cursor pointer el botón de editar**~~
     + **Componentes About, Experiences, Educations, Skills, Projects, Contact y Footer**
-
-
-

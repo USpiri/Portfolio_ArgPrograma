@@ -19,6 +19,7 @@ a {
     padding: 10px;
     color: #1f2233;
     transition: all .3s;
+    cursor: pointer;
 }
 
 .edit_button:hover{
