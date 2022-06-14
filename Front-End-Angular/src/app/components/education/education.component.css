@@ -1,0 +1,69 @@
+.education{
+    background-color: #24283d;
+}
+.education_title{
+    font-weight: 600;
+    font-size: 50px;
+}
+.education_hr{
+    width: 70px;
+    height: 4px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    margin-top: 5px;
+    border-color: #dc3545;
+    margin-bottom: 30px;
+}
+.education_card_img{
+    max-width: 100%;
+}
+.education_card{
+    box-shadow: 0 0px 15px rgba(0,0,0,0.35);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 70vw;
+    height: 105px;
+    list-style: none;
+    list-style-type: none;
+    margin: 20px 0;
+    border: 1px solid transparent;
+    display: grid;
+    transition: all .3s;
+}
+.education_link{
+    cursor: default;
+    transition: all .3s;
+}
+.education_card:first-child{
+    margin-top: 0;
+}
+.education_link:hover > .education_card_content{
+    background-color: rgba(36, 40, 61, 0.7);
+}
+.education_card:hover{
+    border: 1px solid #dc3545;
+}
+a{
+    text-decoration: none;
+}
+.education_card_header > img{
+    object-fit: cover;
+    height: 100%;
+    width: 100px;
+}
+.education_card_content{
+    background-color: #24283d;
+    padding: 20px;
+    width: 100%;
+}
+
+.education_card_title{
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.education_card_text{
+    color: #b3bab9;
+    font-weight: 400;
+    font-size: 14px;
+}

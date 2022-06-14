@@ -1,0 +1,70 @@
+.experience{
+    background-color: #1f2233;
+}
+.experience_title{
+    font-weight: 600;
+    font-size: 50px;
+}
+.experience_hr{
+    width: 70px;
+    height: 4px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    margin-top: 5px;
+    border-color: #dc3545;
+    margin-bottom: 30px;
+}
+.experience_card_img, .education_card_img{
+    max-width: 100%;
+}
+.experience_card{
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 70vw;
+    height: 105px;
+    list-style: none;
+    list-style-type: none;
+    margin: 20px 0;
+    border: 1px solid transparent;
+    display: grid;
+    transition: all .3s;
+}
+.experience_link{
+    cursor: default;
+    transition: all .3s;
+}
+.experience_card:first-child{
+    margin-top: 0;
+}
+.experience_link:hover > .experience_card_content{
+    background-color: rgba(36, 40, 61, 0.7);
+}
+.experience_card:hover{
+    border: 1px solid #dc3545;
+}
+a{
+    text-decoration: none;
+}
+.experience_card_header > img{
+    object-fit: cover;
+    height: 100%;
+    width: 100px;
+}
+.experience_card_content{
+    background-color: #24283d;
+    padding: 20px;
+    width: 100%;
+}
+
+.experience_card_title{
+    font-weight: 600;
+    font-family: "Montserrat" , sans-serif;
+    letter-spacing: 1px;
+}
+
+.experience_card_text{
+    color: #b3bab9;
+    font-weight: 400;
+    font-size: 14px;
+}
