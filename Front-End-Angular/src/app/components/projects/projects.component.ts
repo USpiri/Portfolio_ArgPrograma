@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import SwiperCore, { Keyboard, Pagination, Navigation, Virtual, Autoplay } from 'swiper';
+SwiperCore.use([Keyboard, Pagination, Navigation, Virtual, Autoplay]);
 
 @Component({
   selector: 'app-projects',

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SwiperModule } from "swiper/angular";
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,7 +31,8 @@ import { GreetingComponent } from './components/header/greeting/greeting.compone
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
