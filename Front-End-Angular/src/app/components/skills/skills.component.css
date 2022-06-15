@@ -1,0 +1,62 @@
+.skills{
+    background-color: #1f2233;
+}
+.skills_title{
+    font-weight: 600;
+    font-size: 50px;
+    color: white;
+}
+.skills_hr{
+    height: 4px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    margin-bottom: 50px;
+}
+.skills_cards{
+    list-style: none;
+}
+.skill_card{
+    width: 500px;
+    height: 100px;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .25) , 0 10px 10px rgba(0, 0, 0, .22);
+    border-radius: 15px;
+    background-color: rgba(36, 40, 61, 0.7);
+}
+.skill_icon{
+    font-size: 35px;
+}
+.skill_title{
+    font-weight: 600;
+    font-size: 25px;
+    margin-left: 25px;
+}
+.skill_bar{
+    background-color: #b3bab9;
+    display: block;
+    height: 10px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .25) , 0 1px 2px rgba(0, 0, 0, .24);
+    transition: all 0.3s;
+}
+.skill_card:hover > .skill_bar_content > .skill_bar{
+    box-shadow: 0 1px 20px rgba(0, 0, 0, .25) , 0 5px 10px rgba(0, 0, 0, .22);
+}
+
+.skill_card:hover > .skill_header > .skill_icon{
+    color: white;
+}
+
+.skill_icon{
+    color: #b3bab9;
+    transition: all .3s;
+}
+.skill_bar span{
+    height: 15px;
+    float: left;
+    background: linear-gradient( 135deg, #24283d, #dc3545 );
+}
