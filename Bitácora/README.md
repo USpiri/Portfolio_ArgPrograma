@@ -35,7 +35,7 @@ Al archivo genérico styles.css le agregue dos clases, una para los botones de e
 **“Lista de tareas”**  
     + ~~**Componente Header**~~
     + ~~**Agregar cursor pointer el botón de editar**~~
-    + ~~**Componentes About, Experiences, Educations, Skills,**~~ **Projects, Contact y Footer**  
+    + ~~**Componentes About, Experiences, Educations, Skills, Projects,**~~ **Contact y Footer**  
 
 + **[ 14/6/22 ]:** Algo en lo que no pensé es en la parte de edición, para cambiar la información del portfolio. En principio tenía la idea de desplazar algunos elementos, e incluso hacer que “desaparezcan” con alguna clase de efecto smooth, y aparezca un input que me permitiera cambiar el contenido de la base de datos. Pero husmeando en la página de Bootstrap encontré los **“Modal”** que literalmente pueden ser justo lo que necesito para esta función, me permiten “abrir una pestaña” encima del body y poder poner, por ejemplo, un formulario dentro con sus respectivos botones para cerrar y/o guardar cambios. **Quedará pendiente indagar sobre el tema.**  
 Agregué el cursor pointer al elemento que lo necesitaba, moví el componente navbar fuera del header para poder hacerlo sticky (ahora este es un componente extra a los componentes básicos) y que se mueva libremente por encima de todos los componentes y avancé con el componente About, Experience, Education y Skills.  
