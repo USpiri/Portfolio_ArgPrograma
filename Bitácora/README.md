@@ -46,10 +46,11 @@ Tengo varias ideas posibles de implementar y algunas correcciones que hacer:
     + **Bootstrap Modal para editar info en BBDD e inicio de sesión** (A implementar)
     + **Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
     + **Bootstrap Scrollspy para el navbar** (A implementar)
-    + **Hacer horizontalmente mas chicas las tarjetas Skills** (A testear)
+    + ~~**Hacer horizontalmente mas chicas las tarjetas Skills**~~ (A testear)
     + **Agregar botones Edit y Delete en las tarjetas Experience, Education y Projects** (A implementar)
     + **Agregar botón Edit en las tarjetas Skills** (A implementar)
     + **Hacer vertical el componente Header, About y Contact para dispositivos** (A implementar)
     + **Hacer verticales Header y About para dispositivos y eliminar una de las dos imágenes** (A testear)
     + **Hacer vertical Contact y cambiar el orden de las tarjetas (Ver de implementar Bootstrap rows y cols)** (A testear)
-    + **Hacer Skills más responsive** (A implementar)
+    + ~~**Hacer Skills más responsive** (A implementar)~~
+    + ~~**Cambiar estilo de las barras de progreso en Skills**(A testear)~~
