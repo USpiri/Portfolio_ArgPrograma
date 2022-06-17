@@ -1,6 +1,11 @@
 <section class="education vh-100" id="education">
     <div class="education_container d-flex flex-column h-100 justify-content-center align-items-center">
-        <h1 class="education_title">Education</h1>
+        <div class="education_header d-flex flex-row justify-content-center">
+            <h1 class="education_title">Education</h1>
+            <div class="ico_container">
+                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3"></i>
+            </div>
+        </div>
         <hr class="education_hr opacity-100">
         <div class="education_cards_container mt-2">
             <ul class="education_cards">
@@ -9,7 +14,7 @@
                         <!-- &nbsp; -->
                         <img src="https://picsum.photos/seed/picsum/500/300" alt="Imagen del proyecto">
                     </div>
-                    <div class="education_card_content">
+                    <div class="education_card_content position-relative">
                         <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
                             <!-- &nbsp; -->
                             Instituto de educación
@@ -21,6 +26,10 @@
                             <span class="animated_bg animated_bg_text">&nbsp;</span>
                             <span class="animated_bg animated_bg_text">&nbsp;</span>
                         </p>
+                        <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
+                            <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
+                            <i class="fa-solid fa-trash delete_button"></i>
+                        </div>
                     </div>
                 </a></li>
                 <li class="education_card"><a class="education_link d-flex flex-row"><!--*ngFor="let education of data_education"--><!--[href]="education.link"-->
@@ -28,7 +37,7 @@
                         <!-- &nbsp; -->
                         <img src="https://picsum.photos/seed/picsum/500/300" alt="Imagen del proyecto">
                     </div>
-                    <div class="education_card_content">
+                    <div class="education_card_content position-relative">
                         <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
                             <!-- &nbsp; -->
                             Instituto de educación
@@ -40,6 +49,10 @@
                             <span class="animated_bg animated_bg_text">&nbsp;</span>
                             <span class="animated_bg animated_bg_text">&nbsp;</span>
                         </p>
+                        <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
+                            <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
+                            <i class="fa-solid fa-trash delete_button"></i>
+                        </div>
                     </div>
                 </a></li>
                 <li class="education_card"><a class="education_link d-flex flex-row"><!--*ngFor="let education of data_education"--><!--[href]="education.link"-->
@@ -47,7 +60,7 @@
                         <!-- &nbsp; -->
                         <img src="https://picsum.photos/seed/picsum/500/300" alt="Imagen del proyecto">
                     </div>
-                    <div class="education_card_content">
+                    <div class="education_card_content position-relative">
                         <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
                             <!-- &nbsp; -->
                             Instituto de educación
@@ -59,6 +72,10 @@
                             <span class="animated_bg animated_bg_text">&nbsp;</span>
                             <span class="animated_bg animated_bg_text">&nbsp;</span>
                         </p>
+                        <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
+                            <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
+                            <i class="fa-solid fa-trash delete_button"></i>
+                        </div>
                     </div>
                 </a></li>
             </ul>

@@ -47,12 +47,11 @@ Tengo varias ideas posibles de implementar y algunas correcciones que hacer:
     + **Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
     + **Bootstrap Scrollspy para el navbar** (A implementar)
     + ~~**Hacer horizontalmente mas chicas las tarjetas Skills**~~ (A testear)
-    + **Agregar botones Edit y Delete en las tarjetas Experience, Education y Projects** (A implementar)
+    + ~~**Agregar botones Edit y Delete en las tarjetas Experience, Education y Projects** (A implementar)~~
     + ~~**Agregar botón Edit en las tarjetas Skills** (A implementar)~~
     + **Hacer vertical el componente Header, About y Contact para dispositivos** (A implementar)
     + **Hacer verticales Header y About para dispositivos y eliminar una de las dos imágenes** (A testear)
-    + **Hacer vertical Contact y cambiar el orden de las tarjetas (Ver de implementar Bootstrap rows y cols)** (A testear)
+    + **Hacer vertical Contact y cambiar el orden de las tarjetas (Ver de implementar Bootstrap rows y cols para esto)** (A testear)
     + ~~**Hacer Skills más responsive** (A implementar)~~
     + ~~**Cambiar estilo de las barras de progreso en Skills**(A testear)~~  
-+ **[ 16/6/22 ]:** Comencé con las tareas referidas a Skills, las barras de progreso son un poco más chicas, les saqué el degradé, tienen sus botones de edición y se acomodan al tamaño de la pantalla.
-
++ **[ 16/6/22 ]:** Comencé con las tareas referidas a Skills, las barras de progreso son un poco más chicas, les saqué el degradé, tienen sus botones de edición y se acomodan al tamaño de la pantalla. Y agregue los botones de edición en los componentes que lo necesitaban y elimine botones en donde sobraban. La mayoría de los botones tiene posición absoluta para que no interfieran con otros elementos.  

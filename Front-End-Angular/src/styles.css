@@ -26,11 +26,41 @@ h4, h5, h6{
     transition: all .3s;
     cursor: pointer;
 }
-
 .edit_button:hover{
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .8);
     border: 1px solid rgba(179, 186, 185, 0.1);
-    color: white;
+    color: #08bfff;
+}
+
+.add_button{
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #b3bab9;
+    padding: 10px;
+    color: #1f2233;
+    transition: all .3s;
+    cursor: pointer;
+}
+.add_button:hover{
+    background-color: rgba(255, 255, 255, .8);
+    border: 1px solid rgba(179, 186, 185, 0.1);
+    color: #dc3545;
+}
+
+.delete_button{
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #b3bab9;
+    padding: 10px;
+    color: #1f2233;
+    transition: all .3s;
+    cursor: pointer;
+    width: 38px;
+}
+.delete_button:hover{
+    background-color: rgba(255, 255, 255, .8);
+    border: 1px solid rgba(179, 186, 185, 0.1);
+    color: #dc3545;
 }
 
 .button{
