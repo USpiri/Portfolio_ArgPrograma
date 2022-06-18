@@ -1,14 +1,14 @@
-<section class="contact_me vh-100" id="contact">
-    <div class="contact_container d-flex flex-column justify-content-center align-items-center h-100">
+<section class="contact_me" id="contact">
+    <div class="contact_container d-flex flex-column justify-content-center align-items-center h-100 pt-5 pb-5">
         
-        <div class="contact_title_container mb-5 float-end w-75">
+        <div class="contact_title_container mb-5 float-end w-75 d-lg-none d-inline">
             <h1 class="contact_title">Contact Me</h1>
         </div>
 
-        <div class="contact_info d-flex flex-row">
+        <div class="contact_info d-flex flex-column flex-lg-row mb-5">
 
             <div class="contact_info_datos">
-                <div class="contact_info_card card_1 d-flex flex-row justify-content-between">
+                <div class="contact_info_card card_1 d-none d-lg-flex flex-row justify-content-between">
                     <div class="card_text">
                         <h1 class="">LOCATION</h1>
                         <div class="contact_card_text">
@@ -30,7 +30,7 @@
                         <i class="fa-solid fa-envelope-open-text contact_ico fa-4x"></i>
                     </div>
                 </div>
-                <div class="contact_info_card card_3 d-flex flex-row justify-content-between mb-0">
+                <div class="contact_info_card card_3 d-none d-lg-flex flex-row justify-content-between mb-0">
                     <div class="card_text">
                         <h1>PHONE</h1>
                         <div class="contact_card_text">
@@ -43,14 +43,14 @@
                 </div>
             </div>
 
-            <div class="contact_info_inputs d-flex flex-column ms-4">
-                <input type="Name" class="contact_input input_name" placeholder="Name">
-                <input type="Email" class="contact_input input_email" placeholder="Email">
-                <input type="Subject" class="contact_input input_subject" placeholder="Subject">
-                <textarea name="Message" id="message" class="contact_input input_message" placeholder="Message"></textarea>
+            <div class="contact_info_inputs d-flex flex-column ms-lg-4">
+                <input type="Name" class="contact_input input_name mb-4" placeholder="Name">
+                <input type="Email" class="contact_input input_email mb-4" placeholder="Email">
+                <input type="Subject" class="contact_input input_subject mb-4" placeholder="Subject">
+                <textarea name="Message" id="message" class="contact_input input_message mb-4" placeholder="Message"></textarea>
                 <a href="#contact" class="button p-2">SEND MESSAGE</a>
             </div>
-            <div class="contact_h_title_container">
+            <div class="contact_h_title_container d-none d-lg-inline">
                 <h1 class="contact_h_title">Contact Me</h1>
             </div>
         </div>

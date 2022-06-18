@@ -5,14 +5,13 @@
     font-weight: 600;
     font-size: 50px;
     color: white;
-    display: none;
 }
 .contact_info_card{
     padding: 30px 25px;
     border: 1px solid #1f2233;
     border-radius: 4px;
     margin-bottom: 30px;
-    width: 350px;
+    min-width: 350px;
     transition: all .3s;
 }
 .contact_info_card:hover, .card_2{
@@ -33,7 +32,7 @@
 }
 
 .contact_info_inputs{
-    width: 400px;
+    min-width: 350px;
     justify-content: space-between;
 }
 
