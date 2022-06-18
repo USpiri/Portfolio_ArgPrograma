@@ -46,14 +46,14 @@ Tengo varias ideas posibles de implementar y algunas correcciones que hacer:
     + **Bootstrap Modal para editar info en BBDD e inicio de sesión** (A implementar)
     + **Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
     + **Bootstrap Scrollspy para el navbar** (A testear)
-    + ~~**Hacer horizontalmente mas chicas las tarjetas Skills**~~ (A testear)
+    + ~~**Hacer horizontalmente mas chicas las tarjetas Skills** (A testear)~~
     + ~~**Agregar botones Edit y Delete en las tarjetas Experience, Education y Projects** (A implementar)~~
     + ~~**Agregar botón Edit en las tarjetas Skills** (A implementar)~~
-    + **Hacer vertical el componente Header, About y ~~Contact~~ para dispositivos** (A implementar)
-    + **Hacer verticales Header y About para dispositivos y eliminar una de las dos imágenes** (A testear)
+    + ~~**Hacer vertical el componente Header, About y Contact para dispositivos** (A implementar)~~
+    + ~~**Hacer verticales Header y About para dispositivos y eliminar una de las dos imágenes** (A testear)~~
     + ~~**Hacer vertical Contact y cambiar el orden de las tarjetas (Ver de implementar Bootstrap rows y cols para esto)** (A testear)~~
     + ~~**Hacer Skills más responsive** (A implementar)~~
     + ~~**Cambiar estilo de las barras de progreso en Skills**(A testear)~~  
 + **[ 16/6/22 ]:** Comencé con las tareas referidas a Skills, las barras de progreso son un poco más chicas, les saqué el degradé, tienen sus botones de edición y se acomodan al tamaño de la pantalla. Y agregue los botones de edición en los componentes que lo necesitaban y elimine botones en donde sobraban. La mayoría de los botones tiene posición absoluta para que no interfieran con otros elementos.  
 + **[ 17/6/22 ]:** Estuve probando el Scrollspy de Boostrap y no logre hacer que funcione, pero por lo poco que investigue tengo un par de opciones para probar, la primera es hacer alguna clase de servicio que agregue una clase a los ítems del navbar para que queden seleccionados mientras se navega dentro del sitio o ubicar en navbar en app.component y a cada uno de los otros componentes introducirlos en un div con su respectivo id. Modal y Toast los voy a dejar para cuando tenga hecho algo de la BBDD.  
-Avancé con Contact, hice el titulo se vea en la parte superior cuando la ventana es chica (Como antes de ponerlo al costado), el contenido se vertical y dos de las tres tarjetas desaparecen. Estas últimas ya no tienen un ancho fijo, los inputs tampoco. Al final no utilice rows y cols para hacerlo, simplemente diciéndole a cada componente que cambie el display de acuerdo a un determinado breakpoint.
+Avancé con Contact, hice el título se vea en la parte superior cuando la ventana es chica (Como antes de ponerlo al costado), el contenido se vertical y dos de las tres tarjetas desaparecen. Estas últimas ya no tienen un ancho fijo, los inputs tampoco. Al final no utilice rows y cols para hacerlo, simplemente diciéndole a cada componente que cambie el display de acuerdo a un determinado breakpoint. En About la imagen desaparece y se acomoda al tamaño de la pantalla, Header también solo que los elementos paran a estar verticales, ninguno se va. También hice una pequeña corrección de errores, el componente header no tenía id (por lo que no se ubicaba al presionarlo desde el navbar).
