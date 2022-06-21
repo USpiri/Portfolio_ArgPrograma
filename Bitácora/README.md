@@ -2,6 +2,7 @@
 **Título del proyecto:** Uriel Spiridione – Arg. Programa Portfolio.   
 **Autor:** Uriel Spiridione.  
 **Github**: **https://github.com/USpiri/Portfolio_ArgPrograma**  
+**Github Pages**: **https://uspiri.github.io/** (static page only for preview)
 
 * * * 
 ## **Aclaraciones**
@@ -60,6 +61,7 @@ Avancé con Contact, hice el título se vea en la parte superior cuando la venta
 + **[ 20/6/22 ]:** Esta mañana (Viendo TioTok) me encontré con esta página ***[SQL Murder Mystery](https://mystery.knightlab.com/)*** me pareció espectacular para practicar consultas SQL y muy entretenida. La compartí por el foro del curso, espero le pueda servir a alguien más. Comencé con la instalación de los programas necesarios para gestionar la base de datos y, para mas adelante, programar en Java. También hice un repaso del capitulo 4 de BBDD y estoy utilizando la página ***[dbdiagram.io](https://dbdiagram.io/)*** para hacer el diagrama.  
 De momento este es el diagrama inicial para la base de datos, hay algunos detalles a comentar que pueden llegar a sufrir cambios como las variables start_date y end_date (podrían pasar de date a varchar), lit_about (a un varchar más chico), experience.description (a un varchar más grande) y algún que otro cambio de la misma naturaleza que los dos anteriores.  
 ![Diagrama DDBB](../database_diagram_1b.png)  
-No creo que sea necesario hacer tablas extra para mail, teléfono o algún otro campo. Pero de ser necesario los agregaré en el futuro. La BBDD ya se encuentra hecha en MySQL.
+No creo que sea necesario hacer tablas extra para mail, teléfono o algún otro campo. Pero de ser necesario los agregaré en el futuro. La BBDD ya se encuentra hecha en MySQL.  
+Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra contenido estático, pero es útil para ir viendo como va quedando el proyecto. El enlace se encuentra en el encabezado de esta Bitácora.
 
 
