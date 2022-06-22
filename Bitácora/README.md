@@ -18,7 +18,7 @@ Hoy hablando con la profesora de nuestro grupo le comenté mi avance y me fue da
 + ~~**Idea de Bitácora**~~ (En proceso) (Mención de la profesora)
 + ~~**Realizar proyecto Angular**~~
 + ~~**Realizar control de versiones con Git**~~
-+ **Ver segunda masterclass Modulo 8**  
++ ~~**Ver segunda masterclass Modulo 8**~~  
 
 Por hoy, el avance es solo el comienzo de la bitácora. La idea es no solo poder tener registro de cada avance, sino también de anotar ideas, mejoras o problemas que me vaya encontrando durante el proceso, junto con sus soluciones.  
 
@@ -44,9 +44,9 @@ También estuve pensando como proseguir con la página, la pensé para que sea c
 + **[ 15/6/22 ]:** Implementé la librería *SwiperJS* que me permite hacer un carrusel para las tarjetas de cada proyecto (Cambiando un poco el diseño original, me quedará pendiente el dibujo), si bien Bootstrap también tiene su propia funcionalidad me decanté por el uso de la librería. La cantidad de tarjetas en pantalla depende del ancho de esta mediante el uso de breakpoints similares a los de Bootstrap y estas pueden ser tantas como quiera teóricamente, pero supongo que se mantendrán entre 6 y 9. Con esto terminé el componente Proyects.  
 Los últimos dos componentes (Contact y Footer) no tuvieron muchas complicaciones. Otro cambio de diseño, aparte del carrusel de proyectos, es al título de contacto lo puse vertical a la derecha y al botón lo coloqué debajo de los inputs. El footer no tiene grandes diferencias con respecto al esquema.  
 Tengo varias ideas posibles de implementar y algunas correcciones que hacer:  
-    + **Bootstrap Modal para editar info en BBDD e inicio de sesión** (A implementar)
-    + **Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
-    + **Bootstrap Scrollspy para el navbar** (A testear)
+    + ~~**Bootstrap Modal para editar info en BBDD e inicio de sesión** (A implementar)~~
+    + ~~**Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)~~
+    + ~~**Bootstrap Scrollspy para el navbar** (A testear)~~
     + ~~**Hacer horizontalmente mas chicas las tarjetas Skills** (A testear)~~
     + ~~**Agregar botones Edit y Delete en las tarjetas Experience, Education y Projects** (A implementar)~~
     + ~~**Agregar botón Edit en las tarjetas Skills** (A implementar)~~
@@ -58,10 +58,19 @@ Tengo varias ideas posibles de implementar y algunas correcciones que hacer:
 + **[ 16/6/22 ]:** Comencé con las tareas referidas a Skills, las barras de progreso son un poco más chicas, les saqué el degradé, tienen sus botones de edición y se acomodan al tamaño de la pantalla. Y agregue los botones de edición en los componentes que lo necesitaban y elimine botones en donde sobraban. La mayoría de los botones tiene posición absoluta para que no interfieran con otros elementos.  
 + **[ 17/6/22 ]:** Estuve probando el Scrollspy de Boostrap y no logre hacer que funcione, pero por lo poco que investigue tengo un par de opciones para probar, la primera es hacer alguna clase de servicio que agregue una clase a los ítems del navbar para que queden seleccionados mientras se navega dentro del sitio o ubicar en navbar en app.component y a cada uno de los otros componentes introducirlos en un div con su respectivo id. Modal y Toast los voy a dejar para cuando tenga hecho algo de la BBDD.  
 Avancé con Contact, hice el título se vea en la parte superior cuando la ventana es chica (Como antes de ponerlo al costado), el contenido se vertical y dos de las tres tarjetas desaparecen. Estas últimas ya no tienen un ancho fijo, los inputs tampoco. Al final no utilice rows y cols para hacerlo, simplemente diciéndole a cada componente que cambie el display de acuerdo a un determinado breakpoint. En About la imagen desaparece y se acomoda al tamaño de la pantalla, Header también solo que los elementos paran a estar verticales, ninguno se va. También hice una pequeña corrección de errores, el componente header no tenía id (por lo que no se ubicaba al presionarlo desde el navbar). Creo que ya estaría listo para empezar con la base de datos.  
-+ **[ 20/6/22 ]:** Esta mañana (Viendo TioTok) me encontré con esta página ***[SQL Murder Mystery](https://mystery.knightlab.com/)*** me pareció espectacular para practicar consultas SQL y muy entretenida. La compartí por el foro del curso, espero le pueda servir a alguien más. Comencé con la instalación de los programas necesarios para gestionar la base de datos y, para mas adelante, programar en Java. También hice un repaso del capitulo 4 de BBDD y estoy utilizando la página ***[dbdiagram.io](https://dbdiagram.io/)*** para hacer el diagrama.  
++ **[ 20/6/22 ]:** Esta mañana (Viendo TioTok) me encontré con esta página ***[SQL Murder Mystery](https://mystery.knightlab.com/)*** me pareció espectacular para practicar consultas SQL y muy entretenida. La compartí por el foro del curso, espero le pueda servir a alguien más. Comencé con la instalación de los programas necesarios para gestionar la base de datos y, para más adelante, programar en Java. También hice un repaso del capitulo 4 de BBDD y estoy utilizando la página ***[dbdiagram.io](https://dbdiagram.io/)*** para hacer el diagrama.  
 De momento este es el diagrama inicial para la base de datos, hay algunos detalles a comentar que pueden llegar a sufrir cambios como las variables start_date y end_date (podrían pasar de date a varchar), lit_about (a un varchar más chico), experience.description (a un varchar más grande) y algún que otro cambio de la misma naturaleza que los dos anteriores.  
 ![Diagrama DDBB](../database_diagram_1b.png)  
 No creo que sea necesario hacer tablas extra para mail, teléfono o algún otro campo. Pero de ser necesario los agregaré en el futuro. La BBDD ya se encuentra hecha en MySQL.  
-Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra contenido estático, pero es útil para ir viendo como va quedando el proyecto. El enlace se encuentra en el encabezado de esta Bitácora.
+Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra contenido estático, pero es útil para ir viendo cómo va quedando el proyecto. El enlace se encuentra en el encabezado de esta Bitácora.
++ **[ 21/6/22 ]:** Repaso de la unidad 7, práctica JSP e instalación de MySQL y XAMPP. Tuve un par de problemas haciendo funcionar XAMPP, pero después de buscar un poco en Google pude solucionarlo, resulta que el programa utilizaba una ip diferente a la de PhpMyAdmin o algo así. Me llevo bastante tiempo solucionarlo. Hoy poco avance. Tengo que ir pensando ya en agregar los Modal.
++ **[ 22/6/22 ]:** Hice el “Modal” para modificar los datos de la tabla person y social_media. Me queda hacer los otros Modals, terminar los ejercicios que estaba haciendo ayer y cambiar el diagrama (anoche me di cuenta que no indica la relación entre las tablas). Poco para hoy también.   
+**“Lista de tareas”:**
+    +	**Modal para las tablas ~~person, social_media,~~ experience, education, skill, project**
+    +	**Terminar ejercicios Modulo 7** (Repaso)
+    +	**Corregir diagrama BBDD**
+    +	**Modal para inicio de sesión**
+    +	**Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
+    +	**Ver segunda masterclass Modulo 8**
 
 
