@@ -1,5 +1,31 @@
 <header>
     <div class="header_container" id="home">
-        <app-greeting></app-greeting>
+      <app-greeting></app-greeting>
+      
+      <div class="modal" tabindex="-1" id="loginModal" >
+          <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title text-dark">Welcome</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="scan mt-4 mb-5">
+                  <div class="fingerprint">
+                  </div>
+                </div>
+
+                <input type="text" class="form-control mb-3" id="InputUsername" placeholder="Username" required>
+                <input type="password" class="form-control mb-3" id="InputPass" placeholder="Password" required>
+
+                <div class="login_container d-grid ">
+                  <button type="button" class="btn btn-primary">Login</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
 </header>
