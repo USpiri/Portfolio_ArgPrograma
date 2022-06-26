@@ -29,7 +29,7 @@ h4, h5, h6{
 .edit_button:hover{
     background-color: rgba(255, 255, 255, .8);
     border: 1px solid rgba(179, 186, 185, 0.1);
-    color: #08bfff;
+    color: #dc3545;
 }
 
 .add_button{
