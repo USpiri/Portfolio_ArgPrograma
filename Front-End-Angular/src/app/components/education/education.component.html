@@ -3,7 +3,50 @@
         <div class="education_header d-flex flex-row justify-content-center">
             <h1 class="education_title">Education</h1>
             <div class="ico_container">
-                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3"></i>
+                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addEducationModal"></i>
+                <div class="modal fade" id="addEducationModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="exampleModalLabel">Add new education</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-dark mb-2">Education</h5>
+                                <input type="text" class="form-control mb-2" id="inputInstitute" placeholder="Institute Name" value="">
+                                <input type="text" class="form-control mb-4" id="inputTitle" placeholder="Title" value="">
+                                <h5 class="text-dark">
+                                    Time
+                                    <input type="checkbox" class="form-check-input ms-4 fs-6" id="checkActual">
+                                    <label class="form-check-label text-dark ms-1 fs-6" for="checkActual">
+                                        Is Actual
+                                    </label>
+                                </h5>
+                                <div class="row g-2 mb-4">
+                                    <div class="col-sm">
+                                        <label for="inputStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
+                                        <input type="date" class="form-control" id="inputStartDate" placeholder="Start Date" value="">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="inputEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
+                                        <input type="date" class="form-control" id="inputEndDate" placeholder="End date" value="">
+                                    </div>
+                                </div>
+                                <h5 class="text-dark mb-2">Links</h5>
+                                <input type="text" class="form-control mb-2" id="inputImgUrl" placeholder="Image url" value="">
+                                <input type="text" class="form-control mb-1" id="inputLink" placeholder="Link" value="">
+                                <input type="checkbox" class="form-check-input" id="checkEnabledLink">
+                                <label class="form-check-label text-dark ms-1 mb-1" for="checkActual">
+                                    Enable link
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <hr class="education_hr opacity-100">
@@ -22,9 +65,6 @@
                         <p class="education_card_text" id="text">
                             <!-- &nbsp; -->
                             Titulo | Inicio to Final
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
                         </p>
                         <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
                             <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
@@ -45,9 +85,6 @@
                         <p class="education_card_text" id="text">
                             <!-- &nbsp; -->
                             Titulo | Inicio to Final
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
                         </p>
                         <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
                             <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
@@ -68,9 +105,6 @@
                         <p class="education_card_text" id="text">
                             <!-- &nbsp; -->
                             Titulo | Inicio to Final
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
-                            <span class="animated_bg animated_bg_text">&nbsp;</span>
                         </p>
                         <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
                             <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
