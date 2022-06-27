@@ -62,16 +62,16 @@ Tengo varias ideas posibles de implementar y algunas correcciones que hacer:
 Avancé con Contact, hice el título se vea en la parte superior cuando la ventana es chica (Como antes de ponerlo al costado), el contenido se vertical y dos de las tres tarjetas desaparecen. Estas últimas ya no tienen un ancho fijo, los inputs tampoco. Al final no utilice rows y cols para hacerlo, simplemente diciéndole a cada componente que cambie el display de acuerdo a un determinado breakpoint. En About la imagen desaparece y se acomoda al tamaño de la pantalla, Header también solo que los elementos paran a estar verticales, ninguno se va. También hice una pequeña corrección de errores, el componente header no tenía id (por lo que no se ubicaba al presionarlo desde el navbar). Creo que ya estaría listo para empezar con la base de datos.  
 + **[ 20/6/22 ]:** Esta mañana (Viendo TioTok) me encontré con esta página ***[SQL Murder Mystery](https://mystery.knightlab.com/)*** me pareció espectacular para practicar consultas SQL y muy entretenida. La compartí por el foro del curso, espero le pueda servir a alguien más. Comencé con la instalación de los programas necesarios para gestionar la base de datos y, para más adelante, programar en Java. También hice un repaso del capitulo 4 de BBDD y estoy utilizando la página ***[dbdiagram.io](https://dbdiagram.io/)*** para hacer el diagrama.  
 De momento este es el diagrama inicial para la base de datos, hay algunos detalles a comentar que pueden llegar a sufrir cambios como las variables start_date y end_date (podrían pasar de date a varchar), lit_about (a un varchar más chico), experience.description (a un varchar más grande) y algún que otro cambio de la misma naturaleza que los dos anteriores.  
-![Diagrama DDBB](../database_diagram_1b.png)  
+![Diagrama DDBB](../BBDD/database_diagram.png)  
 No creo que sea necesario hacer tablas extra para mail, teléfono o algún otro campo. Pero de ser necesario los agregaré en el futuro. La BBDD ya se encuentra hecha en MySQL.  
 Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra contenido estático, pero es útil para ir viendo cómo va quedando el proyecto. El enlace se encuentra en el encabezado de esta Bitácora.
 + **[ 21/6/22 ]:** Repaso de la unidad 7, práctica JSP e instalación de MySQL y XAMPP. Tuve un par de problemas haciendo funcionar XAMPP, pero después de buscar un poco en Google pude solucionarlo, resulta que el programa utilizaba una ip diferente a la de PhpMyAdmin o algo así. Me llevo bastante tiempo solucionarlo. Hoy poco avance. Tengo que ir pensando ya en agregar los Modal.
 + **[ 22/6/22 ]:** Hice el “Modal” para modificar los datos de la tabla person y social_media. Me queda hacer los otros Modals, terminar los ejercicios que estaba haciendo ayer y cambiar el diagrama (anoche me di cuenta que no indica la relación entre las tablas). Poco para hoy también.   
 **“Lista de tareas”:**
-    +	**Modal para las tablas ~~person, social_media,~~ experience, education, skill, project, ~~login~~**
+    +	~~**Modal para las tablas person, social_media, experience, education, skill, project, login**~~
     +	~~**Terminar ejercicios Modulo 7** (Repaso)~~
-    +	**Corregir diagrama BBDD**
-    +	**Modal para inicio de sesión**
+    +	~~**Corregir diagrama BBDD**~~
+    +	~~**Modal para inicio de sesión**~~
     +	**Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
     +	**Ver segunda masterclass Modulo 8**  
 + **[ 24/6/22 ]:** Terminé con los ejercicios del Módulo 7, incluso los que menciona la profesora al final del masterclass, y comencé un repaso del módulo 8.  
@@ -79,5 +79,7 @@ Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra cont
 Por otro lado, aproveche para hacer el Modal para el login, el “botón” (que es un icono en realidad) está en el navbar y el contenido del Modal está en Header. Hay un pequeño “glitch” visual que al apretar el icono se desplaza todo el componente Header unos pixeles hacia la derecha, con About pasa algo similar nada mas que se acomoda verticalmente y no se nota tanto.  
 En el Login hay una animación que vi y me gustó, pero está a modo de prueba. Capaz la dejo o la saco.  
 También estaba pensando en poner las dos url de las imágenes en una tabla aparte dentro de la BBDD.  
++ **[ 27/6/22 ]:** Encapsulo lo de ayer junto con lo de este día. En la BBDD agregué una tabla separada para las imágenes, moví los diagramas dentro de la carpeta “BBDD” y cambié el diagrama. La página que usé para el diagrama no la pude volver a utilizar por lo que la imagen es la exportada directamente desde MySQL Workbench (No sé muy bien por qué no funciona, pero sospecho que es problema de conexión, hay otras páginas que tampoco me cargan adecuadamente).  
+Moví algunos de los modales que ya había puesto porque estaban dentro de los contenedores de los iconos, agregué los de experience, education, skills y projects. Este ultimo tiene dos modales, uno para agregar y otro que te muestra la lista de proyectos para poder eliminarlos. Me quedaría agregar un modal para editar los componentes de Experience, Education y Skills. Estoy pensando en hacer algo parecido a lo que hice en projects con varios modales un solo modal que obtenga los datos del componente seleccionado y permita editarlos.
 
 
