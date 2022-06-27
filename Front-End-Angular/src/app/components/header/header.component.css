@@ -48,7 +48,6 @@
     height: 5px;
     background: #dc3545;
     border-radius: 8px;
-    filter: drop-shadow(0 0 20px #dc3545) drop-shadow(0 0 63px #dc3545);
     animation: animate_line 4s ease-in-out infinite;
 }
 
