@@ -3,115 +3,88 @@
         <div class="project_header d-flex flex-row justify-content-center">
             <h1 class="project_title">Projects</h1>
             <div class="ico_container">
-                <i class="fa-solid fa-pen-to-square edit_button edit_button_ico position-absolute mt-2 ms-3"></i>
+                <i class="fa-solid fa-pen-to-square edit_button edit_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addProjectModal"></i>
+            </div>
+            <div class="modal fade" id="addProjectModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLabel">Add new project</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="text-dark mb-2">Project</h5>
+                            <input type="text" class="form-control mb-2" id="inputTitle" placeholder="Project title" value="">
+                            <textarea class="form-control mb-2" placeholder="Project description" id="inputDescription" value=""></textarea>
+                            <h5 class="text-dark mb-2">Links</h5>
+                            <input type="text" class="form-control mb-2" id="inputImgUrl" placeholder="Image url" value="">
+                            <input type="text" class="form-control mb-1" id="inputLink" placeholder="Link" value="">
+                            <input type="checkbox" class="form-check-input" id="checkEnabledLink" checked>
+                            <label class="form-check-label text-dark ms-1 mb-1" for="checkEnabledLink">
+                                Enable link
+                            </label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-bs-target="#deleteProjectModal" data-bs-toggle="modal">Delete existing project</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="deleteProjectModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLabel">Delete project</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-dark">Project name</th>
+                                        <th scope="col" class="text-dark">Delete button</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-dark">Project 1</td>
+                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-dark">Project 2</td>
+                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-dark">Project 3</td>
+                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-dark">Project 4</td>
+                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-dark">Project 5</td>
+                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-dark">Project 6</td>
+                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-target="#addProjectModal" data-bs-toggle="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <hr class="project_hr opacity-100 w-25 mt-1">
         <div class="project_cards_container">
-            <!-- <ul class="project_cards">
-                <li class="project_card"><a class="project_link" href="#"> 
-                    <div class="project_card_header animated_bg project_card_img" id="project_header">
-
-                        <img src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Imagen del proyecto ProjectTITULO">
-                    </div>
-                    <div class="project_card_content">
-                        <h3 class="project_card_title fs-5 m-0" id="title">
-    
-                            Project TITULO
-                        </h3>
-                        <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-    
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.
-                        </p>
-                        <div class="project_button_container"><a href="#" class="button d-block p-3">WEB / GITHUB</a></div>
-                    </div>
-                </a></li>
-                <li class="project_card"><a class="project_link" href="#"> 
-                    <div class="project_card_header animated_bg project_card_img" id="project_header">
-
-                        <img src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Imagen del proyecto ProjectTITULO">
-                    </div>
-                    <div class="project_card_content">
-                        <h3 class="project_card_title fs-5 m-0" id="title">
-    
-                            Project TITULO
-                        </h3>
-                        <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-    
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.
-                        </p>
-                        <div class="project_button_container"><a href="#" class="button d-block p-3">WEB / GITHUB</a></div>
-                    </div>
-                </a></li>
-                <li class="project_card"><a class="project_link" href="#"> 
-                    <div class="project_card_header animated_bg project_card_img" id="project_header">
-
-                        <img src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Imagen del proyecto ProjectTITULO">
-                    </div>
-                    <div class="project_card_content">
-                        <h3 class="project_card_title fs-5 m-0" id="title">
-    
-                            Project TITULO
-                        </h3>
-                        <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-    
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.
-                        </p>
-                        <div class="project_button_container"><a href="#" class="button d-block p-3">WEB / GITHUB</a></div>
-                    </div>
-                </a></li>
-                <li class="project_card"><a class="project_link" href="#"> 
-                    <div class="project_card_header animated_bg project_card_img" id="project_header">
-
-                        <img src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Imagen del proyecto ProjectTITULO">
-                    </div>
-                    <div class="project_card_content">
-                        <h3 class="project_card_title fs-5 m-0" id="title">
-    
-                            Project TITULO
-                        </h3>
-                        <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-    
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.
-                        </p>
-                        <div class="project_button_container"><a href="#" class="button d-block p-3">WEB / GITHUB</a></div>
-                    </div>
-                </a></li>
-                <li class="project_card"><a class="project_link" href="#"> 
-                    <div class="project_card_header animated_bg project_card_img" id="project_header">
-
-                        <img src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Imagen del proyecto ProjectTITULO">
-                    </div>
-                    <div class="project_card_content">
-                        <h3 class="project_card_title fs-5 m-0" id="title">
-    
-                            Project TITULO
-                        </h3>
-                        <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-    
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.
-                        </p>
-                        <div class="project_button_container"><a href="#" class="button d-block p-3">WEB / GITHUB</a></div>
-                    </div>
-                </a></li>
-                <li class="project_card"><a class="project_link" href="#"> 
-                    <div class="project_card_header animated_bg project_card_img" id="project_header">
-
-                        <img src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Imagen del proyecto ProjectTITULO">
-                    </div>
-                    <div class="project_card_content">
-                        <h3 class="project_card_title fs-5 m-0" id="title">
-    
-                            Project TITULO
-                        </h3>
-                        <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-    
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.
-                        </p>
-                        <div class="project_button_container"><a href="#" class="button d-block p-3">WEB / GITHUB</a></div>
-                    </div>
-                </a></li>
-            </ul> -->
             <swiper class="project_cards my-swiper my_swiper"
                 style="--swiper-navigation-color: #dc3545;--swiper-pagination-color: #dc3545"
                 [slidesPerView]="1"
