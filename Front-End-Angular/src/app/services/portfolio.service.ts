@@ -6,4 +6,9 @@ import { Injectable } from '@angular/core';
 export class PortfolioService {
 
   constructor() { }
+
+  getData(){
+    console.log("El servicio esta en funcionamiento");
+  }
+
 }
