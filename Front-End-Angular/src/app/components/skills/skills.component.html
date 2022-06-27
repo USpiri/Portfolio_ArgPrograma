@@ -1,6 +1,31 @@
 <section class="skills min-vh-100 pt-5 pb-5" id="skills">
     <div class="skills_container d-flex flex-column h-100 justify-content-center align-items-center p-5">
-        <h1 class="skills_title">Skills</h1>
+        <div class="skills_header d-flex flex-row justify-content-center">
+            <h1 class="skills_title">Skills</h1>
+            <div class="ico_container">
+                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addSkillModal"></i>
+            </div>
+            <div class="modal fade" id="addSkillModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLabel">Add new skill</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="text-dark mb-2">Skill</h5>
+                            <input type="text" class="form-control mb-2" id="inputSkillName" placeholder="Skill name" value="">
+                            <input type="text" class="form-control mb-2" id="inputIcon" placeholder="Icon" value="">
+                            <input type="number" min="0" max="100" step="1" class="form-control" id="InputSkillPercentage" placeholder="Percentage" value="">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Add skill</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr class="skills_hr opacity-100 w-25 mt-1">
         <div class="skills_cards_container">
             <ul class="skills_cards row row-cols-1 p-0 p-lg-5 gy-3 justify-content-center align-items-center">
