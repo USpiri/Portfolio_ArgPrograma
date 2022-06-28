@@ -151,14 +151,14 @@
         }
     ],
     "images":{
-        "header":"",
-        "about":""
+        "header":"/../assets/img/perfil.jpg",
+        "about":"/../assets/img/perfil.jpg"
     },
     "links":{
         "location":"https://goo.gl/maps/cRDATver98pUvuBd8",
-        "faceboook": "https://www.facebook.com/UrieLSpiridion3",
+        "facebook": "https://www.facebook.com/UrieLSpiridion3",
         "twitter": "https://twitter.com/UrielSpiridione",
-        "instagram": "https://www.instagram.com/urielspiridione/",
+        "instagram": "https://www.instagram.com/urielspiridione",
         "github": "https://github.com/USpiri"
     }
 

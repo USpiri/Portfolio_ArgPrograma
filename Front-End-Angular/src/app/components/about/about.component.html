@@ -1,7 +1,7 @@
 <section class="about_section h-auto position-relative" id="about">
     <div class="about_container d-flex flex-row align-items-center justify-content-center h-100">
         <div class="image_container m-4 d-none d-lg-inline">
-            <img src="/../assets/img/perfil.jpg" alt="Foto de perfil de Uriel Spiridione" class="profile_img">
+            <img [src]="data?.images?.about" alt="Foto de perfil de Uriel Spiridione" class="profile_img">
         </div>
 
         <div class="about_info_container p-4 p-lg-0">
@@ -21,28 +21,25 @@
                             <h5 class="text-dark">Basic</h5>
                             <div class="row g-2 mb-2">
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" id="InputName" placeholder="Name" value="">
+                                    <input type="text" class="form-control" id="InputName" placeholder="Name" [value]="data?.name">
                                 </div>
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" id="InputLastName" placeholder="Last name" value="">
+                                    <input type="text" class="form-control" id="InputLastName" placeholder="Last name" [value]="data?.surname">
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" id="InputAddress" placeholder="Address" value="">
+                                    <input type="text" class="form-control" id="InputAddress" placeholder="Address" [value]="data?.address">
                                 </div>
                                 <div class="col-sm">
-                                    <input type="number" class="form-control" id="InputAge" placeholder="Age" value="" >
+                                    <input type="number" class="form-control" id="InputAge" placeholder="Age" [value]="data?.age" >
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="number" class="form-control" id="InputDNI" placeholder="DNI" value="">
-                            </div>
-                            <div class="mb-2">
-                                <input type="number" class="form-control" id="InputPhone" placeholder="Phone" value="">
+                                <input type="text" class="form-control" id="InputPhone" placeholder="Phone" [value]="data?.phone">
                             </div>
                             <div class="mb-3">
-                                <input type="email" class="form-control" id="InputEmail" placeholder="Email" value="">
+                                <input type="email" class="form-control" id="InputEmail" placeholder="Email" [value]="data?.email">
                             </div>
                             <h6 class="text-dark">Birth Date</h6>
                             <div class="row g-2 mb-3">
@@ -72,35 +69,35 @@
                             </div>
                             <h6 class="text-dark">Little description for header</h6>
                             <div class="mb-3">
-                                <textarea class="form-control" id="FormTextareaLittle"></textarea>
+                                <textarea class="form-control" id="FormTextareaLittle" [value]="data?.lit_about"></textarea>
                             </div>
                             <h6 class="text-dark">Description for about section</h6>
                             <div class="mb-3">
-                                <textarea class="form-control" id="FormTextareaAbout"></textarea>
+                                <textarea class="form-control" id="FormTextareaAbout" [value]="data?.about"></textarea>
                             </div>
                             <h5 class="text-dark">Images</h5>
                             <div class="mb-2">
-                                <input type="url" class="form-control" id="InputHeaderImg" placeholder="Header image url" value="">
+                                <input type="url" class="form-control" id="InputHeaderImg" placeholder="Header image url" [value]="data?.images?.header">
                             </div>
                             <div class="mb-3">
-                                <input type="url" class="form-control" id="InputAboutImg" placeholder="About image url" value="">
+                                <input type="url" class="form-control" id="InputAboutImg" placeholder="About image url" [value]="data?.images?.about">
                             </div>
                             <h5 class="text-dark">Social Media</h5>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://www.facebook.com/</span>
-                                <input type="text" class="form-control" id="FacebookUrl" aria-describedby="basic-addon3" placeholder="Username">
+                                <span class="input-group-text" id="basic-addon3">https://facebook.com/</span>
+                                <input type="text" class="form-control" id="FacebookUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.facebook">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://www.instagram.com/</span>
-                                <input type="text" class="form-control" id="InstagramUrl" aria-describedby="basic-addon3" placeholder="Username">
+                                <span class="input-group-text" id="basic-addon3">https://instagram.com/</span>
+                                <input type="text" class="form-control" id="InstagramUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.instagram">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon3">https://twitter.com/</span>
-                                <input type="text" class="form-control" id="TwitterUrl" aria-describedby="basic-addon3" placeholder="Username">
+                                <input type="text" class="form-control" id="TwitterUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.twitter">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://github.com/</span>
-                                <input type="text" class="form-control" id="GithubUrl" aria-describedby="basic-addon3" placeholder="Username">
+                                <span class="input-group-text" id="basic-addon3">https://ejemplo.com/</span>
+                                <input type="text" class="form-control" id="GithubUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.github">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -112,7 +109,7 @@
             </div>
 
             <p class="about_info">
-                {{data.about}}
+                {{data?.about}}
             </p>
             <div class="about_list_container">
                 <ul>
