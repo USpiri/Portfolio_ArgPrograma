@@ -112,7 +112,7 @@
             </div>
 
             <p class="about_info">
-                My name is Uriel Spiridione. I'm student of economic sciences, photographer and Full Stack Developer based in Córdoba, Argentina.
+                {{data.about}}
             </p>
             <div class="about_list_container">
                 <ul>
@@ -120,42 +120,42 @@
                         <span>
                             Name: 
                         </span>
-                        Uriel Spiridione
+                        {{data?.name}} {{data?.surname}}
                     </li>
                     <li>
                         <span>
                             Age: 
                         </span>
-                        22
+                        {{data?.age}}
                     </li>
                     <li>
                         <span>
                             Address: 
                         </span>
-                        Córdoba, Argentina
+                        {{data?.address}}
                     </li>
                     <li>
                         <span>
                             Birth date:
                         </span>
-                        August 4, 1999
+                        {{data?.birth_date}}
                     </li>
                     <li>
                         <span>
                             Phone: 
                         </span>
-                        +54 351 213-6765
+                        {{data?.phone}}
                     </li>
                     <li>
                         <span>
                             Email: 
                         </span>
-                        urielspiridione135@gmail.com
+                        {{data?.email}}
                     </li>
                 </ul>
             </div>
             
-            <div class="button_container ">
+            <div class="button_container d-none">
                 <a href="#" class="about_download_button button d-inline-flex">
                     <div class="about_download d-flex flex-row">
                         <div class="about_icon_container d-flex flex-column me-1 pt-1">
