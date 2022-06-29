@@ -44,10 +44,10 @@
                             <h6 class="text-dark">Birth Date</h6>
                             <div class="row g-2 mb-3">
                                 <div class="col-sm">
-                                    <input type="number" class="form-control" id="InputBirthDay" placeholder="Day" value="">
+                                    <input type="number" class="form-control" id="InputBirthDay" placeholder="Day" [value]="date.day">
                                 </div>
                                 <div class="col-sm">
-                                    <select class="form-select">
+                                    <select class="form-select" [value]="date.month">
                                         <option selected class="text-dark">Month</option>
                                         <option value="1" class="text-dark">January</option>
                                         <option value="2" class="text-dark">February</option>
@@ -64,7 +64,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm">
-                                    <input type="number" min="1900" max="2099" step="1" class="form-control" id="InputBirthYear" placeholder="Year" value="">
+                                    <input type="number" min="1900" max="2099" step="1" class="form-control" id="InputBirthYear" placeholder="Year" [value]="date.year">
                                 </div>
                             </div>
                             <h6 class="text-dark">Little description for header</h6>
