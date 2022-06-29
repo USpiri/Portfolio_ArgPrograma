@@ -32,8 +32,6 @@ export class AboutComponent implements OnInit {
         this.data = data;
         this.getLastIndex(data);
         this.getBirthDate(data);
-        console.log(this.date.month);
-        
       }
     );
   }
