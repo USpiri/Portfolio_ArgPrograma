@@ -18,7 +18,6 @@ export class SkillsComponent implements OnInit {
     this.dataPortfolio.getData().subscribe(
       data => {
         this.data = data.skills;
-        console.log(this.data);
       }
     );
   }
