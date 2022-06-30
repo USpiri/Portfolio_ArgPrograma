@@ -59,59 +59,19 @@
         <hr class="experience_hr opacity-100">
         <div class="experience_cards_container mt-2">
             <ul class="experience_cards">
-                <li class="experience_card"><a class="experience_link d-flex flex-row"><!--*ngFor="let education of data_experience"--><!--[href]="experience.link"-->
+                <li class="experience_card" *ngFor="let experience of data"><a class="experience_link d-flex flex-row" [href]="experience?.link"><!--*ngFor="let education of data_experience"--><!--[href]="experience.link"-->
                     <div class="experience_card_header animated_bg experience_card_img" id="experience_header">
                         <!-- &nbsp; -->
-                        <img src="https://picsum.photos/id/1005/500/300" alt="Imagen del proyecto">
+                        <img [src]="experience?.img_url" alt="Imagen del proyecto">
                     </div>
                     <div class="experience_card_content position-relative">
                         <h3 class="experience_card_title animated_bg animated_bg_title fs-5" id="title">
                             <!-- &nbsp; -->
-                            Trabajo
+                            {{experience?.position}}
                         </h3>
                         <p class="experience_card_text" id="text">
                             <!-- &nbsp; -->
-                            Empresa | Desde to Hasta | Tipo
-                        </p>
-                        <div class="experience_buttons position-absolute top-50 end-0 translate-middle-y me-4">
-                            <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
-                            <i class="fa-solid fa-trash delete_button"></i>
-                        </div>
-                    </div>
-                </a></li>
-                <li class="experience_card"><a class="experience_link d-flex flex-row"><!--*ngFor="let education of data_experience"--><!--[href]="experience.link"-->
-                    <div class="experience_card_header animated_bg experience_card_img" id="experience_header">
-                        <!-- &nbsp; -->
-                        <img src="https://picsum.photos/id/1005/500/300" alt="Imagen del proyecto">
-                    </div>
-                    <div class="experience_card_content position-relative">
-                        <h3 class="experience_card_title animated_bg animated_bg_title fs-5" id="title">
-                            <!-- &nbsp; -->
-                            Trabajo
-                        </h3>
-                        <p class="experience_card_text" id="text">
-                            <!-- &nbsp; -->
-                            Empresa | Desde to Hasta
-                        </p>
-                        <div class="experience_buttons position-absolute top-50 end-0 translate-middle-y me-4">
-                            <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
-                            <i class="fa-solid fa-trash delete_button"></i>
-                        </div>
-                    </div>
-                </a></li>
-                <li class="experience_card"><a class="experience_link d-flex flex-row"><!--*ngFor="let education of data_experience"--><!--[href]="experience.link"-->
-                    <div class="experience_card_header animated_bg experience_card_img" id="experience_header">
-                        <!-- &nbsp; -->
-                        <img src="https://picsum.photos/id/1005/500/300" alt="Imagen del proyecto">
-                    </div>
-                    <div class="experience_card_content position-relative">
-                        <h3 class="experience_card_title animated_bg animated_bg_title fs-5" id="title">
-                            <!-- &nbsp; -->
-                            Trabajo
-                        </h3>
-                        <p class="experience_card_text" id="text">
-                            <!-- &nbsp; -->
-                            Empresa | Desde to Hasta
+                            {{experience?.company}} | {{experience?.start_date}} to {{experience?.end_date}} | {{experience?.job_type}}
                         </p>
                         <div class="experience_buttons position-absolute top-50 end-0 translate-middle-y me-4">
                             <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>

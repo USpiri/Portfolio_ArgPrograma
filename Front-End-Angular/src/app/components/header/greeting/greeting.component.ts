@@ -17,7 +17,6 @@ export class GreetingComponent implements OnInit {
   ngOnInit(): void {
     this.dataPortfolio.getData().subscribe(
       data => {
-        console.log(data);
         this.data = data;
       }
     );
