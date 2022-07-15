@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { experience } from 'src/app/model/experienceEntity';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
@@ -10,7 +10,6 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ExperienceComponent implements OnInit {
 
   data:experience[] = [];
-  @ViewChild('editExperienceModal') editExperienceModal : any;
 
   experienceToEdit : experience = {
     company: "",
