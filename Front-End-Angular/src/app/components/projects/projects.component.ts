@@ -14,9 +14,10 @@ export class ProjectsComponent implements OnInit {
 
   config: SwiperOptions = {
     loopedSlides: 6,
+    initialSlide: 2,
     spaceBetween: 10,
     navigation: true,
-    centeredSlides: false,
+    centeredSlides: true,
     keyboard: {
       enabled: true
     },
