@@ -84,20 +84,23 @@
                             </div>
                             <h5 class="text-dark">Social Media</h5>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://facebook.com/</span>
-                                <input type="text" class="form-control" id="FacebookUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.facebook">
+                                <span class="input-group-text" id="InputFacebookUrl">https://facebook.com/</span>
+                                <input type="text" class="form-control" id="FacebookUrl" placeholder="Facebook user" [value]="links?.facebook">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://instagram.com/</span>
-                                <input type="text" class="form-control" id="InstagramUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.instagram">
+                                <span class="input-group-text" id="InputInstagramUrl">https://instagram.com/</span>
+                                <input type="text" class="form-control" id="InstagramUrl" placeholder="Instagram user" [value]="links?.instagram">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://twitter.com/</span>
-                                <input type="text" class="form-control" id="TwitterUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.twitter">
+                                <span class="input-group-text" id="InputTwitterUrl">https://twitter.com/</span>
+                                <input type="text" class="form-control" id="TwitterUrl" placeholder="Twitter user" [value]="links?.twitter">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">https://ejemplo.com/</span>
-                                <input type="text" class="form-control" id="GithubUrl" aria-describedby="basic-addon3" placeholder="Username" [value]="links?.github">
+                                <span class="input-group-text" id="InputGithubUrl">https://github.com/</span>
+                                <input type="text" class="form-control" id="GithubUrl" placeholder="Github user" [value]="links?.github">
+                            </div>
+                            <div class="mb-3">
+                                <input type="url" class="form-control" id="CvUrl" placeholder="CV downloadable link" [value]="data?.links?.cv">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -152,8 +155,8 @@
                 </ul>
             </div>
             
-            <div class="button_container d-none">
-                <a href="#" class="about_download_button button d-inline-flex">
+            <div class="button_container">
+                <a [href]="data?.links?.cv" class="about_download_button button d-inline-flex">
                     <div class="about_download d-flex flex-row">
                         <div class="about_icon_container d-flex flex-column me-1 pt-1">
                             <i class="fa-solid fa-arrow-down"></i>

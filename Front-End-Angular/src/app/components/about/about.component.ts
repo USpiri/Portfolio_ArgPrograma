@@ -14,11 +14,12 @@ export class AboutComponent implements OnInit {
     day: "",
     year: ""
   };
-  links:{ facebook: string , instagram: string , twitter: string , github: string } = {
+  links:{ facebook: string , instagram: string , twitter: string , github: string, cv: string } = {
     facebook: "",
     instagram: "",
     twitter: "",
-    github: ""
+    github: "",
+    cv: ""
   };
   test: string = "hola 4, 1111";
 
