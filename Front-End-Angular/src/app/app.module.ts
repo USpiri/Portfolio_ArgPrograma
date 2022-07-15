@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SwiperModule } from "swiper/angular";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +16,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { GreetingComponent } from './components/header/greeting/greeting.component';
+import { ExperienceModalComponent } from './components/experience/experience-modal/experience-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,15 @@ import { GreetingComponent } from './components/header/greeting/greeting.compone
     ProjectsComponent,
     SkillsComponent,
     NavbarComponent,
-    GreetingComponent
+    GreetingComponent,
+    ExperienceModalComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     SwiperModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

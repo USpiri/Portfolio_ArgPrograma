@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { experience } from 'src/app/model/experienceEntity';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -8,7 +9,21 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class ExperienceComponent implements OnInit {
 
-  data:any;
+  data:experience[] = [];
+  @ViewChild('editExperienceModal') editExperienceModal : any;
+
+  experienceToEdit : experience = {
+    company: "",
+    enabled_link: false,
+    end_date: "",
+    id: 0,
+    img_url: "",
+    is_actual: false,
+    job_type: "",
+    link: "",
+    position: "",
+    start_date: "",
+  }
 
   constructor(
     private dataPortfolio:PortfolioService
@@ -20,6 +35,25 @@ export class ExperienceComponent implements OnInit {
         this.data = data.experience;
       }
     );
+  }
+
+  openEditModal( experience: any ){
+    this.experienceToEdit = experience;
+  }
+
+  updateExperience(experience:experience){
+
+    //Update View
+    this.data.map( 
+      (exp , i) => {
+        if( exp.id == experience.id ){
+          this.data[i]= experience;
+        }
+      }
+    );
+      
+    //Update Server
+    console.log(experience);
   }
 
 }

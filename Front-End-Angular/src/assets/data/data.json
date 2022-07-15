@@ -11,39 +11,43 @@
     "about": "My name is Uriel Spiridione. I'm student of economic sciences, photographer and Full Stack Developer based in Córdoba, Argentina.",
     "experience":[
         {
+            "id": 1,
             "company": "CompanyName",
             "position": "Experience 1",
             "is_actual": false,
-            "start_date": "(start date)",
-            "end_date": "(end date)",
+            "start_date": "15/07/2022",
+            "end_date": "15/07/2022",
             "img_url": "https://picsum.photos/id/1005/500/300",
             "link": "#",
             "enabled_link": false,
-            "job_type": "Tiempo completo"
+            "job_type": "Full-Time"
         },{
+            "id": 2,
             "company": "CompanyName",
             "position": "Experience 2",
-            "is_actual": false,
-            "start_date": "(start date)",
-            "end_date": "(end date)",
+            "is_actual": true,
+            "start_date": "15/07/2022",
+            "end_date": "15/07/2022",
             "img_url": "https://picsum.photos/id/1005/500/300",
             "link": "#",
             "enabled_link": false,
-            "job_type": "Tiempo completo"
+            "job_type": "Part-Time"
         },{
+            "id": 3,
             "company": "CompanyName",
             "position": "Experience 3",
             "is_actual": false,
-            "start_date": "(start date)",
-            "end_date": "(end date)",
+            "start_date": "15/07/2022",
+            "end_date": "15/07/2022",
             "img_url": "https://picsum.photos/id/1005/500/300",
             "link": "#",
             "enabled_link": false,
-            "job_type": "Tiempo completo"
+            "job_type": "On-Call"
         }
     ],
     "education":[
         {
+            "id": 1,
             "institute": "School 1",
             "title": "Title",
             "is_actual": false,
@@ -54,6 +58,7 @@
             "enabled_link": false
         },
         {
+            "id": 2,
             "institute": "School 2",
             "title": "Title",
             "is_actual": false,
@@ -64,6 +69,7 @@
             "enabled_link": false
         },
         {
+            "id": 3,
             "institute": "School 3",
             "title": "Title",
             "is_actual": false,

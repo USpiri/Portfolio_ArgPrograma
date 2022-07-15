@@ -1,0 +1,53 @@
+<div class="modal" id="editExperienceModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="" (ngSubmit)="onSubmit()">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="editExperienceModalLabel">Edit experience</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-dark mb-2">Job information</h5>
+                    <input type="text" class="form-control mb-2" id="editCompany" name="company" [(ngModel)]="company" placeholder="Company" [value]="experience.company">
+                    <input type="text" class="form-control mb-2" id="editPosition" name="position" [(ngModel)]="position" placeholder="Position" [value]="experience.position">
+                    <select class="form-select mb-4" id="editJobType">
+                        <option selected class="text-dark" disabled>Job type</option>
+                        <option value="Full-Time" class="text-dark" [selected]="experience.job_type == 'Full-Time'">Full-Time</option>
+                        <option value="Part-Time" class="text-dark" [selected]="experience.job_type == 'Part-Time'">Part-Time</option>
+                        <option value="Freelance" class="text-dark" [selected]="experience.job_type == 'Freelance'">Freelance</option>
+                        <option value="On-Call" class="text-dark" [selected]="experience.job_type == 'On-Call'">On-Call</option>
+                        <option value="Seasonal" class="text-dark" [selected]="experience.job_type == 'Seasonal'">Seasonal</option>
+                    </select>
+                    <h5 class="text-dark">
+                        Time
+                        <input type="checkbox" [checked]="experience.is_actual" class="form-check-input ms-4 fs-6" id="editCheckActual">
+                        <label class="form-check-label text-dark ms-1 fs-6" for="editCheckActual">
+                            Is Actual
+                        </label>
+                    </h5>
+                    <div class="row g-2 mb-4">
+                        <div class="col-sm">
+                            <label for="editStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
+                            <input type="date" class="form-control" id="editStartDate" [valueAsDate]="date(experience.start_date)">
+                        </div>
+                        <div class="col-sm">
+                            <label for="editEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
+                            <input type="date" class="form-control" id="editEndDate" [valueAsDate]="date(experience.end_date)">
+                        </div>
+                    </div>
+                    <h5 class="text-dark mb-2">Links</h5>
+                    <input type="text" class="form-control mb-2" id="editExperienceImgUrl" placeholder="Image url" [value]="experience.img_url">
+                    <input type="text" class="form-control mb-1" id="editExperienceLink" placeholder="Link" [value]="experience.link">
+                    <input type="checkbox" class="form-check-input" id="editCheckEnabledLink" [checked]="experience.enabled_link">
+                    <label class="form-check-label text-dark ms-1 mb-1" for="editCheckEnabledLink">
+                        Enable link
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
