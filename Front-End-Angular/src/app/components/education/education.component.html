@@ -9,35 +9,35 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="exampleModalLabel">Add new education</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title text-dark" id="addEducationModalLabel">Add new education</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <h5 class="text-dark mb-2">Education</h5>
-                            <input type="text" class="form-control mb-2" id="inputInstitute" placeholder="Institute Name" value="">
-                            <input type="text" class="form-control mb-4" id="inputTitle" placeholder="Title" value="">
+                            <input type="text" class="form-control mb-2" id="inputEducationInstitute" placeholder="Institute Name" value="">
+                            <input type="text" class="form-control mb-4" id="inputEducationTitle" placeholder="Title" value="">
                             <h5 class="text-dark">
                                 Time
-                                <input type="checkbox" class="form-check-input ms-4 fs-6" id="checkActual">
-                                <label class="form-check-label text-dark ms-1 fs-6" for="checkActual">
+                                <input type="checkbox" class="form-check-input ms-4 fs-6" id="educationActual">
+                                <label class="form-check-label text-dark ms-1 fs-6" for="educationActual">
                                     Is Actual
                                 </label>
                             </h5>
                             <div class="row g-2 mb-4">
                                 <div class="col-sm">
-                                    <label for="inputStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
-                                    <input type="date" class="form-control" id="inputStartDate" placeholder="Start Date" value="">
+                                    <label for="inputEducationStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
+                                    <input type="date" class="form-control" id="inputEducationStartDate" placeholder="Start Date" value="">
                                 </div>
                                 <div class="col-sm">
-                                    <label for="inputEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
-                                    <input type="date" class="form-control" id="inputEndDate" placeholder="End date" value="">
+                                    <label for="inputEducationEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
+                                    <input type="date" class="form-control" id="inputEducationEndDate" placeholder="End date" value="">
                                 </div>
                             </div>
                             <h5 class="text-dark mb-2">Links</h5>
                             <input type="text" class="form-control mb-2" id="inputEducationImgUrl" placeholder="Image url" value="">
                             <input type="text" class="form-control mb-1" id="inputEducationLink" placeholder="Link" value="">
-                            <input type="checkbox" class="form-check-input" id="checkEnabledLink">
-                            <label class="form-check-label text-dark ms-1 mb-1" for="checkActual">
+                            <input type="checkbox" class="form-check-input" id="educationEnabledLink">
+                            <label class="form-check-label text-dark ms-1 mb-1" for="educationEnabledLink">
                                 Enable link
                             </label>
                         </div>
@@ -52,24 +52,28 @@
         <hr class="education_hr opacity-100">
         <div class="education_cards_container mt-2">
             <ul class="education_cards">
-                <li class="education_card" *ngFor="let education of data"><a class="education_link d-flex flex-row" [href]="education?.link">
-                    <div class="education_card_header animated_bg education_card_img" id="education_header">
-                        <img [src]="education?.img_url" alt="Imagen del proyecto">
-                    </div>
-                    <div class="education_card_content position-relative">
-                        <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
-                            {{education?.institute}}
-                        </h3>
-                        <p class="education_card_text" id="text">
-                            {{education?.title}} | {{education?.start_date}} to {{education?.end_date}}
-                        </p>
-                        <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
-                            <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3"></i>
-                            <i class="fa-solid fa-trash delete_button"></i>
+                <li class="education_card" *ngFor="let education of data">
+                    <a class="education_link d-flex flex-row" [href]="education?.link">
+                        <div class="education_card_header animated_bg education_card_img" id="education_header">
+                            <img [src]="education?.img_url" alt="Imagen del proyecto">
                         </div>
+                        <div class="education_card_content position-relative">
+                            <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
+                                {{education?.institute}}
+                            </h3>
+                            <p class="education_card_text" id="text">
+                                {{education?.title}} | {{education?.start_date}} to {{education?.end_date}}
+                            </p>
+                            
+                        </div>
+                    </a>
+                    <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
+                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3" (click)="openEditModal(education)" data-bs-toggle="modal" data-bs-target="#editEducationModal"></i>
+                        <i class="fa-solid fa-trash delete_button"></i>
                     </div>
-                </a></li>
+                </li>
             </ul>
+            <app-education-modal [education] = "educationToEdit" (onUpdateEducation)="updateEducation($event)"></app-education-modal>
         </div>
     </div>
 </section>
