@@ -90,3 +90,4 @@ La función es similar a esta: (Que me devuelve todo lo que esté después del �
 ~~~
 this.links.ejemplo = ( "https://www.ejemplo.com/usuario" ).substring(( "https://www.ejemplo.com/usuario" ).lastIndexOf('/') +1 );
 ~~~  
++ **[ 29/6/22 ]:** Conecté todos los componentes del portfolio al servicio.
