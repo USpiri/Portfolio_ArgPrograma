@@ -56,7 +56,6 @@ export class ProjectsComponent implements OnInit {
     this.dataPortfolio.getData().subscribe(
       data => {
         this.data = data.projects;
-        console.log(this.data);
       }
     );
   }
