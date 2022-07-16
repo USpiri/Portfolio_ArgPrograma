@@ -66,14 +66,14 @@ De momento este es el diagrama inicial para la base de datos, hay algunos detall
 No creo que sea necesario hacer tablas extra para mail, teléfono o algún otro campo. Pero de ser necesario los agregaré en el futuro. La BBDD ya se encuentra hecha en MySQL.  
 Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra contenido estático, pero es útil para ir viendo cómo va quedando el proyecto. El enlace se encuentra en el encabezado de esta Bitácora.
 + **[ 21/6/22 ]:** Repaso de la unidad 7, práctica JSP e instalación de MySQL y XAMPP. Tuve un par de problemas haciendo funcionar XAMPP, pero después de buscar un poco en Google pude solucionarlo, resulta que el programa utilizaba una ip diferente a la de PhpMyAdmin o algo así. Me llevo bastante tiempo solucionarlo. Hoy poco avance. Tengo que ir pensando ya en agregar los Modal.
-+ **[ 22/6/22 ]:** Hice el “Modal” para modificar los datos de la tabla person y social_media. Me queda hacer los otros Modals, terminar los ejercicios que estaba haciendo ayer y cambiar el diagrama (anoche me di cuenta que no indica la relación entre las tablas). Poco para hoy también.   
++ **[ 22/6/22 ]:** Hice el “Modal” para modificar los datos de la tabla person y social_media. Me queda hacer los otros Modals, terminar los ejercicios que estaba haciendo ayer y cambiar el diagrama (anoche me di cuenta que no indica la relación entre las tablas). Poco para hoy también.  
 **“Lista de tareas”:**
     +	~~**Modal para las tablas person, social_media, experience, education, skill, project, login**~~
     +	~~**Terminar ejercicios Modulo 7** (Repaso)~~
     +	~~**Corregir diagrama BBDD**~~
     +	~~**Modal para inicio de sesión**~~
     +	**Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
-    +	**Ver segunda masterclass Modulo 8**  
+    +	~~**Ver segunda masterclass Modulo 8**~~ 
 + **[ 24/6/22 ]:** Terminé con los ejercicios del Módulo 7, incluso los que menciona la profesora al final del masterclass, y comencé un repaso del módulo 8.  
 + **[ 25/6/22 ]:** Hoy hubo encuentro virtual, entre tarde, pero al final de la clase mostré el proyecto. Parece que les gustó y me quede con un par de ideas a tener en cuenta para cuando vaya armando el Backend. La profe me pidió que vaya poniendo el portfolio en el foro para darles incentivo a mis compañeros. Fuimos bastantes hoy, pero se juntaron varios grupos, en la clase pasada estaba solo con la profe. Incluso uno de los chicos me mando un mensaje para saber si le podía ayudar con algunas dudas. Bastante buena la clase en cuanto a la interacción entre alumnos.  
 Por otro lado, aproveche para hacer el Modal para el login, el “botón” (que es un icono en realidad) está en el navbar y el contenido del Modal está en Header. Hay un pequeño “glitch” visual que al apretar el icono se desplaza todo el componente Header unos pixeles hacia la derecha, con About pasa algo similar nada mas que se acomoda verticalmente y no se nota tanto.  
@@ -91,3 +91,57 @@ La función es similar a esta: (Que me devuelve todo lo que esté después del �
 this.links.ejemplo = ( "https://www.ejemplo.com/usuario" ).substring(( "https://www.ejemplo.com/usuario" ).lastIndexOf('/') +1 );
 ~~~  
 + **[ 29/6/22 ]:** Conecté todos los componentes del portfolio al servicio.
++ **[ 16/7/22 ]:** Rendí exámenes y volví de vacaciones así que para volver a ponerme en sintonía con el proyecto me pareció buena idea hacer un repaso de lo que ya está hecho e ir anotando tareas pendientes. “Van a ser pocas”, pensé, pero efectivamente me equivoqué así que hay mucho para hacer todavía.  
+Antes de escribir la lista de tareas me encontré que con la conexión al servicio causó algunos problemas con el carrusel de proyectos, debía mostrar 6 proyectos y por lo tanto en la paginación mostrar la misma cantidad de pelotitas. Mostraba más de 6 y no se hacia el loop. Tampoco estaban centradas, es decir si la pelotita de color era la 3, la tarjeta que se encontraba en medio no era la tercera. Adjunto imagen (Arriba como debería ser y abajo como se veía):  
+![Loop Problem](/Bit%C3%A1cora/resources/SwiperLoopIssue.jpg)  
+Busqué bastante en internet cuál era la causa del problema, pero no encontré mucho. Aproveché para pasar toda la configuración del Swiper al .ts del componente y borrar algunos datos y comentarios innecesarios. La solución fue indicarle cuantas tarjetas loopear, cuál es la tarjeta inicial, centrarlas, entre otros detalles.  
+También volví a implementar cosas que había sacado (Como el botón de Download CV en About), junto con sus respectivos inputs, links y variable en la BBDD (Ahora me estoy dando cuenta que hay que actualizar el diagrama). Para el CV me falta cambiar los colores y un par de datos, pero fue lo que pude recuperar después del robo así que quedara así de momento.  
+Por otro lado, también tuve tiempo de avanzar con el masterclass del módulo 8 y el módulo 9 completo, me dieron varias ideas que voy a empezar a analizarlas una vez termine con todas estas tareas que me quedaron. Ahora sí:  
+**“Lista de tareas”:**
+    +	~~**Agregar botón “Download CV”,**~~
+    +	~~**Agregar input al About modal,**~~
+    +	~~**Agregar link a la BBDD,**~~
+    +	**Implementar guardado de cambios en la Vista About,**
+    +	~~**Solucionar problema Swiper Loop,**~~
+    +	~~**Eliminar Console.log no borrados de varios componentes,**~~
+    +	**Corregir Modals,**
+    +	**Eliminar id repeidas,**
+    +	**Limpiar HTML de texto innecesario,**
+    +	~~**Sacar botones de componente “a” en Education y Experience,**~~
+    +	**Implementar is_actual para las tarjetas de Education y Experience para reemplazar end_date,**
+    +	~~**Modal Edit Experience** (nuevo componente),~~
+    +	~~**Experience, mandar datos al nuevo componente,**~~
+    +	~~**Experience Modal, mostrar datos,**~~
+    +	~~**Experience Modal, mandar datos al componente padre,**~~
+    +	~~**Experience, actualizar View,**~~
+    +	**Experience, actualizar BBDD,**
+    +	~~**Modal Edit Education** (nuevo componente),~~
+    +	~~**Education, mandar datos al nuevo componente,**~~
+    +	~~**Education Modal, mostrar datos,**~~
+    +	~~**Education Modal, mandar datos al componente padre,**~~
+    +	~~**Education, actualizar View,**~~
+    +	**Education, actualizar BBDD,**
+    +	**Modal Edit Skill** (nuevo componente),
+    +	**Skill, mandar datos al nuevo componente,**
+    +	**Skill Modal, mostrar datos,**
+    +	**Skill Modal, agregar botón delete skill,**
+    +	**Skill Modal, mandar datos al componente padre,**
+    +	**Skill, actualizar View,**
+    +	**Skill, actualizar BBDD,**
+    +	**Corregir Experience Modal Data Binding: Job types dropdown, input date, ambos checkboxs y links** (Cosas que me olvidé),
+    +	**Agregar Job-Types a la BBDD,**
+    +	**Actualizar diagrama BBDD,**
+    +	**Buscar cómo implementar el componente Contact,**
+    +	**Comenzar Backend SpringBoot,**
+    +	**Implementación de cambios a la BBDD,**
+    +	**Agregar diagramas explicativos,**
+    +	~~**Módulo 9.**~~  
+
++ Son bastantes tareas, pero creo que en un día más las termino. Hoy gran parte del día fue buscando información e intentando averiguar cómo solucionar los problemas que se iban presentando. En cuanto a la eliminación de console.logs, borré la mayoría salvo los que luego serán órdenes al servidor para cambiar o actualizar datos, luego los borraré. Las id, los modals y textos sobrantes en los html, hice bastantes, pero solo en los componentes que estuve trabajando hoy, otro día haré un control exclusivamente para corregir estos problemas.  
+En lo que avanzaba con el componente Experience, ya había creado el componente Modal y un par de cosillas más, me encontré con que al hacer click en lo que debería abrir el modal me redirigía a otro lado, ahí me di cuenta que los botones estaban dentro de un elemento “a”. Una búsqueda rápida por internet me indico que no es recomendable poner elementos interactivos dentro de un “a”.  
+La transferencia de datos entre componente padre e hijo sigue el siguiente esquema, el cual es bastante similar para Experience, Education y Skill:  
+[INSERTAR ESQUEMA]  
+Una vez hecha la idea del esquema comencé con la implementación del mismo. Opte por la utilización de interfaces y así trasladar objetos con todas las variables que necesito, de momento hay dos (experience y education) ubicadas en una nueva carpeta “model”. Poder hacer que se muestren todos los datos llevó sus complicaciones, si bien en su mayoría utilizo la directiva ngModel también tuve que investigar y utilizar otras como “value”, “checked”, “change”. Pero sin dudas lo que más me demoró fueron los “date inputs”, aprender a usar datePipes, traducir los formatos de uno a otro y HACER QUE SE MUESTRE EN EL VIEW. Empecé utilizando la directiva “valueAsDate” pero al ver que no me dejaba cambiar la fecha volví a implementar ngModel.  
+Luego de un par de horas, dos salidas fallidas a la peluquería y un termo de mate lo solucioné y mandé los datos mediante un EventEmitter al componente padre para actualizar los datos en el View (función que no me llevó mucho tiempo). Pero no fue poco mi desaliento cuando mostrándole el progreso a mi hermano descubrimos un problema: Al hacer un cambio en algún input, luego cerrar el modal SIN GUARDAR y volver a abrir el mismo, se quedaba GUARDADO EL CAMBIO y no se reestablecían los datos. Arreglarlo no me llevó mucho, creé un objeto para guardar los datos que se obtenían al abrir el modal y un par de métodos para actualizar datos.  
+Me pareció gracioso agregar un poco de drama a la bitácora, como si de un cuento se tratase y me tendrán que perdonar la mala redacción. Al final del día me olvidé de hacer que se actualicen los datos en el objeto a editar mandado al componente padre desde el modal de Experience (tareas que ya agregué a la lista para solventar), me puse al día con el proyecto e hice una lista de tareas nueva. Este lunes hay reunión del curso si mal no recuerdo.  
+También busque como hacer el funcionamiento del componente Contact, encontré varias opciones, pero quiero una que no involucre registrarme en alguna página, que no abra links externos y que pueda ser usada por diferentes usuarios. Tendré que seguir buscando, pero creo que voy a terminar haciendo que la función se ejecute en el servidor junto con un par de variables de entorno.  

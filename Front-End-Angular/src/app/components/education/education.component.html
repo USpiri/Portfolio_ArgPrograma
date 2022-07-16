@@ -52,12 +52,12 @@
         <hr class="education_hr opacity-100">
         <div class="education_cards_container mt-2">
             <ul class="education_cards">
-                <li class="education_card" *ngFor="let education of data">
+                <li class="education_card position-relative" *ngFor="let education of data">
                     <a class="education_link d-flex flex-row" [href]="education?.link">
                         <div class="education_card_header animated_bg education_card_img" id="education_header">
                             <img [src]="education?.img_url" alt="Imagen del proyecto">
                         </div>
-                        <div class="education_card_content position-relative">
+                        <div class="education_card_content">
                             <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
                                 {{education?.institute}}
                             </h3>

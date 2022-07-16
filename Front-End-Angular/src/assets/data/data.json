@@ -50,20 +50,20 @@
             "id": 1,
             "institute": "School 1",
             "title": "Title",
-            "is_actual": false,
-            "start_date": "15/07/2022",
-            "end_date": "15/07/2022",
+            "is_actual": true,
+            "start_date": "15/7/2022",
+            "end_date": "15/7/2022",
             "img_url": "https://picsum.photos/seed/picsum/500/300",
             "link": "#",
-            "enabled_link": false
+            "enabled_link": true
         },
         {
             "id": 2,
             "institute": "School 2",
             "title": "Title",
             "is_actual": false,
-            "start_date": "15/07/2022",
-            "end_date": "15/07/2022",
+            "start_date": "15/7/2022",
+            "end_date": "15/7/2022",
             "img_url": "https://picsum.photos/seed/picsum/500/300",
             "link": "#",
             "enabled_link": false
@@ -73,8 +73,8 @@
             "institute": "School 3",
             "title": "Title",
             "is_actual": false,
-            "start_date": "15/07/2022",
-            "end_date": "15/07/2022",
+            "start_date": "15/7/2022",
+            "end_date": "15/7/2022",
             "img_url": "https://picsum.photos/seed/picsum/500/300",
             "link": "#",
             "enabled_link": false
