@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
 import { experience } from '../../../model/experienceEntity';
 
 @Component({
@@ -22,13 +23,28 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
   enabled_link: boolean = false;
   job_type: String = "";
 
-  constructor() { }
+  formated_start_date: any;
+  formated_end_date: any;
+  
+  experienceSave:experience = this.experience;
+
+  constructor(
+    private datePipe: DatePipe
+  ) { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.updateCurrentExperience();
+    let change: SimpleChange = changes['experience'];
+    if( change ){
+      this.experienceSave = this.experience;
+      this.updateCurrentExperience();
+      try{
+        this.formated_start_date = this.datePipe.transform(this.date(this.start_date), "yyyy-MM-dd");
+        this.formated_end_date = this.datePipe.transform(this.date(this.end_date), "yyyy-MM-dd");
+      } catch{}
+    }
   }
 
   date( date:String ){
@@ -42,8 +58,8 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
       company: this.company,
       position: this.position,
       is_actual: this.is_actual,
-      start_date: this.start_date,
-      end_date: this.end_date,
+      start_date: this.datePipe.transform(this.formated_start_date, "dd-MM-yyyy")!.split("-").join("/"),
+      end_date: this.datePipe.transform(this.formated_end_date, "dd-MM-yyyy")!.split("-").join("/"),
       img_url: this.img_url,
       link: this.link,
       enabled_link: this.enabled_link,
@@ -63,6 +79,26 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     this.link = this.experience.link;
     this.enabled_link = this.experience.enabled_link;
     this.job_type = this.experience.job_type;
+  }
+  resetWhenClose(){
+    this.id = this.experienceSave.id;
+    this.company = this.experienceSave.company;
+    this.position = this.experienceSave.position;
+    this.is_actual = this.experienceSave.is_actual;
+    this.formated_start_date = this.datePipe.transform(this.date(this.experienceSave.start_date), "yyyy-MM-dd");
+    this.formated_end_date = this.datePipe.transform(this.date(this.experienceSave.end_date), "yyyy-MM-dd");
+    this.img_url = this.experienceSave.img_url;
+    this.link = this.experienceSave.link;
+    this.enabled_link = this.experienceSave.enabled_link;
+    this.job_type = this.experienceSave.job_type;
+  }
+
+  onSaveActualCheckboxState( value:boolean ){
+    this.is_actual = value;
+  }
+
+  onSaveEnabledCheckboxState( value:boolean ){
+    this.enabled_link = value;
   }
 
 }

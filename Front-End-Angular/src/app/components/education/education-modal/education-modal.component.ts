@@ -98,7 +98,7 @@ export class EducationModalComponent implements OnInit, OnChanges {
   }
 
   onSaveEnabledCheckboxChange( value:boolean ){
-    this.is_actual = value;
+    this.enabled_link = value;
   }
 
 }

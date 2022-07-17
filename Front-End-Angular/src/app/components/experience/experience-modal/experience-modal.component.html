@@ -10,7 +10,7 @@
                     <h5 class="text-dark mb-2">Job information</h5>
                     <input type="text" class="form-control mb-2" id="editCompany" name="company" [(ngModel)]="company" placeholder="Company" [value]="experience.company">
                     <input type="text" class="form-control mb-2" id="editPosition" name="position" [(ngModel)]="position" placeholder="Position" [value]="experience.position">
-                    <select class="form-select mb-4" id="editJobType">
+                    <select class="form-select mb-4" id="editJobType" [(ngModel)]="job_type" name="job_type">
                         <option selected class="text-dark" disabled>Job type</option>
                         <option value="Full-Time" class="text-dark" [selected]="experience.job_type == 'Full-Time'">Full-Time</option>
                         <option value="Part-Time" class="text-dark" [selected]="experience.job_type == 'Part-Time'">Part-Time</option>
@@ -20,7 +20,7 @@
                     </select>
                     <h5 class="text-dark">
                         Time
-                        <input type="checkbox" [checked]="experience.is_actual" class="form-check-input ms-4 fs-6" id="editCheckActual">
+                        <input type="checkbox" [checked]="experience.is_actual" class="form-check-input ms-4 fs-6" id="editCheckActual" #editExperienceIsActual name="is_actual" [(ngModel)]="is_actual" (change)="onSaveActualCheckboxState(editExperienceIsActual.checked)">
                         <label class="form-check-label text-dark ms-1 fs-6" for="editCheckActual">
                             Is Actual
                         </label>
@@ -28,17 +28,17 @@
                     <div class="row g-2 mb-4">
                         <div class="col-sm">
                             <label for="editStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
-                            <input type="date" class="form-control" id="editStartDate" [valueAsDate]="date(experience.start_date)">
+                            <input type="date" class="form-control" id="editStartDate" name="start_date" [(ngModel)]="formated_start_date">
                         </div>
                         <div class="col-sm">
                             <label for="editEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
-                            <input type="date" class="form-control" id="editEndDate" [valueAsDate]="date(experience.end_date)">
+                            <input type="date" class="form-control" id="editEndDate" name="end_date" [(ngModel)]="formated_end_date">
                         </div>
                     </div>
                     <h5 class="text-dark mb-2">Links</h5>
-                    <input type="text" class="form-control mb-2" id="editExperienceImgUrl" placeholder="Image url" [value]="experience.img_url">
-                    <input type="text" class="form-control mb-1" id="editExperienceLink" placeholder="Link" [value]="experience.link">
-                    <input type="checkbox" class="form-check-input" id="editExperienceEnabledLink" [checked]="experience.enabled_link">
+                    <input type="text" class="form-control mb-2" id="editExperienceImgUrl" placeholder="Image url" [value]="experience.img_url" name="img_url" [(ngModel)]="img_url">
+                    <input type="text" class="form-control mb-1" id="editExperienceLink" placeholder="Link" [value]="experience.link" name="link" [(ngModel)]="link">
+                    <input type="checkbox" class="form-check-input" id="editExperienceEnabledLink" [checked]="experience.enabled_link" #editExperienceEnabledLink name="enabled_link" [(ngModel)]="enabled_link" (change)="onSaveEnabledCheckboxState(editExperienceEnabledLink.checked)">
                     <label class="form-check-label text-dark ms-1 mb-1" for="editExperienceEnabledLink">
                         Enable link
                     </label>

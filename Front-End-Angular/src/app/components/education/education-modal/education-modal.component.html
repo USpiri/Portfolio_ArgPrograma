@@ -20,16 +20,16 @@
                     <div class="row g-2 mb-4">
                         <div class="col-sm">
                             <label for="editEducationStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
-                            <input type="date" class="form-control" id="editEducationStartDate" placeholder="Start Date" name="start_date" [(ngModel)]="formated_start_date"> 
+                            <input type="date" class="form-control" id="editEducationStartDate" name="start_date" [(ngModel)]="formated_start_date"> 
                         </div>
                         <div class="col-sm">
                             <label for="editEducationEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
-                            <input type="date" class="form-control" id="editEducationEndDate" placeholder="End date" name="end_date" [(ngModel)]="formated_end_date">
+                            <input type="date" class="form-control" id="editEducationEndDate" name="end_date" [(ngModel)]="formated_end_date">
                         </div>
                     </div>
                     <h5 class="text-dark mb-2">Links</h5>
                     <input type="text" class="form-control mb-2" id="editEducationEducationImgUrl" placeholder="Image url" [value]="education.img_url" name="img_url" [(ngModel)]="img_url">
-                    <input type="text" class="form-control mb-1" id="editEducationEducationLink" placeholder="Link" [value]="education.link" name="link" [(ngModel)]="link">
+                    <input type="text" class="form-control mb-1" id="editEducationEducationLink" placeholder="Link" [value]="education.link"name="link" [(ngModel)]="link">
                     <input type="checkbox" class="form-check-input" id="editEducationEnabledLink" [checked]="education.enabled_link" #editEducationEnabledLink name="enabled_link" [(ngModel)]="enabled_link" (change)="onSaveEnabledCheckboxChange(editEducationEnabledLink.checked)" >
                     <label class="form-check-label text-dark ms-1 mb-1" for="editEducationEnabledLink">
                         Enable link
