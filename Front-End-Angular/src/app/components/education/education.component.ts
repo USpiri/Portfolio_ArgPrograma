@@ -11,17 +11,7 @@ export class EducationComponent implements OnInit {
 
   data: education[] = [];
 
-  educationToEdit: education = {
-    id: 0,
-    institute: "",
-    title: "",
-    is_actual: false,
-    start_date: "",
-    end_date: "",
-    img_url: "",
-    link: "",
-    enabled_link: false
-  }
+  educationToEdit: education = new education();
 
   constructor(
     private dataPortfolio:PortfolioService

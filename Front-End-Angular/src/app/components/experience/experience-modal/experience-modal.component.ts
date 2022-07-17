@@ -8,19 +8,7 @@ import { experience } from '../../../model/experienceEntity';
 })
 export class ExperienceModalComponent implements OnInit, OnChanges {
 
-  @Input() experience:experience = {
-    id: 0,
-    company: "",
-    position: "",
-    is_actual: false,
-    start_date: "",
-    end_date: "",
-    img_url: "",
-    link: "",
-    enabled_link: false,
-    job_type: "",
-  }
-
+  @Input() experience:experience = new experience();
   @Output() onUpdateExperience:EventEmitter<experience> = new EventEmitter();
 
   id: number = 0;

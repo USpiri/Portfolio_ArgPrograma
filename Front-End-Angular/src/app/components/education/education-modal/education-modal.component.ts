@@ -9,17 +9,7 @@ import { education } from 'src/app/model/educationEntity';
 })
 export class EducationModalComponent implements OnInit, OnChanges {
 
-  @Input() education:education = {
-    id: 0,
-    institute: "",
-    title: "",
-    is_actual: false,
-    start_date: "",
-    end_date: "",
-    img_url: "",
-    link: "",
-    enabled_link: false
-  }
+  @Input() education:education = new education();
 
   @Output() onUpdateEducation:EventEmitter<education> = new EventEmitter();
   

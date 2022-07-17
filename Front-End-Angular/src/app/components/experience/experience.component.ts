@@ -11,18 +11,7 @@ export class ExperienceComponent implements OnInit {
 
   data:experience[] = [];
 
-  experienceToEdit : experience = {
-    company: "",
-    enabled_link: false,
-    end_date: "",
-    id: 0,
-    img_url: "",
-    is_actual: false,
-    job_type: "",
-    link: "",
-    position: "",
-    start_date: "",
-  }
+  experienceToEdit : experience = new experience();
 
   constructor(
     private dataPortfolio:PortfolioService
