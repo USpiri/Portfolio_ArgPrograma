@@ -1,0 +1,23 @@
+<div class="modal fade" id="editSkillModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="" (ngSubmit)="onSubmit()">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="editSkillModalLabel">Edit skill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-dark mb-2">Skill</h5>
+                    <input type="text" class="form-control mb-2" id="editSkillName" placeholder="Skill name" name="name" [(ngModel)]="skillActual.name">
+                    <input type="text" class="form-control mb-2" id="editIcon" placeholder="Icon" name="icon" [(ngModel)]="skillActual.icon">
+                    <input type="number" min="0" max="100" step="1" class="form-control" id="editSkillPercentage" placeholder="Percentage" name="percentage" [(ngModel)]="percentage">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete()">Delete skill</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add skill</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

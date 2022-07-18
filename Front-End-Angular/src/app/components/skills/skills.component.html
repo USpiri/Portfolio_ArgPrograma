@@ -5,23 +5,25 @@
             <div class="ico_container">
                 <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addSkillModal"></i>
             </div>
-            <div class="modal fade" id="addSkillModal" tabindex="-1">
+            <div class="modal fade" id="addSkillModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="exampleModalLabel">Add new skill</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h5 class="text-dark mb-2">Skill</h5>
-                            <input type="text" class="form-control mb-2" id="inputSkillName" placeholder="Skill name" value="">
-                            <input type="text" class="form-control mb-2" id="inputIcon" placeholder="Icon" value="">
-                            <input type="number" min="0" max="100" step="1" class="form-control" id="InputSkillPercentage" placeholder="Percentage" value="">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Add skill</button>
-                        </div>
+                        <form action="" (ngSubmit)="addSkill()">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="skillModalLabel">Add new skill</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-dark mb-2">Skill</h5>
+                                <input type="text" class="form-control mb-2" id="inputSkillName" placeholder="Skill name" name="name" [(ngModel)]="skillToAdd.name">
+                                <input type="text" class="form-control mb-2" id="inputIcon" placeholder="Icon" name="icon" [(ngModel)]="skillToAdd.icon">
+                                <input type="number" min="0" max="100" step="1" class="form-control" id="InputSkillPercentage" placeholder="Percentage" name="percentage" [(ngModel)]="percentage">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -31,9 +33,9 @@
             <ul class="skills_cards row row-cols-1 p-0 p-lg-5 gy-3 justify-content-center align-items-center">
                 <li class="skill_card col-lg-6 me-3 position-relative" *ngFor="let skill of data">
                     <div class="skill_header d-flex flex-row align-items-center justify-content-center position-relative">
-                        <i class="{{skill?.icon}} skill_icon"></i>
-                        <h3 class="skill_title">{{skill?.name}}</h3>
-                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico position-absolute top-0 end-0 p-2"></i>
+                        <i class="{{skill.icon}} skill_icon"></i>
+                        <h3 class="skill_title">{{skill.name}}</h3>
+                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico position-absolute top-0 end-0 p-2" (click)="openEditModal(skill)" data-bs-toggle="modal" data-bs-target="#editSkillModal"></i>
                     </div>
                     <div class="skill_bar_content mt-2">
                         <span class="skill_bar"><span class="skill_progress_1" [ngStyle]="{'width' : skill.percentage}"></span></span>
@@ -42,4 +44,5 @@
             </ul>
         </div>
     </div>
+    <app-skills-modal [skill]="skillToEdit" (onUpdateSkill)="updateSkill($event)" (onDeleteSkill)="deleteSkill($event)"></app-skills-modal>
 </section>
