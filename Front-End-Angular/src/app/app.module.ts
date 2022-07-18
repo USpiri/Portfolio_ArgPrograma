@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SwiperModule } from "swiper/angular";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +19,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { GreetingComponent } from './components/header/greeting/greeting.component';
 import { ExperienceModalComponent } from './components/experience/experience-modal/experience-modal.component';
 import { EducationModalComponent } from './components/education/education-modal/education-modal.component';
-import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
