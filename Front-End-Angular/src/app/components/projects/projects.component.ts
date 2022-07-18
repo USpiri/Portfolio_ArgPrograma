@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import SwiperCore, { Keyboard, Pagination, Navigation, Autoplay, SwiperOptions } from 'swiper';
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { Project } from 'src/app/model/projectEntity';
+import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'app-projects',
@@ -10,11 +12,14 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class ProjectsComponent implements OnInit {
 
-  data: any;
+  data: Project[] = [];
+
+  projectToEdit: Project = new Project();
+  projectToAdd: Project = new Project();
 
   config: SwiperOptions = {
     loopedSlides: 6,
-    initialSlide: 2,
+    initialSlide: 0,
     spaceBetween: 10,
     navigation: true,
     centeredSlides: true,
@@ -56,6 +61,44 @@ export class ProjectsComponent implements OnInit {
     this.dataPortfolio.getData().subscribe(
       data => {
         this.data = data.projects;
+      }
+    );
+  }
+
+  resetProject(){
+    this.projectToAdd = {
+      id: 0,
+      title: "",
+      description: "",
+      img: "",
+      link: "",
+      enabled_link: true
+    }
+  }
+
+  onAddProject(){
+    //Add Server update
+    this.data.push(this.projectToAdd);
+  }
+
+  onDelete(project:Project){
+    //Add Server update
+    this.data = this.data.filter(
+      projectStored => projectStored.id !== project.id
+    );
+  }
+
+  onEdit(project:Project){
+    Object.assign( this.projectToEdit, project );
+  }
+
+  updateProject(){
+    //Add Server update
+    this.data.map(
+      (project , i) => {
+        if (project.id == this.projectToEdit.id) {
+          this.data[i] = this.projectToEdit;
+        }
       }
     );
   }

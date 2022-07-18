@@ -8,69 +8,55 @@
             <div class="modal fade" id="addProjectModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="exampleModalLabel">Add new project</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h5 class="text-dark mb-2">Project</h5>
-                            <input type="text" class="form-control mb-2" id="inputProjectTitle" placeholder="Project title" value="">
-                            <textarea class="form-control mb-2" placeholder="Project description" id="inputDescription" value=""></textarea>
-                            <h5 class="text-dark mb-2">Links</h5>
-                            <input type="text" class="form-control mb-2" id="inputProjectImgUrl" placeholder="Image url" value="">
-                            <input type="text" class="form-control mb-1" id="inputProjectLink" placeholder="Link" value="">
-                            <input type="checkbox" class="form-check-input" id="checkEnabledLink" checked>
-                            <label class="form-check-label text-dark ms-1 mb-1" for="checkEnabledLink">
-                                Enable link
-                            </label>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" data-bs-target="#deleteProjectModal" data-bs-toggle="modal">Delete existing project</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        <form action="" (ngSubmit)="onAddProject()">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="projectModalLabel">Add new project</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-dark mb-2">Project</h5>
+                                <input type="text" class="form-control mb-2" id="inputProjectTitle" placeholder="Project title" name="newProjectTitle" [(ngModel)]="projectToAdd.title">
+                                <textarea class="form-control mb-2" placeholder="Project description" id="newProjectDescription" name="newProjectDescription" [(ngModel)]="projectToAdd.description"></textarea>
+                                <h5 class="text-dark mb-2">Links</h5>
+                                <input type="text" class="form-control mb-2" id="inputProjectImgUrl" placeholder="Image url" name="newProjectImg" [(ngModel)]="projectToAdd.img">
+                                <input type="text" class="form-control mb-1" id="inputProjectLink" placeholder="Link" name="newProjectLink" [(ngModel)]="projectToAdd.link">
+                                <input type="checkbox" class="form-check-input" id="checkEnabledLink" name="newProjectEnabled" [(ngModel)]="projectToAdd.enabled_link">
+                                <label class="form-check-label text-dark ms-1 mb-1" for="checkEnabledLink">
+                                    Enable link
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProject()">Close</button>
+                                <button type="button" class="btn btn-primary" data-bs-target="#projectsModal" data-bs-toggle="modal" (click)="resetProject()">Projects list</button>
+                                <button type="submit" class="btn btn-primary">Add project</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="deleteProjectModal" tabindex="-1">
+            <div class="modal fade" id="projectsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="exampleModalLabel">Delete project</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title text-dark" id="projectsModalLabel">Projects list</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="text-dark">Project name</th>
-                                        <th scope="col" class="text-dark">Delete button</th>
+                                        <th scope="col" class="text-dark">Projects</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-dark">Project 1</td>
-                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-dark">Project 2</td>
-                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-dark">Project 3</td>
-                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-dark">Project 4</td>
-                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-dark">Project 5</td>
-                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-dark">Project 6</td>
-                                        <td><div class="d-grid"><button type="button" class="btn btn-danger btn-sm">Delete project</button></div></td>
+                                    <tr *ngFor="let project of data">
+                                        <td class="text-dark">{{project.title}}</td>
+                                        <td>
+                                            <div class="d-flex float-end">
+                                                <button type="button" class="btn btn-primary btn-sm me-2" (click)="onEdit(project)" data-bs-target="#editProjectModal" data-bs-toggle="modal">Edit project</button>
+                                                <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(project)">Delete project</button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -78,6 +64,32 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" data-bs-target="#addProjectModal" data-bs-toggle="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editProjectModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="editProjectModalLabel">Add new project</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="text-dark mb-2">Project</h5>
+                            <input type="text" class="form-control mb-2" id="editProjectTitle" placeholder="Project title" name="projectTitle" [(ngModel)]="projectToEdit.title">
+                            <textarea class="form-control mb-2" placeholder="Project description" id="editDescription" name="projectDescription" [(ngModel)]="projectToEdit.description"></textarea>
+                            <h5 class="text-dark mb-2">Links</h5>
+                            <input type="text" class="form-control mb-2" id="editProjectImgUrl" placeholder="Image url" name="projectImg" [(ngModel)]="projectToEdit.img">
+                            <input type="text" class="form-control mb-1" id="editProjectLink" placeholder="Link" name="projectLink" [(ngModel)]="projectToEdit.link">
+                            <input type="checkbox" class="form-check-input" id="editEnabledLink" name="projectEnabledLink" [(ngModel)]="projectToEdit.enabled_link">
+                            <label class="form-check-label text-dark ms-1 mb-1" for="editEnabledLink">
+                                Enable link
+                            </label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-target="#projectsModal" data-bs-toggle="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" (click)="updateProject()" data-bs-target="#projectsModal" data-bs-toggle="modal">Save changes</button>
                         </div>
                     </div>
                 </div>
