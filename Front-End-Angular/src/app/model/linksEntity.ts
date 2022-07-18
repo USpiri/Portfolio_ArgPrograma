@@ -1,4 +1,4 @@
-export class links {
+export class Links {
     facebook: String = "";
     instagram: String = "";
     twitter: String = "";

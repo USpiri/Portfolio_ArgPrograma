@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { links } from 'src/app/model/linksEntity';
-import { person } from 'src/app/model/person';
+import { Links } from 'src/app/model/linksEntity';
+import { Person } from 'src/app/model/person';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -10,11 +10,11 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class AboutComponent implements OnInit {
 
-  data:person = new person();
-  links: links = new links();
+  data:Person = new Person();
+  links: Links = new Links();
 
-  dataToEdit:person = new person();
-  linksToEdit:links = new links();
+  dataToEdit:Person = new Person();
+  linksToEdit:Links = new Links();
 
   date:{ month: string , day: string , year: string } = {
     month: "",
@@ -38,7 +38,7 @@ export class AboutComponent implements OnInit {
     );
   }
 
-  updateData ( dataTo:person , dataFrom: any ){
+  updateData ( dataTo:Person , dataFrom: any ){
     dataTo.id = dataFrom.id;
     dataTo.name = dataFrom.name;
     dataTo.surname = dataFrom.surname;
@@ -54,7 +54,7 @@ export class AboutComponent implements OnInit {
     // Object.assign( dataTo, dataFrom );
   }
 
-  updateLinks( linksTo:links, linksFrom:links ){
+  updateLinks( linksTo:Links, linksFrom:Links ){
     linksTo.facebook = linksFrom.facebook;
     linksTo.instagram = linksFrom.instagram;
     linksTo.twitter = linksFrom.twitter;

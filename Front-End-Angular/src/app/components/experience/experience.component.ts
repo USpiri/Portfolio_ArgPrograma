@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { experience } from 'src/app/model/experienceEntity';
+import { Experience } from 'src/app/model/experienceEntity';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class ExperienceComponent implements OnInit {
 
-  data:experience[] = [];
+  data:Experience[] = [];
 
-  experienceToEdit : experience = new experience();
+  experienceToEdit : Experience = new Experience();
 
   constructor(
     private dataPortfolio:PortfolioService
@@ -29,7 +29,7 @@ export class ExperienceComponent implements OnInit {
     this.experienceToEdit = experience;
   }
 
-  updateExperience(experience:experience){
+  updateExperience(experience:Experience){
 
     //Update View
     this.data.map( 

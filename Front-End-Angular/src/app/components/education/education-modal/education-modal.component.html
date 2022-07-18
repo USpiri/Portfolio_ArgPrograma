@@ -1,10 +1,10 @@
-<div class="modal fade" id="editEducationModal" tabindex="-1">
+<div class="modal fade" id="editEducationModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" (ngSubmit)="onSubmit()">
                 <div class="modal-header">
                     <h5 class="modal-title text-dark" id="editEducationModalLabel">Edit education</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetWhenClose()"></button>
                 </div>
                 <div class="modal-body">
                     <h5 class="text-dark mb-2">Education</h5>

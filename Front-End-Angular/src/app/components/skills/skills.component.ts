@@ -45,13 +45,14 @@ export class SkillsComponent implements OnInit {
   }
 
   deleteSkill( skillToDelete:Skill ){
-    //Add Update View
+    //Add Update Server
     this.data = this.data.filter(
       skill => skill.id !== skillToDelete.id
     )
   }
 
   addSkill(){
+    //Add Update Server
     this.skillToAdd.percentage = this.percentage.toString() + "%";
     this.data.push(this.skillToAdd);
   }

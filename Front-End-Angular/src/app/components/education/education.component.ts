@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { education } from '../../model/educationEntity';
+import { Education } from '../../model/educationEntity';
 
 @Component({
   selector: 'app-education',
@@ -9,9 +9,9 @@ import { education } from '../../model/educationEntity';
 })
 export class EducationComponent implements OnInit {
 
-  data: education[] = [];
+  data: Education[] = [];
 
-  educationToEdit: education = new education();
+  educationToEdit: Education = new Education();
 
   constructor(
     private dataPortfolio:PortfolioService
@@ -25,11 +25,11 @@ export class EducationComponent implements OnInit {
     );
   }
 
-  openEditModal( education: any ){
+  openEditModal( education:Education ){
     this.educationToEdit = education;
   }
 
-  updateEducation(education:education){
+  updateEducation(education:Education){
 
     //Update View
     this.data.map( 

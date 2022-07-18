@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter, SimpleChange } from '@angular/core';
-import { education } from 'src/app/model/educationEntity';
+import { Education } from 'src/app/model/educationEntity';
 
 @Component({
   selector: 'app-education-modal',
@@ -9,9 +9,8 @@ import { education } from 'src/app/model/educationEntity';
 })
 export class EducationModalComponent implements OnInit, OnChanges {
 
-  @Input() education:education = new education();
-
-  @Output() onUpdateEducation:EventEmitter<education> = new EventEmitter();
+  @Input() education:Education = new Education();
+  @Output() onUpdateEducation:EventEmitter<Education> = new EventEmitter();
   
   id: number = 0;
   institute: String = "";
@@ -26,7 +25,7 @@ export class EducationModalComponent implements OnInit, OnChanges {
   formated_start_date: any;
   formated_end_date: any;
   
-  educationSave:education = this.education;
+  educationSave:Education = this.education;
   
   constructor(
     private datePipe: DatePipe
@@ -53,7 +52,7 @@ export class EducationModalComponent implements OnInit, OnChanges {
   }
 
   onSubmit(){
-    const editEducation:education = {
+    const editEducation:Education = {
       id: this.education.id,
       institute: this.institute,
       title: this.title,

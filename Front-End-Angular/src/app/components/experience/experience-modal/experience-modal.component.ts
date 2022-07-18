@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
-import { experience } from '../../../model/experienceEntity';
+import { Experience } from '../../../model/experienceEntity';
 
 @Component({
   selector: 'app-experience-modal',
@@ -9,8 +9,8 @@ import { experience } from '../../../model/experienceEntity';
 })
 export class ExperienceModalComponent implements OnInit, OnChanges {
 
-  @Input() experience:experience = new experience();
-  @Output() onUpdateExperience:EventEmitter<experience> = new EventEmitter();
+  @Input() experience:Experience = new Experience();
+  @Output() onUpdateExperience:EventEmitter<Experience> = new EventEmitter();
 
   id: number = 0;
   company: String = "";
@@ -26,7 +26,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
   formated_start_date: any;
   formated_end_date: any;
   
-  experienceSave:experience = this.experience;
+  experienceSave:Experience = this.experience;
 
   constructor(
     private datePipe: DatePipe
@@ -53,7 +53,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
   }
 
   onSubmit(){
-    const editExperience:experience = {
+    const editExperience:Experience = {
       id: this.experience.id,
       company: this.company,
       position: this.position,
