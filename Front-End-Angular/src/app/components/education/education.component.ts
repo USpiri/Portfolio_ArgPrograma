@@ -52,7 +52,7 @@ export class EducationComponent implements OnInit {
 
   addEducation(){
     //Add Server Update
-    this.educationToAdd.start_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
+    this.educationToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
     this.educationToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
     this.data.push(this.educationToAdd);
   }

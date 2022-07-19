@@ -8,50 +8,49 @@
             <div class="modal fade" id="addExperienceModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="addExperienceModalLabel">Add new experience</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h5 class="text-dark mb-2">Job information</h5>
-                            <input type="text" class="form-control mb-2" id="inputCompany" placeholder="Company" value="">
-                            <input type="text" class="form-control mb-2" id="inputPosition" placeholder="Position" value="">
-                            <input type="text" class="form-control mb-2" id="inputDescription" placeholder="Job Description" value="">
-                            <select class="form-select mb-4" id="inputJobType">
-                                <option selected class="text-dark">Job type</option>
-                                <option value="1" class="text-dark">One</option>
-                                <option value="2" class="text-dark">Two</option>
-                                <option value="3" class="text-dark">Three</option>
-                            </select>
-                            <h5 class="text-dark">
-                                Time
-                                <input type="checkbox" class="form-check-input ms-4 fs-6" id="checkActualExperience">
-                                <label class="form-check-label text-dark ms-1 fs-6" for="checkActual">
-                                    Is Actual
-                                </label>
-                            </h5>
-                            <div class="row g-2 mb-4">
-                                <div class="col-sm">
-                                    <label for="inputExperienceStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
-                                    <input type="date" class="form-control" id="inputExperienceStartDate" placeholder="Start Date" value="">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="inputExperienceEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
-                                    <input type="date" class="form-control" id="inputExperienceEndDate" placeholder="End date" value="">
-                                </div>
+                        <form action="" (ngSubmit)="addExperience()">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="addExperienceModalLabel">Add new experience</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
                             </div>
-                            <h5 class="text-dark mb-2">Links</h5>
-                            <input type="text" class="form-control mb-2" id="inputExperienceImgUrl" placeholder="Image url" value="">
-                            <input type="text" class="form-control mb-1" id="inputExperienceLink" placeholder="Link" value="">
-                            <input type="checkbox" class="form-check-input" id="checkExperienceEnabledLink">
-                            <label class="form-check-label text-dark ms-1 mb-1" for="checkExperienceEnabledLink">
-                                Enable link
-                            </label>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                            <div class="modal-body">
+                                <h5 class="text-dark mb-2">Job information</h5>
+                                <input type="text" class="form-control mb-2" id="inputCompany" placeholder="Company" name="company" [(ngModel)]="experienceToAdd.company">
+                                <input type="text" class="form-control mb-2" id="inputPosition" placeholder="Position" name="position" [(ngModel)]="experienceToAdd.position">
+                                <select class="form-select mb-4 text-dark" id="inputJobType" name="job_type" [(ngModel)]="experienceToAdd.job_type">
+                                    <option selected class="text-dark" disabled>Job type</option>
+                                    <option *ngFor="let job of jobs" [value]="job.name" class="text-dark">{{job.name}}</option>
+                                </select>
+                                <h5 class="text-dark">
+                                    Time
+                                    <input type="checkbox" class="form-check-input ms-4 fs-6" id="checkActualExperience" name="is_actual" [(ngModel)]="experienceToAdd.is_actual">
+                                    <label class="form-check-label text-dark ms-1 fs-6" for="checkActual">
+                                        Is Actual
+                                    </label>
+                                </h5>
+                                <div class="row g-2 mb-4">
+                                    <div class="col-sm">
+                                        <label for="inputExperienceStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
+                                        <input type="date" class="form-control" id="inputExperienceStartDate" placeholder="Start Date" name="start_date" [(ngModel)]="start_date">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="inputExperienceEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
+                                        <input type="date" class="form-control" id="inputExperienceEndDate" placeholder="End date" name="end_date" [(ngModel)]="end_date">
+                                    </div>
+                                </div>
+                                <h5 class="text-dark mb-2">Links</h5>
+                                <input type="text" class="form-control mb-2" id="inputExperienceImgUrl" placeholder="Image url" name="img_url" [(ngModel)]="experienceToAdd.img_url">
+                                <input type="text" class="form-control mb-1" id="inputExperienceLink" placeholder="Link" name="link" [(ngModel)]="experienceToAdd.link">
+                                <input type="checkbox" class="form-check-input" id="checkExperienceEnabledLink" name="enabled_link" [(ngModel)]="experienceToAdd.enabled_link">
+                                <label class="form-check-label text-dark ms-1 mb-1" for="checkExperienceEnabledLink">
+                                    Enable link
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -75,7 +74,7 @@
                     </a>
                     <div class="experience_buttons position-absolute top-50 end-0 translate-middle-y me-4">
                         <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3" (click)="openEditModal(experience)" data-bs-toggle="modal" data-bs-target="#editExperienceModal"></i>
-                        <i class="fa-solid fa-trash delete_button"></i>
+                        <i class="fa-solid fa-trash delete_button" (click)="onDelete(experience)" ></i>
                     </div>
                 </li>
             </ul>

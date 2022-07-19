@@ -178,6 +178,28 @@
         "instagram": "https://www.instagram.com/urielspiridione",
         "github": "https://github.com/USpiri",
         "cv": "https://drive.google.com/uc?export=download&id=1fSV96vZ1XOx1RsaQb5vMnfNBeBKM_Ujp"
-    }
+    },
+    "jobTypes":[
+        {
+            "id": 1,
+            "name": "Full-Time"
+        },
+        {
+            "id": 2,
+            "name": "Part-Time"
+        },
+        {
+            "id": 3,
+            "name": "Freelance"
+        },
+        {
+            "id": 4,
+            "name": "On-Call"
+        },
+        {
+            "id": 5,
+            "name": "Seasonal"
+        }
+    ]
 
 }
