@@ -12,20 +12,11 @@ export class EducationModalComponent implements OnInit, OnChanges {
   @Input() education:Education = new Education();
   @Output() onUpdateEducation:EventEmitter<Education> = new EventEmitter();
   
-  id: number = 0;
-  institute: String = "";
-  title: String = "";
-  is_actual: boolean = false;
-  start_date: String = "";
-  end_date: String = "";
-  img_url: String = "";
-  link: String = "";
-  enabled_link: boolean = false;
+  educationSave:Education = new Education();
+  educationActual:Education = new Education();
 
   formated_start_date: any;
   formated_end_date: any;
-  
-  educationSave:Education = this.education;
   
   constructor(
     private datePipe: DatePipe
@@ -37,11 +28,10 @@ export class EducationModalComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let change: SimpleChange = changes['education'];
     if( change ){
-      this.educationSave = this.education;
-      this.updateCurrentEducation();
+      Object.assign( this.educationActual, this.education );
       try{
-        this.formated_start_date = this.datePipe.transform(this.date(this.start_date), "yyyy-MM-dd");
-        this.formated_end_date = this.datePipe.transform(this.date(this.end_date), "yyyy-MM-dd");
+        this.formated_start_date = this.datePipe.transform(this.date(this.educationActual.start_date), "yyyy-MM-dd");
+        this.formated_end_date = this.datePipe.transform(this.date(this.educationActual.end_date), "yyyy-MM-dd");
       } catch{ }
     }
   }
@@ -52,52 +42,16 @@ export class EducationModalComponent implements OnInit, OnChanges {
   }
 
   onSubmit(){
-    const editEducation:Education = {
-      id: this.education.id,
-      institute: this.institute,
-      title: this.title,
-      is_actual: this.is_actual,
-      start_date: this.datePipe.transform(this.formated_start_date, "dd-MM-yyyy")!.split("-").join("/"),
-      end_date: this.datePipe.transform(this.formated_end_date, "dd-MM-yyyy")!.split("-").join("/"),
-      img_url: this.img_url,
-      link: this.link,
-      enabled_link: this.enabled_link
-    }
-    this.onUpdateEducation.emit(editEducation)
+    Object.assign( this.educationSave, this.educationActual );
+    this.educationSave.start_date = this.datePipe.transform(this.formated_start_date, "dd/MM/yyyy")!;
+    this.educationSave.end_date = this.datePipe.transform(this.formated_end_date, "dd/MM/yyyy")!;
+    this.onUpdateEducation.emit(this.educationSave)
   }
 
-  updateCurrentEducation(){
-    this.id = this.education.id;
-    this.institute = this.education.institute;
-    this.title = this.education.title;
-    this.is_actual = this.education.is_actual;
-    this.start_date = this.education.start_date;
-    this.end_date = this.education.end_date;
-    this.img_url = this.education.img_url;
-    this.link = this.education.link;
-    this.enabled_link = this.education.enabled_link;
-  }
-
-  resetWhenClose(){
-    this.id = this.educationSave.id;
-    this.institute = this.educationSave.institute;
-    this.title = this.educationSave.title;
-    this.is_actual = this.educationSave.is_actual;
-    this.start_date = this.educationSave.start_date;
-    this.end_date = this.educationSave.end_date;
-    this.img_url = this.educationSave.img_url;
-    this.link = this.educationSave.link;
-    this.enabled_link = this.educationSave.enabled_link;
-    this.formated_start_date = this.datePipe.transform(this.date(this.educationSave.start_date), "yyyy-MM-dd");
-    this.formated_end_date = this.datePipe.transform(this.date(this.educationSave.end_date), "yyyy-MM-dd");
-  }
-
-  onSaveActualCheckboxChange( value:boolean ){
-    this.is_actual = value;
-  }
-
-  onSaveEnabledCheckboxChange( value:boolean ){
-    this.enabled_link = value;
+  onClose(){
+    Object.assign( this.educationActual, this.education );
+    this.formated_start_date = this.datePipe.transform(this.date(this.education.start_date), "yyyy-MM-dd");
+    this.formated_end_date = this.datePipe.transform(this.date(this.education.end_date), "yyyy-MM-dd");
   }
 
 }

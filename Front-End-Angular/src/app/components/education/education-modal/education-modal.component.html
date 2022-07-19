@@ -4,15 +4,15 @@
             <form action="" (ngSubmit)="onSubmit()">
                 <div class="modal-header">
                     <h5 class="modal-title text-dark" id="editEducationModalLabel">Edit education</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetWhenClose()"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
                 </div>
                 <div class="modal-body">
                     <h5 class="text-dark mb-2">Education</h5>
-                    <input type="text" class="form-control mb-2" id="editEducationInstitute" placeholder="Institute Name" [value]="education.institute" name="institute" [(ngModel)]="institute">
-                    <input type="text" class="form-control mb-4" id="editEducationTitle" placeholder="Title" [value]="education.title" name="title" [(ngModel)]="title">
+                    <input type="text" class="form-control mb-2" id="editEducationInstitute" placeholder="Institute Name" name="institute" [(ngModel)]="educationActual.institute">
+                    <input type="text" class="form-control mb-4" id="editEducationTitle" placeholder="Title" name="title" [(ngModel)]="educationActual.title">
                     <h5 class="text-dark">
                         Time
-                        <input type="checkbox" class="form-check-input ms-4 fs-6" id="editEducationIsActual" [checked]="education.is_actual" #editEducationIsActual name="is_actual" [(ngModel)]="is_actual" (change)="onSaveActualCheckboxChange(editEducationIsActual.checked)">
+                        <input type="checkbox" class="form-check-input ms-4 fs-6" id="editEducationIsActual" name="is_actual" [(ngModel)]="educationActual.is_actual">
                         <label class="form-check-label text-dark ms-1 fs-6" for="editEducationIsActual">
                             Is Actual
                         </label>
@@ -28,15 +28,15 @@
                         </div>
                     </div>
                     <h5 class="text-dark mb-2">Links</h5>
-                    <input type="text" class="form-control mb-2" id="editEducationEducationImgUrl" placeholder="Image url" [value]="education.img_url" name="img_url" [(ngModel)]="img_url">
-                    <input type="text" class="form-control mb-1" id="editEducationEducationLink" placeholder="Link" [value]="education.link"name="link" [(ngModel)]="link">
-                    <input type="checkbox" class="form-check-input" id="editEducationEnabledLink" [checked]="education.enabled_link" #editEducationEnabledLink name="enabled_link" [(ngModel)]="enabled_link" (change)="onSaveEnabledCheckboxChange(editEducationEnabledLink.checked)" >
+                    <input type="text" class="form-control mb-2" id="editEducationEducationImgUrl" placeholder="Image url" name="img_url" [(ngModel)]="educationActual.img_url">
+                    <input type="text" class="form-control mb-1" id="editEducationEducationLink" placeholder="Link" name="link" [(ngModel)]="educationActual.link">
+                    <input type="checkbox" class="form-check-input" id="editEducationEnabledLink" name="enabled_link" [(ngModel)]="educationActual.enabled_link">
                     <label class="form-check-label text-dark ms-1 mb-1" for="editEducationEnabledLink">
                         Enable link
                     </label>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetWhenClose()" >Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()" >Close</button>
                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                 </div>
             </form>
