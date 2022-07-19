@@ -22,7 +22,7 @@ Hoy hablando con la profesora de nuestro grupo le comenté mi avance y me fue da
 
 Por hoy, el avance es solo el comienzo de la bitácora. La idea es no solo poder tener registro de cada avance, sino también de anotar ideas, mejoras o problemas que me vaya encontrando durante el proceso, junto con sus soluciones.  
 
-Tengo que aclarar al lector que esta bitácora esta enfocada como un “Diario de desarrollo” mas que un registro de progresos en el curso/proyecto.  
+Tengo que aclarar al lector que esta bitácora está enfocada como un “Diario de desarrollo” más que un registro de progresos en el curso/proyecto, por lo que la escritura no es formal.  
 
 ## **Registro:** 
 *Formato: + **[ día/mes/año ]:** [ Descripción ]*  
@@ -75,13 +75,13 @@ Por otro lado, cree un repositorio para utilizar Github Pages, solo muestra cont
     +	**Bootstrap Toast al cambiar datos (Mostrar error o éxito)** (A testear)
     +	~~**Ver segunda masterclass Modulo 8**~~ 
 + **[ 24/6/22 ]:** Terminé con los ejercicios del Módulo 7, incluso los que menciona la profesora al final del masterclass, y comencé un repaso del módulo 8.  
-+ **[ 25/6/22 ]:** Hoy hubo encuentro virtual, entre tarde, pero al final de la clase mostré el proyecto. Parece que les gustó y me quede con un par de ideas a tener en cuenta para cuando vaya armando el Backend. La profe me pidió que vaya poniendo el portfolio en el foro para darles incentivo a mis compañeros. Fuimos bastantes hoy, pero se juntaron varios grupos, en la clase pasada estaba solo con la profe. Incluso uno de los chicos me mando un mensaje para saber si le podía ayudar con algunas dudas. Bastante buena la clase en cuanto a la interacción entre alumnos.  
-Por otro lado, aproveche para hacer el Modal para el login, el “botón” (que es un icono en realidad) está en el navbar y el contenido del Modal está en Header. Hay un pequeño “glitch” visual que al apretar el icono se desplaza todo el componente Header unos pixeles hacia la derecha, con About pasa algo similar nada mas que se acomoda verticalmente y no se nota tanto.  
++ **[ 25/6/22 ]:** Hoy hubo encuentro virtual, entre tarde, pero al final de la clase mostré el proyecto. Parece que les gustó y me quede con un par de ideas a tener en cuenta para cuando vaya armando el Backend. La profe me pidió que vaya poniendo el portfolio en el foro para darles incentivo a mis compañeros. Fuimos bastantes hoy, pero se juntaron varios grupos, en la clase pasada estaba solo con la profe. Incluso uno de los chicos me mandó un mensaje para saber si le podía ayudar con algunas dudas. Bastante buena la clase en cuanto a la interacción entre alumnos.  
+Por otro lado, aproveche para hacer el Modal para el login, el “botón” (que es un icono en realidad) está en el navbar y el contenido del Modal está en Header. Hay un pequeño “glitch” visual que al apretar el icono se desplaza todo el componente Header unos pixeles hacia la derecha, con About pasa algo similar nada más que se acomoda verticalmente y no se nota tanto.  
 En el Login hay una animación que vi y me gustó, pero está a modo de prueba. Capaz la dejo o la saco.  
 También estaba pensando en poner las dos url de las imágenes en una tabla aparte dentro de la BBDD.  
 + **[ 27/6/22 ]:** Encapsulo lo de ayer junto con lo de este día. En la BBDD agregué una tabla separada para las imágenes, moví los diagramas dentro de la carpeta “BBDD” y cambié el diagrama. La página que usé para el diagrama no la pude volver a utilizar por lo que la imagen es la exportada directamente desde MySQL Workbench (No sé muy bien por qué no funciona, pero sospecho que es problema de conexión, hay otras páginas que tampoco me cargan adecuadamente).  
-Moví algunos de los modales que estaban dentro de los contenedores de iconos, agregué los de experience, education, skills y projects. Este ultimo tiene dos modales, uno para agregar y otro que te muestra la lista de proyectos para poder eliminarlos. Me quedaría agregar un modal para editar los componentes de Experience, Education y Skills. Estoy pensando en hacer algo parecido Projects con varios modales o un solo modal que obtenga los datos del componente seleccionado y permita editarlos.  
-Hice un par de arreglos como algunas id repetidas, modifiqué el data.json para que sea más similar a la información diagramada en la BBDD y comencé un repaso rápido del modulo 3 porque hay pequeñas cosas que me olvidaba a la hora de crear servicios.  
+Moví algunos de los modales que estaban dentro de los contenedores de iconos, agregué los de experience, education, skills y projects. Este último tiene dos modales, uno para agregar y otro que te muestra la lista de proyectos para poder eliminarlos. Me quedaría agregar un modal para editar los componentes de Experience, Education y Skills. Estoy pensando en hacer algo parecido Projects con varios modales o un solo modal que obtenga los datos del componente seleccionado y permita editarlos.  
+Hice un par de arreglos como algunas id repetidas, modifiqué el data.json para que sea más similar a la información diagramada en la BBDD y comencé un repaso rápido del módulo 3 porque hay pequeñas cosas que me olvidaba a la hora de crear servicios.  
 Estos son como “organizadores” de información, se encargan de recibirla y distribuirla entre los componentes que hagan uso del mismo. Son instanciados una única vez durante el tiempo de vida de la app. Para poder realizar comunicación HTTP hacia el servidor se debe inyectar, en el servicio, el módulo HttpClient, por un lado, y por el otro HttpClientModule en app.module. Junto con estos componentes implementaremos el uso de Observables como controlador de eventos, en donde el Servicio mantiene una lista de dependientes (observers) y les notifica a los suscriptores, automáticamente, los cambios de estados en la información.  
 ![Angular Service](/Bit%C3%A1cora/resources/AngularServer.png)  
 Por ahora los componentes header y about están conectados al servicio. Con el About casi me olvido del Modal que debe cargar los datos en caso de que quieran ser modificados. Tuve un pequeño problemita: En la BBDD el link esta completo (es decir, https://www.ejemplo.com/usuario) pero, para no poner el link completo en el input cuando se quiera cambiar lo deje para que se ponga solo la parte “usuario”, así que tuve que buscar la forma de obtener solo esta parte de la url para mostrarlo en el modal. Lo resolví creando un objeto “links” con cada uno de ellos como atributo, dentro de la suscripción se ejecuta una funciona que me devuelve la parte de la url que me interesa y la guardé dentro del campo que corresponde en este objeto para luego ponerlo en el Modal.  
@@ -101,11 +101,11 @@ Por otro lado, también tuve tiempo de avanzar con el masterclass del módulo 8 
     +	~~**Agregar botón “Download CV”,**~~
     +	~~**Agregar input al About modal,**~~
     +	~~**Agregar link a la BBDD,**~~
-    +	**Implementar guardado de cambios en la Vista About,**
+    +	~~**Implementar guardado de cambios en la Vista About,**~~
     +	~~**Solucionar problema Swiper Loop,**~~
     +	~~**Eliminar Console.log no borrados de varios componentes,**~~
-    +	**Corregir Modals,**
-    +	**Eliminar id repeidas,**
+    +	~~**Corregir Modals,**~~
+    +	~~**Eliminar id repeidas,**~~
     +	**Limpiar HTML de texto innecesario,**
     +	~~**Sacar botones de componente “a” en Education y Experience,**~~
     +	**Implementar is_actual para las tarjetas de Education y Experience para reemplazar end_date,**
@@ -114,28 +114,39 @@ Por otro lado, también tuve tiempo de avanzar con el masterclass del módulo 8 
     +	~~**Experience Modal, mostrar datos,**~~
     +	~~**Experience Modal, mandar datos al componente padre,**~~
     +	~~**Experience, actualizar View,**~~
-    +	**Experience, actualizar BBDD,**
+    +	~~**Experience, actualizar BBDD,**~~
     +	~~**Modal Edit Education** (nuevo componente),~~
     +	~~**Education, mandar datos al nuevo componente,**~~
     +	~~**Education Modal, mostrar datos,**~~
     +	~~**Education Modal, mandar datos al componente padre,**~~
     +	~~**Education, actualizar View,**~~
-    +	**Education, actualizar BBDD,**
-    +	**Modal Edit Skill** (nuevo componente),
-    +	**Skill, mandar datos al nuevo componente,**
-    +	**Skill Modal, mostrar datos,**
-    +	**Skill Modal, agregar botón delete skill,**
-    +	**Skill Modal, mandar datos al componente padre,**
-    +	**Skill, actualizar View,**
-    +	**Skill, actualizar BBDD,**
-    +	**Corregir Experience Modal Data Binding: Job types dropdown, input date, ambos checkboxs y links** (Cosas que me olvidé),
-    +	**Agregar Job-Types a la BBDD,**
+    +	~~**Education, actualizar BBDD,**~~
+    +	~~**Modal Edit Skill** (nuevo componente),~~
+    +	~~**Skill, mandar datos al nuevo componente,**~~
+    +	~~**Skill Modal, mostrar datos,**~~
+    +	~~**Skill Modal, agregar botón delete skill,**~~
+    +	~~**Skill Modal, mandar datos al componente padre,**~~
+    +	~~**Skill, actualizar View,**~~
+    +	~~**Skill, actualizar BBDD,**~~
+    +	~~**Corregir Experience Modal Data Binding: Job types dropdown, input date, ambos checkboxs y links** (Cosas que me olvidé),~~
+    +	~~**Agregar Job-Types a la BBDD,**~~
     +	**Actualizar diagrama BBDD,**
     +	**Buscar cómo implementar el componente Contact,**
     +	**Comenzar Backend SpringBoot,**
-    +	**Implementación de cambios a la BBDD,**
     +	**Agregar diagramas explicativos,**
     +	~~**Módulo 9.**~~  
+    +	~~**About, actualizar View**~~
+    +	~~**Corregir nombres de clases**~~
+    +	~~**Hacer que los modal no se cierren cliqueando fuera o con “esc”**~~
+    +	~~**Implementación de Delete en los componentes Skills, Projects, Experience y Education**~~
+    +	~~**Implementación de Add en los componentes Skills, Projects, Experience y Education**~~
+    +	~~**Agregar método onClose al botón “X” en la parte superior de los modales**~~
+    +	**Agregar Validaciones**
+    +	~~**Modales para eliminar y editar proyectos**~~
+    +	**Hacer Actualizaciones al Servidor**
+    +	~~**Poner el modal de Inicio de Sesión dentro de un Formulario**~~
+    +	**Actualizar mediante servicios los componentes footer y header**
+
 
 + Son bastantes tareas, pero creo que en un día más las termino. Hoy gran parte del día fue buscando información e intentando averiguar cómo solucionar los problemas que se iban presentando. En cuanto a la eliminación de console.logs, borré la mayoría salvo los que luego serán órdenes al servidor para cambiar o actualizar datos, luego los borraré. Las id, los modals y textos sobrantes en los html, hice bastantes, pero solo en los componentes que estuve trabajando hoy, otro día haré un control exclusivamente para corregir estos problemas.  
 En lo que avanzaba con el componente Experience, ya había creado el componente Modal y un par de cosillas más, me encontré con que al hacer click en lo que debería abrir el modal me redirigía a otro lado, ahí me di cuenta que los botones estaban dentro de un elemento “a”. Una búsqueda rápida por internet me indico que no es recomendable poner elementos interactivos dentro de un “a”.  
@@ -145,3 +156,10 @@ Una vez hecha la idea del esquema comencé con la implementación del mismo. Opt
 Luego de un par de horas, dos salidas fallidas a la peluquería y un termo de mate lo solucioné y mandé los datos mediante un EventEmitter al componente padre para actualizar los datos en el View (función que no me llevó mucho tiempo). Pero no fue poco mi desaliento cuando mostrándole el progreso a mi hermano descubrimos un problema: Al hacer un cambio en algún input, luego cerrar el modal SIN GUARDAR y volver a abrir el mismo, se quedaba GUARDADO EL CAMBIO y no se reestablecían los datos. Arreglarlo no me llevó mucho, creé un objeto para guardar los datos que se obtenían al abrir el modal y un par de métodos para actualizar datos.  
 Me pareció gracioso agregar un poco de drama a la bitácora, como si de un cuento se tratase y me tendrán que perdonar la mala redacción. Al final del día me olvidé de hacer que se actualicen los datos en el objeto a editar mandado al componente padre desde el modal de Experience (tareas que ya agregué a la lista para solventar), me puse al día con el proyecto e hice una lista de tareas nueva. Este lunes hay reunión del curso si mal no recuerdo.  
 También busque como hacer el funcionamiento del componente Contact, encontré varias opciones, pero quiero una que no involucre registrarme en alguna página, que no abra links externos y que pueda ser usada por diferentes usuarios. Tendré que seguir buscando, pero creo que voy a terminar haciendo que la función se ejecute en el servidor junto con un par de variables de entorno.  
++ **[ 18/7/22 ]:** Entre ayer y hoy me dediqué exclusivamente a completar tareas de la lista, avance muchísimo y fui descubriendo mejores formas de hacer lo mismo. Encontré métodos como “Object.assign( target, source )” que me permiten rápidamente copiar las variables de un objeto y colocarlas en otro dentro de los mismos campos, entre otros que suprimieron muchísimas líneas de código que tenía inicialmente.  
+Agregue un par de tareas más a la lista, varias ya están resueltas. También existen muchas otras que fui haciendo durante la marcha y no fueron agregadas a la lista.  
+Para la edición de cualquier información al llegar el “objeto” a los modal se almacena en “objetoActual”, este es el mismo que se muestra en el View, a través de enlaces de datos en dos vías (Two ways data Binding) puedo, desde el input, modificar la información de este objeto. Al presionar “Save” se copia, con el método que mencioné al principio, todo el contenido de “objetoActual” en “objetoSave” que es el que finalmente se manda al componente padre para actualizar la vista. Y al presionar uno de los botones de cierre, el “objetoActual” vuelve a sus valores por defecto. Haciendo esto eliminé varias funciones de actualización que había hecho antes.  
+Hice un pequeñito cambio a los componentes Experience y Education que si les agregaba mas de 4 tarjetas se empezaba a “romper” el diseño (Se veían mal), y ahora no existe más este problema, los componentes se adaptan sea cual sea la cantidad de objetos.  
+Hoy hubo reunión, pero lamentablemente escuche la mitad. Hubo bajas en la tensión eléctrica que apagaron la computadora en dos ocasiones.  
+Para lo que queda de semana tengo que empezar con el Back-End y subir el proyecto a algún foro.  
+Para lo que queda de semana tengo que empezar con el Back-End y subir el proyecto a algún foro.

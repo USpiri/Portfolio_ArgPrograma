@@ -31,7 +31,7 @@ export class EducationComponent implements OnInit {
     );
   }
 
-  openEditModal( education:Education ){
+  editModal( education:Education ){
     this.educationToEdit = education;
   }
 
