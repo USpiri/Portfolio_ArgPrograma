@@ -58,9 +58,7 @@ export class SkillsComponent implements OnInit {
   }
 
   onClose(){
-    this.skillToAdd.name = "";
-    this.skillToAdd.icon = "";
-    this.skillToAdd.percentage = "";
+    this.skillToAdd = new Skill();
     this.percentage = 0;
   }
 
