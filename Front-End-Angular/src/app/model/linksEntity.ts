@@ -4,4 +4,5 @@ export class Links {
     twitter: String = "";
     github: String = "";
     cv: String = "";
+    linkedin: String = "";
 }

@@ -50,6 +50,10 @@
     color: black;
 }
 
+.social_button:nth-child(5):hover .social_icon{
+    background: #006192;
+}
+
 .social_icon i{
     font-size: 25px;
     line-height: 60px;
@@ -76,6 +80,9 @@
 }
 .social_button:nth-child(3) span{
     color: #E1306C;
+}
+.social_button:nth-child(5) span{
+    color: #006192;
 }
 .copy>p>b{
     font-size: 15px;

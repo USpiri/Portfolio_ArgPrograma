@@ -188,6 +188,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`social_media` (
   `github` VARCHAR(100) NULL,
   `linkedin` VARCHAR(100) NULL,
   `person_id_person` INT NOT NULL,
+  `cv` VARCHAR(100) NULL,
   PRIMARY KEY (`id_social_media`, `person_id_person`),
   INDEX `fk_social_media_person1_idx` (`person_id_person` ASC) VISIBLE,
   CONSTRAINT `fk_social_media_person1`
