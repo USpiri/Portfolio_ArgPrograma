@@ -65,8 +65,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
-  `level` VARCHAR(45) NULL,
-  `status` VARCHAR(45) NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE INDEX `id_user_UNIQUE` (`id_user` ASC) VISIBLE)
 ENGINE = InnoDB;
