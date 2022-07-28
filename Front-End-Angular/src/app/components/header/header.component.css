@@ -1,6 +1,8 @@
 .header_container{
     background-color: #1f2233;
     min-height: 95vh;
+    background-image: url(../../../assets/img/background.jpg);
+    background-size: cover;
 }
 
 .scan{
