@@ -12,7 +12,11 @@ export class PortfolioService {
   ) { }
 
   getData():Observable<any>{
-    return this.http.get("../assets/data/data.json")
+    return this.http.get("../assets/data/data.json");
+  }
+
+  getString():Observable<any>{
+    return this.http.get("http://localhost:8080/person",{ responseType: 'text' });
   }
 
 }

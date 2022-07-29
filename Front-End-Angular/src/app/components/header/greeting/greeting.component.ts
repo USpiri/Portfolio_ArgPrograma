@@ -20,6 +20,11 @@ export class GreetingComponent implements OnInit {
         this.data = data;
       }
     );
+    this.dataPortfolio.getString().subscribe(
+      data => {
+        console.log(data);
+      }
+    )
   }
 
 }
