@@ -19,9 +19,19 @@ export class ImageService {
     return this.http.get<Image>(url);
   }
 
-  updateImages( img:Image ):Observable<Image>{
+  updateImages( file:FormData, img:Image ):Observable<Image>{
     const url = `${this.apiUrl}/${img.id}`;
-    return this.http.put<Image>(url,img);
+    return this.http.put<Image>(url,file);
+  }
+
+  updateHeader( file:FormData, img:Image ):Observable<Image>{
+    const url = `${this.apiUrl}/${img.id}/header`;
+    return this.http.put<Image>(url,file);
+  }
+
+  updateAbout( file:FormData, img:Image ):Observable<Image>{
+    const url = `${this.apiUrl}/${img.id}/about`;
+    return this.http.put<Image>(url,file);
   }
 
   addImages( img:Image ):Observable<Image>{

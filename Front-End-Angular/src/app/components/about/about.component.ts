@@ -17,6 +17,7 @@ export class AboutComponent implements OnInit {
   data:Person = new Person( "","","","","","","","","" );
   links:Social = new Social( "","","","","","" );
   images:Image = new Image( "","" );
+  files:{ header?: any, about?: any; } = {};
 
   dataToEdit:Person = new Person( "","","","","","","","","" );
   linksToEdit:Social = new Social( "","","","","","" );
@@ -107,16 +108,86 @@ export class AboutComponent implements OnInit {
         this.updateData( this.data, data );
       }
     );
-    this.dataImages.updateImages(this.imagesToEdit).subscribe(
-      images => {
-        this.updateData( this.images, images );
-      }
-    );
     this.dataSocial.updateLinks(this.linksToEdit).subscribe(
       social => {
         this.updateData( this.links, social );
       }
     );
+    if ( this.files.header && !this.files.about ) {
+      //Update Header
+      const dataForm = new FormData();
+      dataForm.append( "image", this.files.header, this.files.header.name );
+      this.dataImages.updateHeader( dataForm , this.imagesToEdit ).subscribe(
+        () => {
+          this.extraerBase64(this.files.header).then(
+            (image:any) => {
+              this.images.header = image.base;
+            }
+          );
+        }
+      );
+    } else if ( this.files.about && !this.files.header ){
+      //Update About
+      const dataForm = new FormData();
+      dataForm.append( "image", this.files.about, this.files.about.name );
+      this.dataImages.updateAbout( dataForm , this.imagesToEdit ).subscribe(
+        () => {
+          this.extraerBase64(this.files.about).then(
+            (image:any) => {
+              this.images.about = image.base;
+            }
+          );
+        }
+      );
+    } else if ( this.files.about && this.files.header ){
+      const dataForm = new FormData();
+      dataForm.append( "image", this.files.header, this.files.header.name );
+      dataForm.append( "image", this.files.about, this.files.about.name );
+      this.dataImages.updateImages( dataForm , this.imagesToEdit ).subscribe(
+        () => {
+          this.extraerBase64(this.files.header).then(
+            (image:any) => {
+              this.images.header = image.base;
+            }
+          )
+          this.extraerBase64(this.files.about).then(
+            (image:any) => {
+              this.images.about = image.base;
+            }
+          );
+        }
+      );
+    }
+  }
+
+  extraerBase64 = async ($event: any) => new Promise((resolve) => {
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+      return null;
+    } catch (e) {
+      return null;
+    }
+  })
+
+  getHeaderImg(event:any){
+    const savedFile = event.target.files[0];
+    this.files.header = savedFile;
+  }
+
+  getAboutImg(event:any){
+    const savedFile = event.target.files[0];
+    this.files.about = savedFile;
   }
 
   completeLinks(){

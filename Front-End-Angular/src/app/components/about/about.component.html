@@ -78,10 +78,12 @@
                                 </div>
                                 <h5 class="text-dark">Images</h5>
                                 <div class="mb-2">
-                                    <input type="text" class="form-control" id="InputHeaderImg" placeholder="Header image url" name="image_header" [(ngModel)]="imagesToEdit.header">
+                                    <div class="form-text">Header image</div>
+                                    <input type="file" class="form-control" accept="image/jpeg" id="InputHeaderImg" (change)="getHeaderImg($event)">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="InputAboutImg" placeholder="About image url" name="image_about" [(ngModel)]="imagesToEdit.about">
+                                    <div class="form-text">About image</div>
+                                    <input type="file" class="form-control" accept="image/jpeg" id="InputAboutImg" (change)="getAboutImg($event)">
                                 </div>
                                 <h5 class="text-dark">Social Media</h5>
                                 <div class="input-group mb-3">
