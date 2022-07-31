@@ -16,7 +16,7 @@
                             <div class="modal-body">
                                 <h5 class="text-dark mb-2">Job information</h5>
                                 <input type="text" class="form-control mb-2" id="inputCompany" placeholder="Company" name="company" [(ngModel)]="experienceToAdd.company">
-                                <input type="text" class="form-control mb-2" id="inputPosition" placeholder="Position" name="position" [(ngModel)]="experienceToAdd.position">
+                                <input type="text" class="form-control mb-2" id="inputPosition" placeholder="Position" name="position" [(ngModel)]="experienceToAdd.job">
                                 <select class="form-select mb-4 text-dark" id="inputJobType" name="job_type" [(ngModel)]="experienceToAdd.job_type">
                                     <option selected class="text-dark" disabled>Job type</option>
                                     <option *ngFor="let job of jobs" [value]="job.name" class="text-dark">{{job.name}}</option>
@@ -59,16 +59,16 @@
         <div class="experience_cards_container mt-2">
             <ul class="experience_cards">
                 <li class="experience_card position-relative" *ngFor="let experience of data">
-                    <a class="experience_link d-flex flex-row" [href]="experience?.link">
+                    <a class="experience_link d-flex flex-row" [href]="experience.link">
                         <div class="experience_card_header animated_bg experience_card_img" id="experience_header">
-                            <img [src]="experience?.img_url" alt="Imagen del proyecto">
+                            <img [src]="experience.img_url" alt="Imagen del proyecto">
                         </div>
                         <div class="experience_card_content">
                             <h3 class="experience_card_title animated_bg animated_bg_title fs-5" id="title">
-                                {{experience?.position}}
+                                {{experience.job}}
                             </h3>
                             <p class="experience_card_text" id="text">
-                                {{experience?.company}} | {{experience?.start_date}} to {{experience?.end_date}} | {{experience?.job_type}}
+                                {{experience.company}} | {{experience.start_date}} to {{experience.end_date}} | {{experience.job_type}}
                             </p>
                         </div>
                     </a>

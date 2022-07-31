@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Skill } from 'src/app/model/skillEntity';
-import { PortfolioService } from 'src/app/services/portfolio.service';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-skills',
@@ -11,19 +11,19 @@ export class SkillsComponent implements OnInit {
 
   data:Skill[] = [];
 
-  skillToEdit: Skill = new Skill();
-  skillToAdd: Skill = new Skill();
+  skillToEdit: Skill = new Skill( "","","" );
+  skillToAdd: Skill = new Skill( "","","" );
 
   percentage: number = 0;
     
   constructor(
-    private dataPortfolio:PortfolioService
+    private dataSkill:SkillService
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
+    this.dataSkill.getSkills().subscribe(
       data => {
-        this.data = data.skills;
+        this.data = data;
       }
     );
   }
@@ -33,32 +33,41 @@ export class SkillsComponent implements OnInit {
   }
 
   updateSkill( skillToUpdate:Skill ){
-    //Update View
-    this.data.map(
-      (skill , i ) => {
-        if ( skill.id == skillToUpdate.id ) {
-          this.data[i] = skillToUpdate;
-        }
+    this.dataSkill.updateSkill(skillToUpdate).subscribe(
+      skill => {
+        this.data.map(
+          (sk , i ) => {
+            if ( sk.id == skill.id ) {
+              this.data[i] = skill;
+            }
+          }
+        );
       }
     );
-    //Update Server
   }
 
   deleteSkill( skillToDelete:Skill ){
-    //Add Update Server
-    this.data = this.data.filter(
-      skill => skill.id !== skillToDelete.id
-    )
+    this.dataSkill.deleteSkill(skillToDelete).subscribe(
+      () => {
+        this.data = this.data.filter(
+          skill => skill.id !== skillToDelete.id  
+        );
+      }
+    );
   }
 
   addSkill(){
-    //Add Update Server
     this.skillToAdd.percentage = this.percentage.toString() + "%";
-    this.data.push(this.skillToAdd);
+    this.dataSkill.addSkill(this.skillToAdd).subscribe(
+      skill => {
+        this.data.push(skill);
+      }
+    )
+    this.onClose();
   }
 
   onClose(){
-    this.skillToAdd = new Skill();
+    this.skillToAdd = new Skill( "","","" );
     this.percentage = 0;
   }
 

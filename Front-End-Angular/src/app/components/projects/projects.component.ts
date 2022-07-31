@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import SwiperCore, { Keyboard, Pagination, Navigation, Autoplay, SwiperOptions } from 'swiper';
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
-import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Project } from 'src/app/model/projectEntity';
-import { SwiperComponent } from 'swiper/angular';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -14,11 +13,11 @@ export class ProjectsComponent implements OnInit {
 
   data: Project[] = [];
 
-  projectToEdit: Project = new Project();
-  projectToAdd: Project = new Project();
+  projectToEdit: Project = new Project( "","","","",false );
+  projectToAdd: Project = new Project( "","","","",false );
 
   config: SwiperOptions = {
-    loopedSlides: 6,
+    loopedSlides: 5,
     initialSlide: 0,
     spaceBetween: 10,
     navigation: true,
@@ -54,13 +53,13 @@ export class ProjectsComponent implements OnInit {
   }
 
   constructor(
-    private dataPortfolio:PortfolioService
+    private dataProject:ProjectService
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
-      data => {
-        this.data = data.projects;
+    this.dataProject.getProjects().subscribe(
+      projects => {
+        this.data = projects;
       }
     );
   }
@@ -68,24 +67,31 @@ export class ProjectsComponent implements OnInit {
   resetProject(){
     this.projectToAdd = {
       id: 0,
-      title: "",
+      name: "",
       description: "",
-      img: "",
+      img_url: "",
       link: "",
       enabled_link: true
     }
   }
 
   onAddProject(){
-    //Add Server update
-    this.data.push(this.projectToAdd);
+    this.dataProject.addProject(this.projectToAdd).subscribe(
+      project => {
+        this.data.push(project);
+      }
+    );
+    this.resetProject();
   }
 
   onDelete(project:Project){
-    //Add Server update
-    this.data = this.data.filter(
-      projectStored => projectStored.id !== project.id
-    );
+    this.dataProject.deleteProject(project).subscribe(
+      () => {
+        this.data = this.data.filter(
+          projectStored => projectStored.id !== project.id
+        );
+      }
+    )
   }
 
   onEdit(project:Project){
@@ -93,12 +99,15 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateProject(){
-    //Add Server update
-    this.data.map(
-      (project , i) => {
-        if (project.id == this.projectToEdit.id) {
-          this.data[i] = this.projectToEdit;
-        }
+    this.dataProject.updateProject(this.projectToEdit).subscribe(
+      project => {
+        this.data.map(
+          (pro , i) => {
+            if (pro.id === project.id) {
+              this.data[i] = project;
+            }
+          }
+        );
       }
     );
   }

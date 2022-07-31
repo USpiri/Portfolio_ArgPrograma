@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { Person } from '../model/personEntity';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class PortfolioService {
     return this.http.get("../assets/data/data.json");
   }
 
-  getString():Observable<any>{
-    return this.http.get("http://localhost:8080/person",{ responseType: 'text' });
-  }
+  // getPerson():Observable<Person>{
+  //   return this.http.get<Person>("http://localhost:8080/person");
+  // }
 
 }

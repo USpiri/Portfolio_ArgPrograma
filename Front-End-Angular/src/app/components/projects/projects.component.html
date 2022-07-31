@@ -15,10 +15,10 @@
                             </div>
                             <div class="modal-body">
                                 <h5 class="text-dark mb-2">Project</h5>
-                                <input type="text" class="form-control mb-2" id="inputProjectTitle" placeholder="Project title" name="newProjectTitle" [(ngModel)]="projectToAdd.title">
+                                <input type="text" class="form-control mb-2" id="inputProjectTitle" placeholder="Project title" name="newProjectTitle" [(ngModel)]="projectToAdd.name">
                                 <textarea class="form-control mb-2" placeholder="Project description" id="newProjectDescription" name="newProjectDescription" [(ngModel)]="projectToAdd.description"></textarea>
                                 <h5 class="text-dark mb-2">Links</h5>
-                                <input type="text" class="form-control mb-2" id="inputProjectImgUrl" placeholder="Image url" name="newProjectImg" [(ngModel)]="projectToAdd.img">
+                                <input type="text" class="form-control mb-2" id="inputProjectImgUrl" placeholder="Image url" name="newProjectImg" [(ngModel)]="projectToAdd.img_url">
                                 <input type="text" class="form-control mb-1" id="inputProjectLink" placeholder="Link" name="newProjectLink" [(ngModel)]="projectToAdd.link">
                                 <input type="checkbox" class="form-check-input" id="checkEnabledLink" name="newProjectEnabled" [(ngModel)]="projectToAdd.enabled_link">
                                 <label class="form-check-label text-dark ms-1 mb-1" for="checkEnabledLink">
@@ -28,7 +28,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProject()">Close</button>
                                 <button type="button" class="btn btn-primary" data-bs-target="#projectsModal" data-bs-toggle="modal" (click)="resetProject()">Projects list</button>
-                                <button type="submit" class="btn btn-primary">Add project</button>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add project</button>
                             </div>
                         </form>
                     </div>
@@ -50,7 +50,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let project of data">
-                                        <td class="text-dark">{{project.title}}</td>
+                                        <td class="text-dark">{{project?.name}}</td>
                                         <td>
                                             <div class="d-flex float-end">
                                                 <button type="button" class="btn btn-primary btn-sm me-2" (click)="onEdit(project)" data-bs-target="#editProjectModal" data-bs-toggle="modal">Edit project</button>
@@ -77,10 +77,10 @@
                         </div>
                         <div class="modal-body">
                             <h5 class="text-dark mb-2">Project</h5>
-                            <input type="text" class="form-control mb-2" id="editProjectTitle" placeholder="Project title" name="projectTitle" [(ngModel)]="projectToEdit.title">
+                            <input type="text" class="form-control mb-2" id="editProjectTitle" placeholder="Project title" name="projectTitle" [(ngModel)]="projectToEdit.name">
                             <textarea class="form-control mb-2" placeholder="Project description" id="editDescription" name="projectDescription" [(ngModel)]="projectToEdit.description"></textarea>
                             <h5 class="text-dark mb-2">Links</h5>
-                            <input type="text" class="form-control mb-2" id="editProjectImgUrl" placeholder="Image url" name="projectImg" [(ngModel)]="projectToEdit.img">
+                            <input type="text" class="form-control mb-2" id="editProjectImgUrl" placeholder="Image url" name="projectImg" [(ngModel)]="projectToEdit.img_url">
                             <input type="text" class="form-control mb-1" id="editProjectLink" placeholder="Link" name="projectLink" [(ngModel)]="projectToEdit.link">
                             <input type="checkbox" class="form-check-input" id="editEnabledLink" name="projectEnabledLink" [(ngModel)]="projectToEdit.enabled_link">
                             <label class="form-check-label text-dark ms-1 mb-1" for="editEnabledLink">
@@ -103,20 +103,20 @@
                 style="--swiper-navigation-color: #dc3545;--swiper-pagination-color: #dc3545"
             >
                 <ng-template swiperSlide class="swiper_slide swiper-slide" *ngFor="let project of data">
-                    <div class="project_card"><a class="project_link" [href]="project?.link"> 
+                    <div class="project_card"><div class="project_link"> 
                         <div class="project_card_header animated_bg project_card_img" id="project_header">
-                            <img [src]="project?.img" alt="Imagen del proyecto {{project?.title}}">
+                            <img [src]="project?.img_url" alt="Imagen del proyecto {{project.name}}">
                         </div>
                         <div class="project_card_content">
                             <h3 class="project_card_title fs-5 m-0" id="title">
-                               {{project?.title}}
+                               {{project?.name}}
                             </h3>
                             <p class="project_card_text lh-sm mt-3 mb-6" id="text">
                                 {{project?.description}}
                             </p>
                             <div class="project_button_container"><a [href]="project?.link" class="button d-block p-3">WEB / GITHUB</a></div>
                         </div>
-                    </a></div>
+                    </div></div>
                 </ng-template>
             </swiper>
         </div>

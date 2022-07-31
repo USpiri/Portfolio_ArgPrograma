@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/services/portfolio.service';
+import { EducationService } from 'src/app/services/education.service';
 import { Education } from '../../model/educationEntity';
 
 @Component({
@@ -12,21 +12,21 @@ export class EducationComponent implements OnInit {
 
   data: Education[] = [];
 
-  educationToEdit: Education = new Education();
-  educationToAdd: Education = new Education();
+  educationToEdit: Education = new Education( "","",false,"","","","",false );
+  educationToAdd: Education = new Education( "","",false,"","","","",false );
 
   start_date: String = this.datePipe.transform( new Date() , "yyyy-MM-dd")!;
   end_date: String = this.datePipe.transform( new Date() , "yyyy-MM-dd")!;
 
   constructor(
-    private dataPortfolio:PortfolioService,
+    private dataEducation:EducationService,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
-      data => {
-        this.data = data.education;
+    this.dataEducation.getEducation().subscribe(
+      education => {
+        this.data = education;
       }
     );
   }
@@ -36,25 +36,28 @@ export class EducationComponent implements OnInit {
   }
 
   updateEducation(education:Education){
-
-    //Update View
-    this.data.map( 
-      (educ , i) => {
-        if( educ.id == education.id ){
-          this.data[i]= education;
-        }
+    this.dataEducation.updateEducation(education).subscribe(
+      education => {
+        this.data.map( 
+          (educ , i) => {
+            if( educ.id === education.id ){
+              this.data[i]= education;
+            }
+          }
+        );
       }
     );
-      
-    //Update Server
-    console.log(education);
   }
 
   addEducation(){
-    //Add Server Update
     this.educationToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
     this.educationToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
-    this.data.push(this.educationToAdd);
+    this.dataEducation.addEducation(this.educationToAdd).subscribe(
+      education => { 
+        this.data.push(education);
+      }
+    );
+    this.onClose();
   }
 
   date( date:String ){
@@ -63,13 +66,17 @@ export class EducationComponent implements OnInit {
   }
 
   onClose(){
-    this.educationToAdd = new Education();
+    this.educationToAdd = new Education( "","",false,"","","","",false );
   }
 
   onDelete( educationToDelete:Education ){
-    this.data = this.data.filter(
-      education => education.id !== educationToDelete.id  
-    )
+    this.dataEducation.deleteEducation(educationToDelete).subscribe(
+      () => {
+        this.data = this.data.filter(
+          education => education.id !== educationToDelete.id  
+        );
+      }
+    );
   }
 
 }

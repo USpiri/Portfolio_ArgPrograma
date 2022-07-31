@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/services/portfolio.service';
+import { Person } from 'src/app/model/personEntity';
+import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,14 +9,14 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class ContactComponent implements OnInit {
 
-  data: any;
+  data:Person = new Person( "","","","","","","","","" );
 
   constructor(
-    private dataPortfolio:PortfolioService
+    private dataPerson:PersonService
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
+    this.dataPerson.getPerson().subscribe(
       data => {
         this.data = data;
       }

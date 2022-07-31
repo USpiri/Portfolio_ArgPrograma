@@ -8,14 +8,14 @@ import { Skill } from 'src/app/model/skillEntity';
 })
 export class SkillsModalComponent implements OnInit, OnChanges {
 
-  @Input() skill:Skill = new Skill();
+  @Input() skill:Skill = new Skill( "","","" );
 
   @Output() onUpdateSkill:EventEmitter<Skill> = new EventEmitter();
   @Output() onDeleteSkill:EventEmitter<Skill> = new EventEmitter();
 
 
-  skillSave:Skill = new Skill();
-  skillActual:Skill = new Skill();
+  skillSave:Skill = new Skill( "","","" );
+  skillActual:Skill = new Skill( "","","" );
 
   percentage: number = 0;
 

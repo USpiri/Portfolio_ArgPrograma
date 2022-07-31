@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     <h5 class="text-dark mb-2">Job information</h5>
                     <input type="text" class="form-control mb-2" id="editCompany" name="company" [(ngModel)]="experienceActual.company" placeholder="Company">
-                    <input type="text" class="form-control mb-2" id="editPosition" name="position" [(ngModel)]="experienceActual.position" placeholder="Position">
+                    <input type="text" class="form-control mb-2" id="editPosition" name="position" [(ngModel)]="experienceActual.job" placeholder="Position">
                     <select class="form-select mb-4" id="editJobType" [(ngModel)]="experienceActual.job_type" name="job_type">
                         <option selected class="text-dark" disabled>Job type</option>
                         <option *ngFor="let job of jobs" [value]="job.name" class="text-dark" [selected]="experienceActual.job_type == job.name">{{job.name}}</option>

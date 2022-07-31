@@ -119,7 +119,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`project` (
   `img_url` VARCHAR(200) NULL,
   `link` VARCHAR(200) NULL,
   `enabled_link` TINYINT NULL,
-  `projectcol` VARCHAR(45) NULL,
   `person_id_person` INT NOT NULL,
   PRIMARY KEY (`id_project`, `person_id_person`),
   UNIQUE INDEX `id_project_UNIQUE` (`id_project` ASC) VISIBLE,

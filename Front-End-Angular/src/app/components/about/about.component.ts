@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Links } from 'src/app/model/linksEntity';
-import { Person } from 'src/app/model/person';
+import { Social } from 'src/app/model/socialMediaEntity';
+import { Person } from 'src/app/model/personEntity';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { PersonService } from 'src/app/services/person.service';
+import { Image } from 'src/app/model/imageEntity';
+import { SocialService } from 'src/app/services/social.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-about',
@@ -10,11 +14,13 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class AboutComponent implements OnInit {
 
-  data:Person = new Person();
-  links: Links = new Links();
+  data:Person = new Person( "","","","","","","","","" );
+  links:Social = new Social( "","","","","","" );
+  images:Image = new Image( "","" );
 
-  dataToEdit:Person = new Person();
-  linksToEdit:Links = new Links();
+  dataToEdit:Person = new Person( "","","","","","","","","" );
+  linksToEdit:Social = new Social( "","","","","","" );
+  imagesToEdit:Image = new Image( "","" );
 
   date:{ month: string , day: string , year: string } = {
     month: "",
@@ -23,67 +29,102 @@ export class AboutComponent implements OnInit {
   };
 
   constructor(
-    private dataPortfolio:PortfolioService
+    private dataPerson:PersonService,
+    private dataSocial:SocialService,
+    private dataImages:ImageService
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
+    this.dataPerson.getPerson().subscribe(
       data => {
-        this.updateData( this.data, data);
+        this.updateData( this.data, data );
         this.updateData( this.dataToEdit, this.data );
-        this.getLastIndex(data);
-        this.updateLinks( this.linksToEdit, this.links );
-        this.getBirthDate(this.data);
+        this.getBirthDate( this.data );
+      }
+    );
+    this.dataSocial.getLinks().subscribe(
+      social => {
+        if (this.isEmpty(social)) {
+          this.dataSocial.addLinks(this.links).subscribe();
+        }
+        this.updateData( this.links, social );
+        this.updateData( this.linksToEdit, this.links );
+        this.getLastIndex(this.linksToEdit);
+      }
+    );
+    this.dataImages.getImages().subscribe(
+      images => {
+        if (this.isEmpty(images)) {
+          this.dataImages.addImages(this.images).subscribe();
+        }
+        this.updateData( this.images, images );
+        this.updateData( this.imagesToEdit, this.images );
       }
     );
   }
 
-  updateData ( dataTo:Person , dataFrom: any ){
-    dataTo.id = dataFrom.id;
-    dataTo.name = dataFrom.name;
-    dataTo.surname = dataFrom.surname;
-    dataTo.address = dataFrom.address;
-    dataTo.birth_date = dataFrom.birth_date;
-    dataTo.age = dataFrom.age;
-    dataTo.phone = dataFrom.phone;
-    dataTo.email = dataFrom.email;
-    dataTo.lit_about = dataFrom.lit_about;
-    dataTo.about = dataFrom.about;
-    dataTo.images.header = dataFrom.images.header;
-    dataTo.images.about = dataFrom.images.about;
-    // Object.assign( dataTo, dataFrom );
+  updateAll(){
+    this.updateData( this.dataToEdit, this.data );
+    this.updateData( this.linksToEdit, this.links );
+    this.updateData( this.imagesToEdit, this.images );
+    this.getBirthDate( this.data );
+    this.getLastIndex(this.linksToEdit);
   }
 
-  updateLinks( linksTo:Links, linksFrom:Links ){
-    linksTo.facebook = linksFrom.facebook;
-    linksTo.instagram = linksFrom.instagram;
-    linksTo.twitter = linksFrom.twitter;
-    linksTo.github = linksFrom.github;
-    linksTo.cv = linksFrom.cv;
-    // Object.assign( linksTo, linksFrom );
+  updateData ( dataTo:any , dataFrom: any ){
+    Object.assign( dataTo, dataFrom );
   }
 
-  getLastIndex( data: any ){
-    this.links.facebook = (data.links.facebook).substring((data.links.facebook).lastIndexOf('/')+1);
-    this.links.instagram = (data.links.instagram).substring((data.links.instagram).lastIndexOf('/')+1);
-    this.links.twitter = (data.links.twitter).substring((data.links.twitter).lastIndexOf('/')+1);
-    this.links.github = (data.links.github).substring((data.links.github).lastIndexOf('/')+1);
-    this.links.cv = data.links.cv;
+  getLastIndex( links:Social ){
+    this.links.facebook = (links.facebook).substring((links.facebook).lastIndexOf('/')+1);
+    this.links.instagram = (links.instagram).substring((links.instagram).lastIndexOf('/')+1);
+    this.links.twitter = (links.twitter).substring((links.twitter).lastIndexOf('/')+1);
+    this.links.github = (links.github).substring((links.github).lastIndexOf('/')+1);
+    this.links.cv = links.cv;
+    this.links.linkedin = (links.linkedin).substring((links.linkedin).lastIndexOf('/')+1);
   }
 
   getBirthDate( data: any ){
     this.date.year = data.birth_date.substring(data.birth_date.lastIndexOf(',')+2);
     this.date.day = data.birth_date.substring(data.birth_date.lastIndexOf(',')-2,data.birth_date.lastIndexOf(',')).trim();
-    this.date.month = data.birth_date.split(' ')[0] //(new Date(Date.parse(data.birth_date)).getMonth()+1).toString(); 
+    this.date.month = data.birth_date.split(' ')[0]
+  }
+
+  formateBirthDate(){
+    return this.date.month + " " + this.date.day + ", " + this.date.year;
+  }
+
+  isEmpty( object:any ){
+    return Object.keys(object).length === 0;
   }
 
   onSubmit(){
-    this.dataToEdit.birth_date = this.date.month + " " + this.date.day + ", " + this.date.year;
-    this.updateData( this.data, this.dataToEdit );
-
-    //Actualizar componente Footer
-
     //Actualizar Servidor
+    this.dataToEdit.birth_date = this.formateBirthDate()
+    this.completeLinks();
+    this.dataPerson.updatePerson(this.dataToEdit).subscribe(
+      data => {
+        this.updateData( this.data, data );
+      }
+    );
+    this.dataImages.updateImages(this.imagesToEdit).subscribe(
+      images => {
+        this.updateData( this.images, images );
+      }
+    );
+    this.dataSocial.updateLinks(this.linksToEdit).subscribe(
+      social => {
+        this.updateData( this.links, social );
+      }
+    );
+  }
+
+  completeLinks(){
+    this.linksToEdit.facebook = "https://facebook.com/" + this.linksToEdit.facebook;
+    this.linksToEdit.instagram = "https://instagram.com/" + this.linksToEdit.instagram;
+    this.linksToEdit.twitter = "https://twitter.com/" + this.linksToEdit.twitter;
+    this.linksToEdit.github = "https://github.com/" + this.linksToEdit.github;
+    this.linksToEdit.linkedin = "https://www.linkedin.com/in/" + this.linksToEdit.linkedin;
   }
 
 }

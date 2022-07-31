@@ -1,6 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Experience } from 'src/app/model/experienceEntity';
+import { JobType } from 'src/app/model/jobTypeEntity';
+import { ExperienceService } from 'src/app/services/experience.service';
+import { JobTypeService } from 'src/app/services/job-type.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -11,27 +14,31 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ExperienceComponent implements OnInit {
 
   data:Experience[] = [];
-  jobs: { id:number, name:String }[] = []
+  jobs:JobType[] = []
 
-  experienceToEdit : Experience = new Experience();
-  experienceToAdd : Experience = new Experience();
+  experienceToEdit : Experience = new Experience( "","",false,"","","","",false,"" );
+  experienceToAdd : Experience = new Experience( "","",false,"","","","",false,"Job type" );
 
   start_date: String = this.datePipe.transform( new Date() , "yyyy-MM-dd")!;
   end_date: String = this.datePipe.transform( new Date() , "yyyy-MM-dd")!;
 
   constructor(
-    private dataPortfolio:PortfolioService,
+    private dataExperience:ExperienceService,
+    private dataJobs:JobTypeService,
     private datePipe:DatePipe
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
-      data => {
-        this.data = data.experience;
-        this.jobs = data.jobTypes;
+    this.dataExperience.getExperience().subscribe(
+      experience => {
+        this.data = experience;
       }
     );
-    this.experienceToAdd.job_type = "Job type";
+    this.dataJobs.getJobs().subscribe(
+      jobs => {
+        this.jobs = jobs;
+      }
+    );
   }
 
   openEditModal( experience: any ){
@@ -39,23 +46,28 @@ export class ExperienceComponent implements OnInit {
   }
 
   updateExperience(experience:Experience){
-    //Update View
-    this.data.map( 
-      (exp , i) => {
-        if( exp.id == experience.id ){
-          this.data[i]= experience;
-        }
+    this.dataExperience.updateExperience(experience).subscribe(
+      exp => {
+        this.data.map(
+          (expe, i) => {
+            if (expe.id === exp.id) {
+              this.data[i] = exp;
+            }
+          }
+        );
       }
     );
-    //Update Server
-    console.log(experience);
   }
 
   addExperience(){
-    //Add Server Update
     this.experienceToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
     this.experienceToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
-    this.data.push(this.experienceToAdd)
+    this.dataExperience.addExperience(this.experienceToAdd).subscribe(
+      exp => {
+        this.data.push(exp)
+      }
+    );
+    this.onClose();
   }
 
   date( date:String ){
@@ -64,13 +76,17 @@ export class ExperienceComponent implements OnInit {
   }
 
   onClose(){
-    this.experienceToAdd = new Experience();
+    this.experienceToAdd = new Experience( "","",false,"","","","",false,"Job type" );
   }
 
   onDelete( experienceToDelete:Experience ){
-    this.data = this.data.filter(
-      experience => experience.id !== experienceToDelete.id  
-    )
+    this.dataExperience.deleteExperience(experienceToDelete).subscribe(
+      () => {
+        this.data = this.data.filter(
+          experience => experience.id !== experienceToDelete.id  
+        );
+      }
+    );
   }
 
 }

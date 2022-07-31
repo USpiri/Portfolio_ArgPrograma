@@ -15,8 +15,8 @@
                             </div>
                             <div class="modal-body">
                                 <h5 class="text-dark mb-2">Education</h5>
-                                <input type="text" class="form-control mb-2" id="inputEducationInstitute" placeholder="Institute Name" name="institute" [(ngModel)]="educationToAdd.institute">
-                                <input type="text" class="form-control mb-4" id="inputEducationTitle" placeholder="Title" name="title" [(ngModel)]="educationToAdd.title">
+                                <input type="text" class="form-control mb-2" id="inputEducationInstitute" placeholder="Institute Name" name="institute" [(ngModel)]="educationToAdd.where">
+                                <input type="text" class="form-control mb-4" id="inputEducationTitle" placeholder="Title" name="title" [(ngModel)]="educationToAdd.degree">
                                 <h5 class="text-dark">
                                     Time
                                     <input type="checkbox" class="form-check-input ms-4 fs-6" id="educationActual" name="actualEducation" [(ngModel)]="educationToAdd.is_actual">
@@ -61,10 +61,10 @@
                         </div>
                         <div class="education_card_content">
                             <h3 class="education_card_title animated_bg animated_bg_title fs-5" id="title">
-                                {{education?.institute}}
+                                {{education?.where}}
                             </h3>
                             <p class="education_card_text" id="text">
-                                {{education?.title}} | {{education?.start_date}} to {{education?.end_date}}
+                                {{education?.degree}} | {{education?.start_date}} to {{education?.end_date}}
                             </p>
                             
                         </div>

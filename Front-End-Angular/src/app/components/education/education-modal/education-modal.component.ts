@@ -9,11 +9,11 @@ import { Education } from 'src/app/model/educationEntity';
 })
 export class EducationModalComponent implements OnInit, OnChanges {
 
-  @Input() education:Education = new Education();
+  @Input() education:Education = new Education( "","",false,"","","","",false );
   @Output() onUpdateEducation:EventEmitter<Education> = new EventEmitter();
   
-  educationSave:Education = new Education();
-  educationActual:Education = new Education();
+  educationSave:Education = new Education( "","",false,"","","","",false );
+  educationActual:Education = new Education( "","",false,"","","","",false );
 
   formated_start_date: any;
   formated_end_date: any;

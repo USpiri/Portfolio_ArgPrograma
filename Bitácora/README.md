@@ -130,10 +130,10 @@ Por otro lado, también tuve tiempo de avanzar con el masterclass del módulo 8 
     +	~~**Skill, actualizar BBDD,**~~
     +	~~**Corregir Experience Modal Data Binding: Job types dropdown, input date, ambos checkboxs y links** (Cosas que me olvidé),~~
     +	~~**Agregar Job-Types a la BBDD,**~~
-    +	**Actualizar diagrama BBDD,**
+    +	~~**Actualizar diagrama BBDD,**~~
     +	**Buscar cómo implementar el componente Contact,**
-    +	**Comenzar Backend SpringBoot,**
-    +	**Agregar diagramas explicativos,**
+    +	~~**Comenzar Backend SpringBoot,**~~
+    +	~~**Agregar diagramas explicativos,**~~
     +	~~**Módulo 9.**~~  
     +	~~**About, actualizar View**~~
     +	~~**Corregir nombres de clases**~~
@@ -168,5 +168,31 @@ La opción por la que opte fue que la API se encargue de las imágenes, pero que
 ![ImageAPU](/Bit%C3%A1cora/resources/EsquemaImageAPI.jpg)  
 A todo esto, solo eran posibles ideas que no sabía cómo implementar. Empecé un mini proyecto para poder practicar todas estas opciones que tenía, una carpeta para el Front (que hice en Angular) y otra para el BackEnd (con SpringBoot), para luego poder implementarlas en el proyecto de esta bitácora. Mas o menos entendí como usar lo MultipartFiles de Spring, el que se encargan de traer la imagen, un par de funciones de java para la creación de archivos y una nueva annotation “@Configuration” para poder hacer que la API muestre las imágenes.  
 Mañana, si puedo, voy a subir el pequeño proyecto “ImageAPI” a Github así dejo el link por acá ***[(ImageAPI)](https://github.com/USpiri/Image-WebApp)***, también voy a ver de hacer los diagramas y explicar como pienso hacer la estructura de la API.  
-+ **[ 20/7/22 ]:** Subí el proyecto “ImageAPI” y corregí un par de errores que encontré, le agregué un poquito de Bootstrap para que quede mejor y elimine comentarios por todos lados. También hice los últimos dos esquemas.  
-En cuanto a la estructura de la API, se va a componer de seis packages aparte del principal donde se encuentra el Application.java: controller, repository, model, services, service-implement y util. Este último es el que se va a encargar de determinadas funciones, como la administración de imágenes en carpetas utilizadas en imageAPI o el envío de emails (función pendiente de implementar y testear).  
++ **[ 21/7/22 ]:** Subí el proyecto “ImageAPI” y corregí un par de errores que encontré, le agregué un poquito de Bootstrap para que quede mejor y elimine comentarios por todos lados. También hice los últimos dos esquemas.  
+En cuanto a la estructura de la API, se va a componer de seis packages aparte del principal donde se encuentra el Application.java: controller, repository, model, services, service-implement y util. Este último es el que se va a encargar de determinadas funciones, como la administración de imágenes en carpetas utilizadas en imageAPI o el envío de emails (función pendiente de implementar y testear). Model contendrá los objetos necesarios para guardar en la base de datos, Controller se va a encargar de las peticiones realizadas por el usuario, Repository de crear la interfaz JPARepository, Services va a implementar su clase correspondiente en Service-implement y mediante Respository va a crear sus propios métodos.  
++ **[ 26/7/22 ]:** Actualización y modificación del diagrama y BBDD.  
++ **[ 27/7/22 ]:** Creación del proyecto SpringBoot con las siguientes dependencias: Spring Web, SpringBoot Dev Tools, Lombok, Spring Data JPA, MySQL Driver, Validation. Y modificación, nuevamente, de la BBDD para la implementación de un botón nuevo en footer para Linkedin y se eliminaron los campos “level” y “status” de la tabla user (Estos estaban a modo de prueba, en caso de necesitarlos los volveré a agregar).  
+Creé el repositorio para el back-end, subí el proyecto con los paquetes creados y los modelos de entidad.  
++ **[ 28/7/22 ]:** Los otros días subí el proyecto al foro, hoy la profesora me mandó una respuesta. Primero me solucionó mi duda con el banner, tuve que hacer uno que cubra todo el fondo de una sección, y que es recomendable que cambie las imágenes. Segundo, me dijo que el manejo de la imagen estaba bien.  
+Ayer creé las clases, pero las únicas annotation que usé son las de @Id y @GeneratedValue. Hoy voy a implementar un par más para el resto de los campos. @NotNull de javax.validation hace que no pueda ingresar valores vacíos, @NotEmpty para que el elemento no sea vacío, @NotBlank para que un String tenga al menos un carácter. Otras annotations como @Size para determinar la cantidad de caracteres, @Min y @Max para indicar el valor rango de valores numéricos y @Email indicando que en el campo debe haber un email valido.  
++ **[ 28/7/22 ]:** Es el último mes para avanzar en el proyecto y entregarlo, hoy hice grandes avances y solucioné muchas cuestiones que me van a llevar a dejar solo detalles para la semana que viene/la otra.  
+Necesito crear relaciones entre las tablas para que si cambio de persona se muestren los datos pertinentes a esta. Haciendo una búsqueda muy rápida surgen las annotations @OneToMany, @ManyToOne, @OneToOne, etc. Lo que no surge tan rápido es su implementación.  
+Entonces, en una base de datos relacionales, una relación Uno a Muchos implica que un elemento (o fila) de la tabla A puede contener a muchos elementos de la tabla B, PERO un elemento en B solo puede estar dentro de un elemento de A.  Perfecto para nuestra implementación, por ejemplo, en Person como la tabla A que puede contener a muchos elementos de Educación (Tabla B).  
+Técnicamente se pueden mapear al elemento B como una colección en el objeto A (Una colección de diferentes educaciones en la persona). Para esto utilizaría @OneToMany en el objeto “Padre”, el problema si se quiere es que la relación la guarda la tabla A (Person).  
+Similarmente podemos utilizar @ManyToOne en el componente “Hijo” para guardar esta relación en él. En donde el objeto de la tabla B guarda una referencia a su objeto “Padre” mappeando una Foregin Key (padre_id).  
+Voy a hacer un par de aclaraciones ya que son factibles, pero no van a ser implementadas. Cualquiera de los dos métodos presenta ventajas y desventajas, pueden ser declarados unidireccionalmente (En una sola de las entidades) o bidireccionalmente (En ambas). @ManyToOne permite hacer modificaciones en el repositorio como, por ejemplo, el manejo de paginación o filtrar/ordenar los componentes hijos en base a alguno de sus atributos (Posible mediante la utilización de @Column y métodos abstractos si es que leí bien). Voy a utilizar el segundo, pero no estas “Funciones extra”.  
+Entonces, lo que necesito es obtener TODAS las educaciones pertenecientes a la persona.  
+Primero hay que definir el modelo de datos (Modificar las entidades ya creadas). Para Person no va a ser necesario hacer una modificación, en principio, ya que nos vamos a manejar con una relación unidireccional desde Education.  
+En la entidad hija hay que añadirle un atributo con el TIPO DE LA CLASE PADRE (es decir, agregar un objeto de clase Padre) junto con las annotations:  
+    + **@ManyToOne**( fetch = FetchType.LAZY, optional = false )
+    + **@JoinColumn**( name = “padre_id”, nullable = false )
+    + **@OnDelete**( action = OnDeleteAction.CASCADE )
+    + **@JsonIgnore**  
+
++ FetchType.LAZY previene que se cargue todo un padre por cada hijo y optional(false) para prevenir hijos sin padres. @JoinColumn le asigna un nombre a la variable que emparenta ambas tablas y la implementación de @OnDelete( action = OnDeleteAction.CASCADE ) es para que en caso de eliminarse una persona, las educaciones se van con ella. Y por último @JsonIgnore es solo para evitar un problema de serialización.  
+Ahora tenemos que modificar las interfaces de repositorio para interactuar con la BBDD, igual que antes el único repo que va a necesitar modificación es el del componente hijo. Son dos las funciones a agregar, la primera es una lista findByPadreId(Long id) que se va a encargar de traer todos los hijos que tengan el número del padre. La segunda deleteByPadreId(Long id) que elimina los hijos con el mismo id del padre.  
+La implementación de estos métodos es automática por parte de Spring Data JPA.  
+Finalmente vamos a modificar el controlador para que nos devuelva los datos que necesitamos y agregamos en el app.properties lo siguiente “spring.jpa.properties.hibernate.globally_quoted_identifiers=true”.  
+Con todo esto tengo un gran problema solucionado, mañana voy a hacer las otras 8 o 9 entidades junto con su implementación en el FrontEnd dejando, como ya anticipé, el arreglo de algunos detalles y la implementación del mandador de mails, y el inicio de sesión.  
++ **[ 28/7/22 ]:** Continué con los controllers. La función deleteByPadreId(Long id) es innecesaria así que puede ser eliminada, esta sirve para eliminar todos los hijos SIN eliminar el padre (función que no necesito en mi Front). Estuve haciendo pruebas con Postman para ver que todas estas funciones se ejecuten correctamente.  
+Esta es la lista de métodos añadidos(Estos tambien van a estar en el readme del Backend).  

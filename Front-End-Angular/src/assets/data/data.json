@@ -1,19 +1,23 @@
 {
-    "id": 1,
-    "name": "Uriel",
-    "surname": "Spiridione",
-    "address": "Córdoba, Argentina",
-    "birth_date": "August 4, 1999",
-    "age": "22",
-    "phone": "+54 351 213-6765",
-    "email": "urielspiridione135@gmail.com",
-    "lit_about": "Photographer and Full Stack Developer Jr.",
-    "about": "My name is Uriel Spiridione. I'm student of economic sciences, photographer and Full Stack Developer based in Córdoba, Argentina.",
+    "person":[
+        {
+            "id": 1,
+            "name": "Uriel",
+            "surname": "Spiridione",
+            "address": "Córdoba, Argentina",
+            "birth_date": "August 4, 1999",
+            "age": "22",
+            "phone": "+54 351 213-6765",
+            "email": "urielspiridione135@gmail.com",
+            "lit_about": "Photographer and Full Stack Developer Jr.",
+            "about": "My name is Uriel Spiridione. I'm student of economic sciences, photographer and Full Stack Developer based in Córdoba, Argentina."
+        }
+    ],
     "experience":[
         {
             "id": 1,
             "company": "CompanyName",
-            "position": "Experience 1",
+            "job": "Experience 1",
             "is_actual": false,
             "start_date": "15/07/2022",
             "end_date": "15/07/2022",
@@ -24,7 +28,7 @@
         },{
             "id": 2,
             "company": "CompanyName",
-            "position": "Experience 2",
+            "job": "Experience 2",
             "is_actual": true,
             "start_date": "15/07/2022",
             "end_date": "15/07/2022",
@@ -35,7 +39,7 @@
         },{
             "id": 3,
             "company": "CompanyName",
-            "position": "Experience 3",
+            "job": "Experience 3",
             "is_actual": false,
             "start_date": "15/07/2022",
             "end_date": "15/07/2022",
@@ -48,8 +52,8 @@
     "education":[
         {
             "id": 1,
-            "institute": "School 1",
-            "title": "Title",
+            "where": "School 1",
+            "degree": "Title",
             "is_actual": true,
             "start_date": "15/07/2022",
             "end_date": "15/07/2022",
@@ -59,8 +63,8 @@
         },
         {
             "id": 2,
-            "institute": "School 2",
-            "title": "Title",
+            "where": "School 2",
+            "degree": "Title",
             "is_actual": false,
             "start_date": "15/07/2022",
             "end_date": "15/07/2022",
@@ -70,8 +74,8 @@
         },
         {
             "id": 3,
-            "institute": "School 3",
-            "title": "Title",
+            "where": "School 3",
+            "degree": "Title",
             "is_actual": false,
             "start_date": "15/07/2022",
             "end_date": "15/07/2022",
@@ -121,65 +125,71 @@
     "projects":[
         {
             "id": 1,
-            "title": "Project 1",
+            "name": "Project 1",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
-            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "img_url": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
             "link": "#",
             "enabled_link": true
         },
         {
             "id": 2,
-            "title": "Project 2",
+            "name": "Project 2",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
-            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "img_url": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
             "link": "#",
             "enabled_link": false
         },
         {
             "id": 3,
-            "title": "Project 3",
+            "name": "Project 3",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
-            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "img_url": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
             "link": "#",
             "enabled_link": true
         },
         {
             "id": 4,
-            "title": "Project 4",
+            "name": "Project 4",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
-            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "img_url": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
             "link": "#",
             "enabled_link": true
         },
         {
             "id": 5,
-            "title": "Project 5",
+            "name": "Project 5",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
-            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "img_url": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
             "link": "#",
             "enabled_link": true
         },
         {
             "id": 6,
-            "title": "Project 6",
+            "name": "Project 6",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, dicta.",
-            "img": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
+            "img_url": "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
             "link": "#",
             "enabled_link": true
         }
     ],
-    "images":{
-        "header":"/../assets/img/perfil.jpg",
-        "about":"/../assets/img/Prueba2.jpg"
-    },
-    "links":{
-        "facebook": "https://www.facebook.com/UrieLSpiridion3",
-        "twitter": "https://twitter.com/UrielSpiridione",
-        "instagram": "https://www.instagram.com/urielspiridione",
-        "github": "https://github.com/USpiri",
-        "cv": "https://drive.google.com/uc?export=download&id=1fSV96vZ1XOx1RsaQb5vMnfNBeBKM_Ujp",
-        "linkedin": "https://www.linkedin.com/in/urielspiridione"
-    },
+    "images":[
+        {
+            "id": 1,
+            "header":"/../assets/img/perfil.jpg",
+            "about":"/../assets/img/Prueba2.jpg"
+        }
+    ],
+    "socialMedia":[
+        {
+            "id": 1,
+            "facebook": "https://www.facebook.com/UrieLSpiridion3",
+            "twitter": "https://twitter.com/UrielSpiridione",
+            "instagram": "https://www.instagram.com/urielspiridione",
+            "github": "https://github.com/USpiri",
+            "cv": "https://drive.google.com/uc?export=download&id=1fSV96vZ1XOx1RsaQb5vMnfNBeBKM_Ujp",
+            "linkedin": "https://www.linkedin.com/in/urielspiridione"    
+        }
+    ],
     "jobTypes":[
         {
             "id": 1,

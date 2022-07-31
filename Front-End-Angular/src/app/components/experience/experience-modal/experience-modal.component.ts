@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { JobType } from 'src/app/model/jobTypeEntity';
+import { JobTypeService } from 'src/app/services/job-type.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Experience } from '../../../model/experienceEntity';
 
@@ -10,26 +12,26 @@ import { Experience } from '../../../model/experienceEntity';
 })
 export class ExperienceModalComponent implements OnInit, OnChanges {
 
-  @Input() experience:Experience = new Experience();
+  @Input() experience:Experience = new Experience( "","",false,"","","","",false,"" );
   @Output() onUpdateExperience:EventEmitter<Experience> = new EventEmitter();
 
-  experienceSave:Experience = new Experience();
-  experienceActual:Experience = new Experience();
+  experienceSave:Experience = new Experience( "","",false,"","","","",false,"" );
+  experienceActual:Experience = new Experience( "","",false,"","","","",false,"" );
 
-  jobs: { id:number, name:String }[] = []
+  jobs:JobType[] = []
 
   formated_start_date: any;
   formated_end_date: any;
   
   constructor(
     private datePipe: DatePipe,
-    private dataPortfolio:PortfolioService
+    private dataJobs:JobTypeService
   ) { }
 
   ngOnInit(): void {
-    this.dataPortfolio.getData().subscribe(
+    this.dataJobs.getJobs().subscribe(
       data => {
-        this.jobs = data.jobTypes;
+        this.jobs = data;
       }
     );
   }
