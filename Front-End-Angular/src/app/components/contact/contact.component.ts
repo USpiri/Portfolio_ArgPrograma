@@ -37,9 +37,7 @@ export class ContactComponent implements OnInit {
   sendEmail(){
     this.send.subject = this.email.subject;
     this.send.message = this.formatMessage(this.email);
-    this.emailSender.sendEmail(this.send).subscribe(
-      r => console.log(r)
-    );
+    this.emailSender.sendEmail(this.send).subscribe();
   }
 
   formatMessage(data:any){
