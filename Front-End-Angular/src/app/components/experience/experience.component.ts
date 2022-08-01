@@ -4,7 +4,6 @@ import { Experience } from 'src/app/model/experienceEntity';
 import { JobType } from 'src/app/model/jobTypeEntity';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { JobTypeService } from 'src/app/services/job-type.service';
-import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-experience',
@@ -14,7 +13,8 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ExperienceComponent implements OnInit {
 
   data:Experience[] = [];
-  jobs:JobType[] = []
+  jobs:JobType[] = [];
+  file:any;
 
   experienceToEdit : Experience = new Experience( "","",false,"","","","",false,"" );
   experienceToAdd : Experience = new Experience( "","",false,"","","","",false,"Job type" );
@@ -41,30 +41,65 @@ export class ExperienceComponent implements OnInit {
     );
   }
 
-  openEditModal( experience: any ){
+  openEditModal( experience:Experience ){
     this.experienceToEdit = experience;
   }
 
-  updateExperience(experience:Experience){
-    this.dataExperience.updateExperience(experience).subscribe(
-      exp => {
-        this.data.map(
-          (expe, i) => {
-            if (expe.id === exp.id) {
-              this.data[i] = exp;
+  updateExperience(obj:{ file?:any, experience?:any  }){
+    
+    if (obj.file) {
+      const dataForm = new FormData();
+      dataForm.append( "experience", obj.file, obj.file.name );
+      this.dataExperience.updateExperience(obj.experience).subscribe(
+        exp => {
+          let expToUpdate:Experience = exp
+          this.dataExperience.updateImage( dataForm , expToUpdate ).subscribe(
+            expe => {
+              this.data.map(
+                (exper, i) => {
+                  if (exper.id === expe.id) {
+                    this.data[i] = expe;
+                    this.extraerBase64(obj.file).then(
+                      (image:any) => {
+                        this.data[i].img_url = image.base;
+                      }
+                    )
+                  }
+                }
+              );
             }
-          }
-        );
-      }
-    );
+          );
+        }
+      );
+    } else {
+      this.dataExperience.updateExperience(obj.experience).subscribe(
+        exp => {
+          this.data.map(
+            (expe, i) => {
+              if (expe.id === exp.id) {
+                this.data[i] = exp;
+              }
+            }
+          );
+        }
+      );
+    }
   }
 
   addExperience(){
+    const dataForm = new FormData();
+    dataForm.append( "experience", this.file, this.file.name );
+
     this.experienceToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
     this.experienceToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
     this.dataExperience.addExperience(this.experienceToAdd).subscribe(
       exp => {
-        this.data.push(exp)
+        let expToUpdate:Experience = exp
+        this.dataExperience.updateImage( dataForm , expToUpdate ).subscribe(
+          expe => {
+            this.data.push(expe)
+          }
+        );
       }
     );
     this.onClose();
@@ -88,5 +123,30 @@ export class ExperienceComponent implements OnInit {
       }
     );
   }
+
+  captureFile(event:any){
+    const savedFile = event.target.files[0];
+    this.file = savedFile;
+  }
+
+  extraerBase64 = async ($event: any) => new Promise((resolve) => {
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+      return null;
+    } catch (e) {
+      return null;
+    }
+  })
 
 }

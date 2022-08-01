@@ -28,8 +28,9 @@
                         </div>
                     </div>
                     <h5 class="text-dark mb-2">Links</h5>
-                    <input type="text" class="form-control mb-2" id="editEducationEducationImgUrl" placeholder="Image url" name="img_url" [(ngModel)]="educationActual.img_url">
-                    <input type="text" class="form-control mb-1" id="editEducationEducationLink" placeholder="Link" name="link" [(ngModel)]="educationActual.link">
+                    <div class="form-text">Image</div>
+                    <input type="file" class="form-control mb-2" id="editEducationImgUrl" placeholder="Image url" accept="image/jpeg" (change)="captureFile($event)">
+                    <input type="text" class="form-control mb-1" id="editEducationLink" placeholder="Link" name="link" [(ngModel)]="educationActual.link">
                     <input type="checkbox" class="form-check-input" id="editEducationEnabledLink" name="enabled_link" [(ngModel)]="educationActual.enabled_link">
                     <label class="form-check-label text-dark ms-1 mb-1" for="editEducationEnabledLink">
                         Enable link

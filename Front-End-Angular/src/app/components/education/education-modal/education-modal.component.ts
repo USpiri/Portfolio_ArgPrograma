@@ -10,10 +10,13 @@ import { Education } from 'src/app/model/educationEntity';
 export class EducationModalComponent implements OnInit, OnChanges {
 
   @Input() education:Education = new Education( "","",false,"","","","",false );
-  @Output() onUpdateEducation:EventEmitter<Education> = new EventEmitter();
+  @Output() onUpdateEducation:EventEmitter<any> = new EventEmitter();
   
   educationSave:Education = new Education( "","",false,"","","","",false );
   educationActual:Education = new Education( "","",false,"","","","",false );
+
+  file:any;
+  send:{ file?:any, education?:any  } ={}
 
   formated_start_date: any;
   formated_end_date: any;
@@ -36,6 +39,11 @@ export class EducationModalComponent implements OnInit, OnChanges {
     }
   }
 
+  captureFile(event:any){
+    const savedFile = event.target.files[0];
+    this.file = savedFile;
+  }
+
   date( date:String ){
     const [day, month, year] = date.split('/');
     return new Date(Number(year), Number(month) -1 , Number(day));
@@ -45,7 +53,9 @@ export class EducationModalComponent implements OnInit, OnChanges {
     Object.assign( this.educationSave, this.educationActual );
     this.educationSave.start_date = this.datePipe.transform(this.formated_start_date, "dd/MM/yyyy")!;
     this.educationSave.end_date = this.datePipe.transform(this.formated_end_date, "dd/MM/yyyy")!;
-    this.onUpdateEducation.emit(this.educationSave)
+    this.send.education = this.educationSave;
+    this.send.file = this.file;
+    this.onUpdateEducation.emit(this.send)
   }
 
   onClose(){

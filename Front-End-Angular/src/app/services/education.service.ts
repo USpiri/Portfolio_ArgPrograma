@@ -34,4 +34,9 @@ export class EducationService {
     return this.http.delete<Education>(url);
   }
 
+  updateImage( file:FormData, edu:Education ):Observable<Education>{
+    const url = `${this.apiUrl}/${edu.id}/image`;
+    return this.http.put<Education>(url,file);
+  }
+
 }

@@ -35,7 +35,8 @@
                                     </div>
                                 </div>
                                 <h5 class="text-dark mb-2">Links</h5>
-                                <input type="text" class="form-control mb-2" id="inputEducationImgUrl" placeholder="Image url" name="image" [(ngModel)]="educationToAdd.img_url">
+                                <div class="form-text">Image</div>
+                                <input type="file" class="form-control mb-2" id="inputEducationImgUrl" placeholder="Image url" accept="image/jpeg" (change)="captureFile($event)">
                                 <input type="text" class="form-control mb-1" id="inputEducationLink" placeholder="Link" name="link" [(ngModel)]="educationToAdd.link">
                                 <input type="checkbox" class="form-check-input" id="educationEnabledLink" name="enabledEducation" [(ngModel)]="educationToAdd.enabled_link">
                                 <label class="form-check-label text-dark ms-1 mb-1" for="educationEnabledLink">

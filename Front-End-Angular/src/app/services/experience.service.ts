@@ -34,4 +34,9 @@ export class ExperienceService {
     return this.http.delete<Experience>(url);
   }
 
+  updateImage( file:FormData, exp:Experience ):Observable<Experience>{
+    const url = `${this.apiUrl}/${exp.id}/image`;
+    return this.http.put<Experience>(url,file);
+  }
+
 }

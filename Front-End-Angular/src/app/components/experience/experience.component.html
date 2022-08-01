@@ -39,7 +39,8 @@
                                     </div>
                                 </div>
                                 <h5 class="text-dark mb-2">Links</h5>
-                                <input type="text" class="form-control mb-2" id="inputExperienceImgUrl" placeholder="Image url" name="img_url" [(ngModel)]="experienceToAdd.img_url">
+                                <div class="form-text">Image</div>
+                                <input type="file" class="form-control mb-2" id="inputExperienceImgUrl" placeholder="Image url" accept="image/jpeg" (change)="captureFile($event)">
                                 <input type="text" class="form-control mb-1" id="inputExperienceLink" placeholder="Link" name="link" [(ngModel)]="experienceToAdd.link">
                                 <input type="checkbox" class="form-check-input" id="checkExperienceEnabledLink" name="enabled_link" [(ngModel)]="experienceToAdd.enabled_link">
                                 <label class="form-check-label text-dark ms-1 mb-1" for="checkExperienceEnabledLink">

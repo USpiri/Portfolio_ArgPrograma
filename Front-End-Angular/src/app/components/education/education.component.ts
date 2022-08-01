@@ -11,6 +11,7 @@ import { Education } from '../../model/educationEntity';
 export class EducationComponent implements OnInit {
 
   data: Education[] = [];
+  file:any;
 
   educationToEdit: Education = new Education( "","",false,"","","","",false );
   educationToAdd: Education = new Education( "","",false,"","","","",false );
@@ -35,26 +36,61 @@ export class EducationComponent implements OnInit {
     this.educationToEdit = education;
   }
 
-  updateEducation(education:Education){
-    this.dataEducation.updateEducation(education).subscribe(
-      education => {
-        this.data.map( 
-          (educ , i) => {
-            if( educ.id === education.id ){
-              this.data[i]= education;
+  updateEducation(obj:{ file?:any, education?:any  }){
+    
+    if (obj.file) {
+      const dataForm = new FormData();
+      dataForm.append( "education", obj.file, obj.file.name );
+      this.dataEducation.updateEducation(obj.education).subscribe(
+        edu => {
+          let eduToUpdate:Education = edu
+          this.dataEducation.updateImage( dataForm , eduToUpdate ).subscribe(
+            educ => {
+              this.data.map(
+                (educa, i) => {
+                  if (educa.id === educ.id) {
+                    this.data[i] = educ;
+                    this.extraerBase64(obj.file).then(
+                      (image:any) => {
+                        this.data[i].img_url = image.base;
+                      }
+                    )
+                  }
+                }
+              );
             }
-          }
-        );
-      }
-    );
+          );
+        }
+      );
+    } else {
+      this.dataEducation.updateEducation(obj.education).subscribe(
+        edu => {
+          this.data.map(
+            (educ, i) => {
+              if (educ.id === edu.id) {
+                this.data[i] = edu;
+              }
+            }
+          );
+        }
+      );
+    }
   }
 
   addEducation(){
+    const dataForm = new FormData();
+    dataForm.append( "education", this.file, this.file.name );
+
     this.educationToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
     this.educationToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
     this.dataEducation.addEducation(this.educationToAdd).subscribe(
-      education => { 
-        this.data.push(education);
+      edu => {
+        let eduToUpdate:Education = edu
+        this.dataEducation.updateImage( dataForm , eduToUpdate ).subscribe(
+          educ => {
+            this.data.push(educ)
+          }
+        );
       }
     );
     this.onClose();
@@ -78,5 +114,30 @@ export class EducationComponent implements OnInit {
       }
     );
   }
+
+  captureFile(event:any){
+    const savedFile = event.target.files[0];
+    this.file = savedFile;
+  }
+
+  extraerBase64 = async ($event: any) => new Promise((resolve) => {
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+      return null;
+    } catch (e) {
+      return null;
+    }
+  })
 
 }

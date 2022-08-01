@@ -2,7 +2,6 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
 import { JobType } from 'src/app/model/jobTypeEntity';
 import { JobTypeService } from 'src/app/services/job-type.service';
-import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Experience } from '../../../model/experienceEntity';
 
 @Component({
@@ -13,12 +12,14 @@ import { Experience } from '../../../model/experienceEntity';
 export class ExperienceModalComponent implements OnInit, OnChanges {
 
   @Input() experience:Experience = new Experience( "","",false,"","","","",false,"" );
-  @Output() onUpdateExperience:EventEmitter<Experience> = new EventEmitter();
+  @Output() onUpdateExperience:EventEmitter<any> = new EventEmitter();
 
   experienceSave:Experience = new Experience( "","",false,"","","","",false,"" );
   experienceActual:Experience = new Experience( "","",false,"","","","",false,"" );
 
-  jobs:JobType[] = []
+  jobs:JobType[] = [];
+  file:any;
+  send:{ file?:any, experience?:any  } ={}
 
   formated_start_date: any;
   formated_end_date: any;
@@ -47,14 +48,21 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     }
   }
 
+  captureFile(event:any){
+    const savedFile = event.target.files[0];
+    this.file = savedFile;
+  }
+
   date( date:String ){
     const [day, month, year] = date.split('/');
     return new Date(Number(year), Number(month) -1 , Number(day));
   }
 
   onSubmit(){
-    Object.assign( this.experienceSave, this.experienceActual )
-    this.onUpdateExperience.emit(this.experienceSave)
+    Object.assign( this.experienceSave, this.experienceActual );
+    this.send.experience = this.experienceSave;
+    this.send.file = this.file;
+    this.onUpdateExperience.emit(this.send);
   }
 
   onClose(){
