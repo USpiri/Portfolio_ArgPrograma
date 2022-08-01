@@ -34,4 +34,9 @@ export class ProjectService {
     return this.http.delete<Project>(url);
   }
 
+  updateImage( file:FormData, project:Project ):Observable<Project>{
+    const url = `${this.apiUrl}/${project.id}/image`;
+    return this.http.put<Project>(url,file);
+  }
+
 }

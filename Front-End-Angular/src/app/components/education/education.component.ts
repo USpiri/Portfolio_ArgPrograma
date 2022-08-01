@@ -37,7 +37,6 @@ export class EducationComponent implements OnInit {
   }
 
   updateEducation(obj:{ file?:any, education?:any  }){
-    
     if (obj.file) {
       const dataForm = new FormData();
       dataForm.append( "education", obj.file, obj.file.name );
@@ -85,7 +84,7 @@ export class EducationComponent implements OnInit {
     this.educationToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
     this.dataEducation.addEducation(this.educationToAdd).subscribe(
       edu => {
-        let eduToUpdate:Education = edu
+        let eduToUpdate:Education = edu;
         this.dataEducation.updateImage( dataForm , eduToUpdate ).subscribe(
           educ => {
             this.data.push(educ)

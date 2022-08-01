@@ -18,7 +18,8 @@
                                 <input type="text" class="form-control mb-2" id="inputProjectTitle" placeholder="Project title" name="newProjectTitle" [(ngModel)]="projectToAdd.name">
                                 <textarea class="form-control mb-2" placeholder="Project description" id="newProjectDescription" name="newProjectDescription" [(ngModel)]="projectToAdd.description"></textarea>
                                 <h5 class="text-dark mb-2">Links</h5>
-                                <input type="text" class="form-control mb-2" id="inputProjectImgUrl" placeholder="Image url" name="newProjectImg" [(ngModel)]="projectToAdd.img_url">
+                                <div class="form-text">Project image</div>
+                                <input type="file" class="form-control mb-2" accept="image/jpeg" id="inputProjectImgUrl" (change)="getImg($event)">
                                 <input type="text" class="form-control mb-1" id="inputProjectLink" placeholder="Link" name="newProjectLink" [(ngModel)]="projectToAdd.link">
                                 <input type="checkbox" class="form-check-input" id="checkEnabledLink" name="newProjectEnabled" [(ngModel)]="projectToAdd.enabled_link">
                                 <label class="form-check-label text-dark ms-1 mb-1" for="checkEnabledLink">
@@ -80,7 +81,8 @@
                             <input type="text" class="form-control mb-2" id="editProjectTitle" placeholder="Project title" name="projectTitle" [(ngModel)]="projectToEdit.name">
                             <textarea class="form-control mb-2" placeholder="Project description" id="editDescription" name="projectDescription" [(ngModel)]="projectToEdit.description"></textarea>
                             <h5 class="text-dark mb-2">Links</h5>
-                            <input type="text" class="form-control mb-2" id="editProjectImgUrl" placeholder="Image url" name="projectImg" [(ngModel)]="projectToEdit.img_url">
+                            <div class="form-text">Project image</div>
+                            <input type="file" class="form-control mb-2" accept="image/jpeg" id="editProjectImgUrl" (change)="getEditImg($event)">
                             <input type="text" class="form-control mb-1" id="editProjectLink" placeholder="Link" name="projectLink" [(ngModel)]="projectToEdit.link">
                             <input type="checkbox" class="form-check-input" id="editEnabledLink" name="projectEnabledLink" [(ngModel)]="projectToEdit.enabled_link">
                             <label class="form-check-label text-dark ms-1 mb-1" for="editEnabledLink">
@@ -105,16 +107,16 @@
                 <ng-template swiperSlide class="swiper_slide swiper-slide" *ngFor="let project of data">
                     <div class="project_card"><div class="project_link"> 
                         <div class="project_card_header animated_bg project_card_img" id="project_header">
-                            <img [src]="project?.img_url" alt="Imagen del proyecto {{project.name}}">
+                            <img [src]="project.img_url" alt="Imagen del proyecto {{project.name}}">
                         </div>
                         <div class="project_card_content">
                             <h3 class="project_card_title fs-5 m-0" id="title">
-                               {{project?.name}}
+                               {{project.name}}
                             </h3>
                             <p class="project_card_text lh-sm mt-3 mb-6" id="text">
-                                {{project?.description}}
+                                {{project.description}}
                             </p>
-                            <div class="project_button_container"><a [href]="project?.link" class="button d-block p-3">WEB / GITHUB</a></div>
+                            <div class="project_button_container"><a [href]="project.link" class="button d-block p-3">WEB / GITHUB</a></div>
                         </div>
                     </div></div>
                 </ng-template>

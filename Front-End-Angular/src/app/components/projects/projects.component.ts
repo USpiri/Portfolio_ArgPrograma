@@ -13,6 +13,9 @@ export class ProjectsComponent implements OnInit {
 
   data: Project[] = [];
 
+  file:any;
+  fileToEdit:any;
+
   projectToEdit: Project = new Project( "","","","",false );
   projectToAdd: Project = new Project( "","","","",false );
 
@@ -76,9 +79,22 @@ export class ProjectsComponent implements OnInit {
   }
 
   onAddProject(){
+    const dataForm = new FormData();
+    dataForm.append( "project", this.file, this.file.name );
     this.dataProject.addProject(this.projectToAdd).subscribe(
-      project => {
-        this.data.push(project);
+      projectn => {
+        let pToUpdate:Project = projectn;
+        this.dataProject.updateImage( dataForm, pToUpdate ).subscribe(
+          pr => {
+            let pToAdd:Project = pr;
+            this.extraerBase64(this.file).then(
+              (image:any) => {
+                pToAdd.img_url = image.base;
+              }
+            )
+            this.data.push(pToAdd);
+          }
+        );
       }
     );
     this.resetProject();
@@ -99,17 +115,73 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateProject(){
-    this.dataProject.updateProject(this.projectToEdit).subscribe(
-      project => {
-        this.data.map(
-          (pro , i) => {
-            if (pro.id === project.id) {
-              this.data[i] = project;
+    if (this.fileToEdit) {
+      const dataForm = new FormData();
+      dataForm.append( "project", this.fileToEdit, this.fileToEdit.name );
+      this.dataProject.updateProject(this.projectToEdit).subscribe(
+        project => {
+          let pToUpdate:Project = project
+          this.dataProject.updateImage( dataForm , pToUpdate ).subscribe(
+            pro => {
+              this.data.map(
+                (proj, i) => {
+                  if (proj.id === pro.id) {
+                    this.data[i] = pro;
+                    this.extraerBase64(this.fileToEdit).then(
+                      (image:any) => {
+                        this.data[i].img_url = image.base;
+                      }
+                    )
+                  }
+                }
+              );
             }
-          }
-        );
-      }
-    );
+          );
+        }
+      );
+    } else {
+      this.dataProject.updateProject(this.projectToEdit).subscribe(
+        project => {
+          this.data.map(
+            (pro, i) => {
+              if (pro.id === project.id) {
+                this.data[i] = project;
+              }
+            }
+          );
+        }
+      );
+    }
   }
+
+  getImg(event:any){
+    const savedFile = event.target.files[0];
+    this.file = savedFile;
+  }
+
+  getEditImg(event:any){
+    const savedFile = event.target.files[0];
+    this.fileToEdit = savedFile;
+  }
+
+  extraerBase64 = async ($event: any) => new Promise((resolve) => {
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+      return null;
+    } catch (e) {
+      return null;
+    }
+  })
 
 }
