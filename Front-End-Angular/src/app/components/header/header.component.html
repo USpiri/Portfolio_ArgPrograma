@@ -4,7 +4,7 @@
       <div class="modal" tabindex="-1" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false">
           <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-              <form action="">
+              <form (ngSubmit)="onSubmit()">
                 <div class="modal-header">
                   <h3 class="modal-title text-dark">Welcome</h3>
                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -14,10 +14,10 @@
                     <div class="fingerprint">
                     </div>
                   </div>
-                  <input type="text" class="form-control mb-3" id="InputUsername" placeholder="Username" required>
-                  <input type="password" class="form-control mb-3" id="InputPass" placeholder="Password" required>
+                  <input type="text" class="form-control mb-3" id="InputUsername" placeholder="Username" name="username" [(ngModel)]="login.username" required>
+                  <input type="password" class="form-control mb-3" id="InputPass" placeholder="Password" name="password" [(ngModel)]="login.password" required>
                   <div class="login_container d-grid ">
-                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                   </div>
                 </div>
               </form>

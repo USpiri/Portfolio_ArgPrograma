@@ -4,6 +4,7 @@ import { SwiperModule } from "swiper/angular";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { httpInterceptorProviders } from './services/interceptor/interceptor.service';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -46,6 +47,7 @@ import { SkillsModalComponent } from './components/skills/skills-modal/skills-mo
     FormsModule
   ],
   providers: [
+    httpInterceptorProviders,
     DatePipe
   ],
   bootstrap: [AppComponent]

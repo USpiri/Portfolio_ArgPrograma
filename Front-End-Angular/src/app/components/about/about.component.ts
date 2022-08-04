@@ -45,21 +45,23 @@ export class AboutComponent implements OnInit {
     );
     this.dataSocial.getLinks().subscribe(
       social => {
-        if (this.isEmpty(social)) {
+        if (social) {
+          this.updateData( this.links, social );
+          this.updateData( this.linksToEdit, this.links );
+          this.getLastIndex(this.linksToEdit);
+        } else {
           this.dataSocial.addLinks(this.links).subscribe();
         }
-        this.updateData( this.links, social );
-        this.updateData( this.linksToEdit, this.links );
-        this.getLastIndex(this.linksToEdit);
       }
     );
     this.dataImages.getImages().subscribe(
       images => {
-        if (this.isEmpty(images)) {
+        if (images) {
+          this.updateData( this.images, images );
+          this.updateData( this.imagesToEdit, this.images );
+        } else {
           this.dataImages.addImages(this.images).subscribe();
         }
-        this.updateData( this.images, images );
-        this.updateData( this.imagesToEdit, this.images );
       }
     );
   }

@@ -23,12 +23,16 @@ export class GreetingComponent implements OnInit {
   ngOnInit(): void {
     this.dataPerson.getPerson().subscribe(
       data => {
-        this.data = data;
+        if (data) {
+          this.data = data;
+        }
       }
     );
     this.dataImage.getImages().subscribe(
       images => {
-        this.image = images;
+        if (images) {
+          this.image = images;
+        }
       }
     )
   }
