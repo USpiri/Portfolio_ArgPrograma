@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Skill } from '../model/skillEntity';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
 
-  private apiUrl = "http://localhost:8080/skill";
+  private apiUrl = environment.api + "skill";
 
   constructor(
     private http:HttpClient

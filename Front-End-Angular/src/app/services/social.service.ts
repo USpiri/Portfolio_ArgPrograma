@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Social } from '../model/socialMediaEntity';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocialService {
 
-  private apiUrl = "http://localhost:8080/social";
+  private apiUrl = environment.api + "social";
 
   constructor(
     private http:HttpClient

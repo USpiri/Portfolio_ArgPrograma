@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { JobType } from '../model/jobTypeEntity';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobTypeService {
 
-  private apiUrl = "http://localhost:8080/jobtype";
+  private apiUrl = environment.api + "jobtype";
 
   constructor(
     private http:HttpClient
