@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Image } from 'src/app/model/imageEntity';
 import { LoginRequest } from 'src/app/model/LoginRequest';
+import { Person } from 'src/app/model/personEntity';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StorageService } from 'src/app/services/auth/storage.service';
 
@@ -10,7 +12,12 @@ import { StorageService } from 'src/app/services/auth/storage.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isLogged = false;
+  @Input() data:Person = new Person( "","","","","","","","","" );
+  @Input() image:Image = new Image( "","" );
+
+  @Output() onLog:EventEmitter<boolean> = new EventEmitter();
+
+  isLogged:boolean = false;
   login = new LoginRequest("","");
 
   constructor(
@@ -19,19 +26,31 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.storageService.getToken()) {
-      console.log("TokenExistente");
+    if (this.storageService.isLoggedIn()) {
+      this.isLogged=true;
     }
   }
 
   onSubmit(){
     this.authService.login(this.login).subscribe(
       data => {
-        console.log(data.username);
-        console.log(data.token);
-        
+        this.isLogged = true;
+        this.storageService.saveToken(data.token);
+        this.storageService.saveUser(data.username);
+        this.storageService.saveAuthorities(data.authorities);
+        this.onLog.emit(this.isLogged);
+      },
+      err => {
+        this.isLogged = false;
+        console.log(err.error.message);
       }
     )
+  }
+
+  logout(){
+    this.storageService.clean();
+    this.isLogged=false;
+    this.onLog.emit(this.isLogged);
   }
 
 }

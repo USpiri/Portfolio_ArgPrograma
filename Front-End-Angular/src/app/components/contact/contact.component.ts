@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Email } from 'src/app/model/emailEntity';
 import { Person } from 'src/app/model/personEntity';
 import { EmailService } from 'src/app/services/email.service';
-import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +10,7 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class ContactComponent implements OnInit {
 
-  data:Person = new Person( "","","","","","","","","" );
+  @Input() data:Person = new Person( "","","","","","","","","" );
   email:{ name:String, email:String, subject:String, message:String } = {
     name: "",
     email: "",
@@ -22,16 +21,10 @@ export class ContactComponent implements OnInit {
 
 
   constructor(
-    private dataPerson:PersonService,
     private emailSender:EmailService
   ) { }
 
   ngOnInit(): void {
-    this.dataPerson.getPerson().subscribe(
-      data => {
-        this.data = data;
-      }
-    );
   }
 
   sendEmail(){

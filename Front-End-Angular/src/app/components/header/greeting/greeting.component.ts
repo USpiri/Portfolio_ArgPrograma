@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/services/portfolio.service';
-import { PersonService } from 'src/app/services/person.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Person } from 'src/app/model/personEntity';
-import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/model/imageEntity';
 
 @Component({
@@ -12,29 +9,13 @@ import { Image } from 'src/app/model/imageEntity';
 })
 export class GreetingComponent implements OnInit {
 
-  data:Person = new Person( "","","","","","","","","" );
-  image:Image = new Image( "","" );
+  @Input() data:Person = new Person( "","","","","","","","","" );
+  @Input() image:Image = new Image( "","" );
 
   constructor(
-    private dataPerson:PersonService,
-    private dataImage:ImageService
   ) { }
 
   ngOnInit(): void {
-    this.dataPerson.getPerson().subscribe(
-      data => {
-        if (data) {
-          this.data = data;
-        }
-      }
-    );
-    this.dataImage.getImages().subscribe(
-      images => {
-        if (images) {
-          this.image = images;
-        }
-      }
-    )
   }
 
 }

@@ -1,0 +1,38 @@
+<div class="modal" id="jobTypeModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="jobModalLabel">Job type configuration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" (ngSubmit)="onSubmit()">
+                    <h5 class="text-dark mb-2">Job information</h5>
+                    <input type="text" class="form-control mb-2" id="jobTypeName" placeholder="Job type name" name="jobType" [(ngModel)]="jobTypeName">
+                    <button type="submit" class="btn btn-success w-100 mb-3">Add job type</button>
+                </form>
+                <table class="table mb-2">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-dark">Job Types</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let job of jobs">
+                            <td class="text-dark">{{job?.name}}</td>
+                            <td>
+                                <div class="d-flex float-end">
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(job)">Delete project</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienceModal" (click)="onClose()">Back</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

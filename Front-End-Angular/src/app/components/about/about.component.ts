@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Social } from 'src/app/model/socialMediaEntity';
 import { Person } from 'src/app/model/personEntity';
-import { PortfolioService } from 'src/app/services/portfolio.service';
 import { PersonService } from 'src/app/services/person.service';
 import { Image } from 'src/app/model/imageEntity';
 import { SocialService } from 'src/app/services/social.service';
 import { ImageService } from 'src/app/services/image.service';
+import { StorageService } from 'src/app/services/auth/storage.service';
 
 @Component({
   selector: 'app-about',
@@ -13,6 +13,13 @@ import { ImageService } from 'src/app/services/image.service';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+
+  @Input() isLogged:boolean = false;
+  @Output() onUpdate:EventEmitter<{ person:Person, links:Social, images:Image }> = new EventEmitter();
+
+  updatePerson:Person = new Person( "","","","","","","","","" );
+  updateLinks:Social = new Social( "","","","","","" );
+  updateImages:Image = new Image( "","" );
 
   data:Person = new Person( "","","","","","","","","" );
   links:Social = new Social( "","","","","","" );
@@ -32,13 +39,18 @@ export class AboutComponent implements OnInit {
   constructor(
     private dataPerson:PersonService,
     private dataSocial:SocialService,
-    private dataImages:ImageService
+    private dataImages:ImageService,
+    private storageService:StorageService
   ) { }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLogged = true;
+    }
     this.dataPerson.getPerson().subscribe(
       data => {
         this.updateData( this.data, data );
+        this.updateData(this.updatePerson, data);
         this.updateData( this.dataToEdit, this.data );
         this.getBirthDate( this.data );
       }
@@ -47,6 +59,7 @@ export class AboutComponent implements OnInit {
       social => {
         if (social) {
           this.updateData( this.links, social );
+          this.updateData( this.updateLinks, social );
           this.updateData( this.linksToEdit, this.links );
           this.getLastIndex(this.linksToEdit);
         } else {
@@ -58,20 +71,17 @@ export class AboutComponent implements OnInit {
       images => {
         if (images) {
           this.updateData( this.images, images );
+          this.updateData( this.updateImages, images );
           this.updateData( this.imagesToEdit, this.images );
         } else {
           this.dataImages.addImages(this.images).subscribe();
         }
       }
     );
-  }
-
-  updateAll(){
-    this.updateData( this.dataToEdit, this.data );
-    this.updateData( this.linksToEdit, this.links );
-    this.updateData( this.imagesToEdit, this.images );
-    this.getBirthDate( this.data );
-    this.getLastIndex(this.linksToEdit);
+    this.onUpdate.emit({  person: this.updatePerson,
+                          links: this.updateLinks,
+                          images: this.updateImages }
+    );
   }
 
   updateData ( dataTo:any , dataFrom: any ){
@@ -108,11 +118,13 @@ export class AboutComponent implements OnInit {
     this.dataPerson.updatePerson(this.dataToEdit).subscribe(
       data => {
         this.updateData( this.data, data );
+        this.updateData( this.updatePerson, data );
       }
     );
     this.dataSocial.updateLinks(this.linksToEdit).subscribe(
       social => {
         this.updateData( this.links, social );
+        this.updateData( this.updateLinks, social );
       }
     );
     if ( this.files.header && !this.files.about ) {
@@ -124,6 +136,7 @@ export class AboutComponent implements OnInit {
           this.extraerBase64(this.files.header).then(
             (image:any) => {
               this.images.header = image.base;
+              this.updateImages.header = image.base;
             }
           );
         }
@@ -137,6 +150,7 @@ export class AboutComponent implements OnInit {
           this.extraerBase64(this.files.about).then(
             (image:any) => {
               this.images.about = image.base;
+              this.updateImages.about = image.base;
             }
           );
         }
@@ -150,16 +164,30 @@ export class AboutComponent implements OnInit {
           this.extraerBase64(this.files.header).then(
             (image:any) => {
               this.images.header = image.base;
+              this.updateImages.header = image.base;
             }
           )
           this.extraerBase64(this.files.about).then(
             (image:any) => {
               this.images.about = image.base;
+              this.updateImages.about = image.base;
             }
           );
         }
       );
     }
+    this.onUpdate.emit({  person: this.updatePerson,
+      links: this.updateLinks,
+      images: this.updateImages }
+    );
+  }
+
+  updateAll(){
+    this.updateData( this.dataToEdit, this.data );
+    this.updateData( this.linksToEdit, this.links );
+    this.updateData( this.imagesToEdit, this.images );
+    this.getBirthDate( this.data );
+    this.getLastIndex(this.linksToEdit);
   }
 
   extraerBase64 = async ($event: any) => new Promise((resolve) => {

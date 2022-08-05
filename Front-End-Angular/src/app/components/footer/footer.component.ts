@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Social } from 'src/app/model/socialMediaEntity';
-import { SocialService } from 'src/app/services/social.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,18 +8,13 @@ import { SocialService } from 'src/app/services/social.service';
 })
 export class FooterComponent implements OnInit {
 
-  data:Social = new Social("","","","","","");
+  @Input() data:Social = new Social("","","","","","");
 
   constructor(
-    private dataSocial:SocialService
   ) { }
 
   ngOnInit(): void {
-    this.dataSocial.getLinks().subscribe(
-      data => {
-        this.data = data;
-      }
-    );
+
   }
 
 }

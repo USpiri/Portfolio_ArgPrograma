@@ -29,4 +29,9 @@ export class JobTypeService {
     return this.http.post<JobType>(url,job);
   }
 
+  deleteJob( job:JobType ):Observable<JobType>{
+    const url = `${this.apiUrl}/${job.id}`;
+    return this.http.delete<JobType>(url);
+  }
+
 }

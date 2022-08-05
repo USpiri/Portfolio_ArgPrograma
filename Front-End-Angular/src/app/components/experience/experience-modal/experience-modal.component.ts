@@ -60,6 +60,12 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
   onSubmit(){
     Object.assign( this.experienceSave, this.experienceActual );
+    this.experienceSave.start_date = this.datePipe.transform(this.formated_start_date, "dd/MM/yyyy")!;
+    if (this.experienceSave.is_actual) {
+      this.experienceSave.end_date = "the present";
+    } else {
+      this.experienceSave.end_date = this.datePipe.transform(this.formated_end_date, "dd/MM/yyyy")!;
+    }
     this.send.experience = this.experienceSave;
     this.send.file = this.file;
     this.onUpdateExperience.emit(this.send);
@@ -68,7 +74,9 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
   onClose(){
     Object.assign( this.experienceActual, this.experience );
     this.formated_start_date = this.datePipe.transform(this.date(this.experience.start_date), "yyyy-MM-dd");
-    this.formated_end_date = this.datePipe.transform(this.date(this.experience.end_date), "yyyy-MM-dd");
+    if (!this.experienceActual.is_actual) {
+      this.formated_end_date = this.datePipe.transform(this.date(this.experience.end_date), "yyyy-MM-dd");
+    }
   }
 
 }

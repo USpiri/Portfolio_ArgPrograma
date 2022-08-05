@@ -52,7 +52,11 @@ export class EducationModalComponent implements OnInit, OnChanges {
   onSubmit(){
     Object.assign( this.educationSave, this.educationActual );
     this.educationSave.start_date = this.datePipe.transform(this.formated_start_date, "dd/MM/yyyy")!;
-    this.educationSave.end_date = this.datePipe.transform(this.formated_end_date, "dd/MM/yyyy")!;
+    if (this.educationSave.is_actual) {
+      this.educationSave.end_date = "the present";
+    } else {
+      this.educationSave.end_date = this.datePipe.transform(this.formated_end_date, "dd/MM/yyyy")!;
+    }
     this.send.education = this.educationSave;
     this.send.file = this.file;
     this.onUpdateEducation.emit(this.send)
@@ -61,7 +65,9 @@ export class EducationModalComponent implements OnInit, OnChanges {
   onClose(){
     Object.assign( this.educationActual, this.education );
     this.formated_start_date = this.datePipe.transform(this.date(this.education.start_date), "yyyy-MM-dd");
-    this.formated_end_date = this.datePipe.transform(this.date(this.education.end_date), "yyyy-MM-dd");
+    if (!this.educationActual.is_actual) {
+      this.formated_end_date = this.datePipe.transform(this.date(this.education.end_date), "yyyy-MM-dd");
+    }
   }
 
 }

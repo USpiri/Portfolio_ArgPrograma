@@ -22,7 +22,7 @@
                             <label for="editEducationStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
                             <input type="date" class="form-control" id="editEducationStartDate" name="start_date" [(ngModel)]="formated_start_date"> 
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" *ngIf="!educationActual.is_actual">
                             <label for="editEducationEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
                             <input type="date" class="form-control" id="editEducationEndDate" name="end_date" [(ngModel)]="formated_end_date">
                         </div>

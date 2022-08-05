@@ -3,7 +3,7 @@
         <div class="education_header d-flex flex-row justify-content-center">
             <h1 class="education_title">Education</h1>
             <div class="ico_container">
-                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addEducationModal"></i>
+                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addEducationModal" *ngIf="isLogged"></i>
             </div>
             <div class="modal fade" id="addEducationModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
@@ -29,7 +29,7 @@
                                         <label for="inputEducationStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
                                         <input type="date" class="form-control" id="inputEducationStartDate" placeholder="Start Date" name="start_date" [(ngModel)]="start_date">
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-sm" *ngIf="!educationToAdd.is_actual">
                                         <label for="inputEducationEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
                                         <input type="date" class="form-control" id="inputEducationEndDate" placeholder="End date" name="end_date" [(ngModel)]="end_date">
                                     </div>
@@ -71,8 +71,8 @@
                         </div>
                     </a>
                     <div class="education_buttons position-absolute top-50 end-0 translate-middle-y me-4">
-                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3" (click)="editModal(education)" data-bs-toggle="modal" data-bs-target="#editEducationModal"></i>
-                        <i class="fa-solid fa-trash delete_button" (click)="onDelete(education)"></i>
+                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico me-3" (click)="editModal(education)" data-bs-toggle="modal" data-bs-target="#editEducationModal" *ngIf="isLogged"></i>
+                        <i class="fa-solid fa-trash delete_button" (click)="onDelete(education)" *ngIf="isLogged"></i>
                     </div>
                 </li>
             </ul>

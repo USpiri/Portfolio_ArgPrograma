@@ -3,7 +3,7 @@
         <div class="skills_header d-flex flex-row justify-content-center">
             <h1 class="skills_title">Skills</h1>
             <div class="ico_container">
-                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addSkillModal"></i>
+                <i class="fa-solid fa-plus add_button add_button_ico position-absolute mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#addSkillModal" *ngIf="isLogged"></i>
             </div>
             <div class="modal fade" id="addSkillModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
@@ -35,7 +35,7 @@
                     <div class="skill_header d-flex flex-row align-items-center justify-content-center position-relative">
                         <i class="{{skill.icon}} skill_icon"></i>
                         <h3 class="skill_title">{{skill.name}}</h3>
-                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico position-absolute top-0 end-0 p-2" (click)="openEditModal(skill)" data-bs-toggle="modal" data-bs-target="#editSkillModal"></i>
+                        <i class="fa-solid fa-pen-to-square edit_button edit_button_ico position-absolute top-0 end-0 p-2" (click)="openEditModal(skill)" data-bs-toggle="modal" data-bs-target="#editSkillModal" *ngIf="isLogged"></i>
                     </div>
                     <div class="skill_bar_content mt-2">
                         <span class="skill_bar"><span class="skill_progress_1" [ngStyle]="{'width' : skill.percentage}"></span></span>

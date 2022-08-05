@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Experience } from 'src/app/model/experienceEntity';
 import { JobType } from 'src/app/model/jobTypeEntity';
+import { StorageService } from 'src/app/services/auth/storage.service';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { JobTypeService } from 'src/app/services/job-type.service';
 
@@ -11,6 +12,8 @@ import { JobTypeService } from 'src/app/services/job-type.service';
   styleUrls: ['./experience.component.css']
 })
 export class ExperienceComponent implements OnInit {
+
+  @Input() isLogged:boolean = false;
 
   data:Experience[] = [];
   jobs:JobType[] = [];
@@ -25,10 +28,14 @@ export class ExperienceComponent implements OnInit {
   constructor(
     private dataExperience:ExperienceService,
     private dataJobs:JobTypeService,
-    private datePipe:DatePipe
+    private datePipe:DatePipe,
+    private storageService:StorageService
   ) { }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLogged = true;
+    }
     this.dataExperience.getExperience().subscribe(
       experience => {
         this.data = experience;
@@ -46,7 +53,6 @@ export class ExperienceComponent implements OnInit {
   }
 
   updateExperience(obj:{ file?:any, experience?:any  }){
-    
     if (obj.file) {
       const dataForm = new FormData();
       dataForm.append( "experience", obj.file, obj.file.name );
@@ -89,9 +95,12 @@ export class ExperienceComponent implements OnInit {
   addExperience(){
     const dataForm = new FormData();
     dataForm.append( "experience", this.file, this.file.name );
-
     this.experienceToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
-    this.experienceToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
+    if (this.experienceToAdd.is_actual) {
+      this.experienceToAdd.end_date = "the present";
+    } else {
+      this.experienceToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
+    }
     this.dataExperience.addExperience(this.experienceToAdd).subscribe(
       exp => {
         let expToUpdate:Experience = exp
@@ -147,6 +156,24 @@ export class ExperienceComponent implements OnInit {
     } catch (e) {
       return null;
     }
-  })
+  });
+
+  addJobTypes(event:JobType){
+    this.dataJobs.getJobs().subscribe(
+      jobs => {
+        this.jobs = jobs;
+      }
+    )
+  }
+
+  deleteJobType(event:JobType){
+    this.dataJobs.deleteJob(event).subscribe(
+      () => {
+        this.jobs = this.jobs.filter(
+          jobs => jobs.id !== event.id  
+        );
+      }
+    );
+  }
 
 }

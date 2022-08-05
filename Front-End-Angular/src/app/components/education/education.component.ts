@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/auth/storage.service';
 import { EducationService } from 'src/app/services/education.service';
 import { Education } from '../../model/educationEntity';
 
@@ -9,6 +10,8 @@ import { Education } from '../../model/educationEntity';
   styleUrls: ['./education.component.css']
 })
 export class EducationComponent implements OnInit {
+
+  @Input() isLogged:boolean = false;
 
   data: Education[] = [];
   file:any;
@@ -21,10 +24,14 @@ export class EducationComponent implements OnInit {
 
   constructor(
     private dataEducation:EducationService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private storageService:StorageService
   ) { }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLogged = true;
+    }
     this.dataEducation.getEducation().subscribe(
       education => {
         this.data = education;
@@ -81,7 +88,11 @@ export class EducationComponent implements OnInit {
     dataForm.append( "education", this.file, this.file.name );
 
     this.educationToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
-    this.educationToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
+    if (this.educationToAdd.is_actual) {
+      this.educationToAdd.end_date = "the present";
+    } else {
+      this.educationToAdd.end_date = this.datePipe.transform(this.date(this.end_date), "dd/MM/yyyy")!;
+    }
     this.dataEducation.addEducation(this.educationToAdd).subscribe(
       edu => {
         let eduToUpdate:Education = edu;

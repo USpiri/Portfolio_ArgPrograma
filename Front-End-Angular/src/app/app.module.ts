@@ -21,6 +21,7 @@ import { GreetingComponent } from './components/header/greeting/greeting.compone
 import { ExperienceModalComponent } from './components/experience/experience-modal/experience-modal.component';
 import { EducationModalComponent } from './components/education/education-modal/education-modal.component';
 import { SkillsModalComponent } from './components/skills/skills-modal/skills-modal.component';
+import { JobModalComponent } from './components/experience/job-modal/job-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SkillsModalComponent } from './components/skills/skills-modal/skills-mo
     GreetingComponent,
     ExperienceModalComponent,
     EducationModalComponent,
-    SkillsModalComponent
+    SkillsModalComponent,
+    JobModalComponent
   ],
   imports: [
     BrowserModule,

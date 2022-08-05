@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import SwiperCore, { Keyboard, Pagination, Navigation, Autoplay, SwiperOptions } from 'swiper';
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 import { Project } from 'src/app/model/projectEntity';
 import { ProjectService } from 'src/app/services/project.service';
+import { StorageService } from 'src/app/services/auth/storage.service';
 
 @Component({
   selector: 'app-projects',
@@ -10,6 +11,8 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
+
+  @Input() isLogged:boolean = false;
 
   data: Project[] = [];
 
@@ -56,10 +59,14 @@ export class ProjectsComponent implements OnInit {
   }
 
   constructor(
-    private dataProject:ProjectService
+    private dataProject:ProjectService,
+    private storageService:StorageService
   ) { }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLogged = true;
+    }
     this.dataProject.getProjects().subscribe(
       projects => {
         this.data = projects;

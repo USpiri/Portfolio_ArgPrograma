@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Skill } from 'src/app/model/skillEntity';
+import { StorageService } from 'src/app/services/auth/storage.service';
 import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { SkillService } from 'src/app/services/skill.service';
 })
 export class SkillsComponent implements OnInit {
 
+  @Input() isLogged:boolean = false;
+
   data:Skill[] = [];
 
   skillToEdit: Skill = new Skill( "","","" );
@@ -17,10 +20,14 @@ export class SkillsComponent implements OnInit {
   percentage: number = 0;
     
   constructor(
-    private dataSkill:SkillService
+    private dataSkill:SkillService,
+    private storageService:StorageService
   ) { }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLogged = true;
+    }
     this.dataSkill.getSkills().subscribe(
       data => {
         this.data = data;
