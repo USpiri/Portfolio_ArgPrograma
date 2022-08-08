@@ -4,7 +4,7 @@
       <div class="modal" tabindex="-1" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false">
           <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-              <form (ngSubmit)="onSubmit()">
+              <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
                 <div class="modal-header">
                   <h3 class="modal-title text-dark">Welcome</h3>
                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -14,11 +14,20 @@
                     <div class="fingerprint">
                     </div>
                   </div>
-                  <input type="text" class="form-control mb-3" id="InputUsername" placeholder="Username" name="username" [(ngModel)]="login.username" required *ngIf="!isLogged">
-                  <input type="password" class="form-control mb-3" id="InputPass" placeholder="Password" name="password" [(ngModel)]="login.password" required *ngIf="!isLogged" autocomplete="on">
+                  <input type="text" class="form-control mb-3" id="InputUsername" placeholder="Username" name="username" 
+                    [(ngModel)]="login.username" required *ngIf="!isLogged" #username="ngModel"
+                    [ngClass]="{ 'is-invalid': username.valid || logFail }"
+                  >
+                  <input type="password" class="form-control mb-3" id="InputPass" placeholder="Password" name="password" 
+                    [(ngModel)]="login.password" required *ngIf="!isLogged" autocomplete="on" #password="ngModel"
+                    [ngClass]="{ 'is-invalid': password.valid || logFail }"
+                  >
+                  <div class="invalid-feedback w-100 " *ngIf="logFail">
+                    <p *ngIf="logFail" class="text-danger text-center">Username or password is incorrect</p>
+                  </div>
                   <div class="login_container d-grid ">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" *ngIf="!isLogged">Login</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" *ngIf="isLogged" (click)="logout()">Logout</button>
+                    <button type="submit" class="btn btn-primary" *ngIf="!isLogged">Login</button>
+                    <button type="button" class="btn btn-primary" *ngIf="isLogged" (click)="logout()">Logout</button>
                   </div>
                 </div>
               </form>

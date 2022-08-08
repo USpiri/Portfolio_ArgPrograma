@@ -1,14 +1,23 @@
-<div class="modal" id="jobTypeModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="jobTypeModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-dark" id="jobModalLabel">Job type configuration</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose(jobForm)"></button>
             </div>
             <div class="modal-body">
-                <form action="" (ngSubmit)="onSubmit()">
+                <form action="" #jobForm="ngForm" (ngSubmit)="jobForm.form.valid && onSubmit(jobForm)">
                     <h5 class="text-dark mb-2">Job information</h5>
-                    <input type="text" class="form-control mb-2" id="jobTypeName" placeholder="Job type name" name="jobType" [(ngModel)]="jobTypeName">
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="jobTypeName" placeholder="Job type name" name="jobType" 
+                            [(ngModel)]="jobTypeName" #jobName="ngModel"
+                            [ngClass]="{ 'is-invalid': jobForm.submitted && jobName.invalid }"
+                            required
+                        >
+                        <div class="invalid-feedback" *ngIf="jobForm.submitted && jobName.invalid">
+                            <p *ngIf="jobName.errors" class="text-danger">Name is required</p>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-success w-100 mb-3">Add job type</button>
                 </form>
                 <table class="table mb-2">
@@ -30,8 +39,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienceModal" (click)="onClose()">Back</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienceModal" (click)="onClose(jobForm)">Back</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose(jobForm)">Close</button>
             </div>
         </div>
     </div>

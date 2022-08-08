@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   @Output() onLog:EventEmitter<boolean> = new EventEmitter();
 
   isLogged:boolean = false;
+  logFail:boolean = false;
   login = new LoginRequest("","");
 
   constructor(
@@ -31,18 +32,23 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit(userForm:any){
     this.authService.login(this.login).subscribe(
       data => {
         this.isLogged = true;
+        this.logFail = false;
         this.storageService.saveToken(data.token);
         this.storageService.saveUser(data.username);
         this.storageService.saveAuthorities(data.authorities);
         this.onLog.emit(this.isLogged);
+        userForm.resetForm();
       },
       err => {
         this.isLogged = false;
+        this.logFail = true;
         console.log(err.error.message);
+        console.log("ERROR");
+        
       }
     )
   }

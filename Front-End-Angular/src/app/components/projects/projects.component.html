@@ -8,18 +8,45 @@
             <div class="modal fade" id="addProjectModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="" (ngSubmit)="onAddProject()">
+                        <form action="" #projectForm="ngForm" (ngSubmit)="projectForm.form.valid && onAddProject(projectForm)">
                             <div class="modal-header">
                                 <h5 class="modal-title text-dark" id="projectModalLabel">Add new project</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                <button type="button" #clsProject class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="modal-body">
                                 <h5 class="text-dark mb-2">Project</h5>
-                                <input type="text" class="form-control mb-2" id="inputProjectTitle" placeholder="Project title" name="newProjectTitle" [(ngModel)]="projectToAdd.name">
-                                <textarea class="form-control mb-2" placeholder="Project description" id="newProjectDescription" name="newProjectDescription" [(ngModel)]="projectToAdd.description"></textarea>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="inputProjectTitle" placeholder="Project title" name="newProjectTitle" 
+                                        [(ngModel)]="projectToAdd.name" #pName="ngModel"
+                                        [ngClass]="{ 'is-invalid': projectForm.submitted && pName.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="projectForm.submitted && pName.invalid">
+                                        <p *ngIf="pName.errors" class="text-danger">Title is required</p>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <textarea class="form-control" placeholder="Project description" id="newProjectDescription" name="newProjectDescription" 
+                                        [(ngModel)]="projectToAdd.description" #pDescription="ngModel"
+                                        [ngClass]="{ 'is-invalid': projectForm.submitted && pDescription.invalid }"
+                                        required
+                                    ></textarea>
+                                    <div class="invalid-feedback" *ngIf="projectForm.submitted && pDescription.invalid">
+                                        <p *ngIf="pDescription.errors" class="text-danger">Description is required</p>
+                                    </div>
+                                </div>
                                 <h5 class="text-dark mb-2">Links</h5>
                                 <div class="form-text">Project image</div>
-                                <input type="file" class="form-control mb-2" accept="image/jpeg" id="inputProjectImgUrl" (change)="getImg($event)">
+                                <div class="mb-2">
+                                    <input type="file" class="form-control" accept="image/jpeg" id="inputProjectImgUrl" 
+                                        (change)="getImg($event)" #projectInput
+                                        [ngClass]="{ 'is-invalid': projectForm.submitted && !file }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="projectForm.submitted && !file">
+                                        <p *ngIf="!file" class="text-danger">Image is required</p>
+                                    </div>
+                                </div>
                                 <input type="text" class="form-control mb-1" id="inputProjectLink" placeholder="Link" name="newProjectLink" [(ngModel)]="projectToAdd.link">
                                 <input type="checkbox" class="form-check-input" id="checkEnabledLink" name="newProjectEnabled" [(ngModel)]="projectToAdd.enabled_link">
                                 <label class="form-check-label text-dark ms-1 mb-1" for="checkEnabledLink">
@@ -29,7 +56,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProject()">Close</button>
                                 <button type="button" class="btn btn-primary" data-bs-target="#projectsModal" data-bs-toggle="modal" (click)="resetProject()">Projects list</button>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add project</button>
+                                <button type="submit" class="btn btn-primary">Add project</button>
                             </div>
                         </form>
                     </div>
@@ -69,30 +96,54 @@
                     </div>
                 </div>
             </div>
+            <!--  -->
             <div class="modal fade" id="editProjectModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="editProjectModalLabel">Add new project</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h5 class="text-dark mb-2">Project</h5>
-                            <input type="text" class="form-control mb-2" id="editProjectTitle" placeholder="Project title" name="projectTitle" [(ngModel)]="projectToEdit.name">
-                            <textarea class="form-control mb-2" placeholder="Project description" id="editDescription" name="projectDescription" [(ngModel)]="projectToEdit.description"></textarea>
-                            <h5 class="text-dark mb-2">Links</h5>
-                            <div class="form-text">Project image</div>
-                            <input type="file" class="form-control mb-2" accept="image/jpeg" id="editProjectImgUrl" (change)="getEditImg($event)">
-                            <input type="text" class="form-control mb-1" id="editProjectLink" placeholder="Link" name="projectLink" [(ngModel)]="projectToEdit.link">
-                            <input type="checkbox" class="form-check-input" id="editEnabledLink" name="projectEnabledLink" [(ngModel)]="projectToEdit.enabled_link">
-                            <label class="form-check-label text-dark ms-1 mb-1" for="editEnabledLink">
-                                Enable link
-                            </label>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-target="#projectsModal" data-bs-toggle="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" (click)="updateProject()" data-bs-target="#projectsModal" data-bs-toggle="modal">Save changes</button>
-                        </div>
+                        <form action="" #projectEditForm="ngForm" (ngSubmit)="projectEditForm.form.valid && updateProject(projectEditForm)">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="editProjectModalLabel">Add new project</h5>
+                                <button type="button" #clsEditProject class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-dark mb-2">Project</h5>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="editProjectTitle" placeholder="Project title" name="projectTitle" 
+                                        [(ngModel)]="projectToEdit.name" #epName="ngModel"
+                                        [ngClass]="{ 'is-invalid': projectEditForm.submitted && epName.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="projectEditForm.submitted && epName.invalid">
+                                        <p *ngIf="epName.errors" class="text-danger">Title is required</p>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <textarea class="form-control" placeholder="Project description" id="editDescription" name="projectDescription" 
+                                        [(ngModel)]="projectToEdit.description" #epDescription="ngModel"
+                                        [ngClass]="{ 'is-invalid': projectEditForm.submitted && epDescription.invalid }"
+                                    ></textarea>
+                                    <div class="invalid-feedback" *ngIf="projectEditForm.submitted && epDescription.invalid">
+                                        <p *ngIf="epDescription.errors" class="text-danger">Description is required</p>
+                                    </div>
+                                </div>
+                                <h5 class="text-dark mb-2">Links</h5>
+                                <div class="form-text">Project image</div>
+                                <div class="mb-2">
+                                    <input type="file" class="form-control" accept="image/jpeg" id="editProjectImgUrl" 
+                                        (change)="getEditImg($event)" #projectInput
+                                    >
+                                </div>
+                                <input type="text" class="form-control mb-1" id="editProjectLink" placeholder="Link" name="projectLink" [(ngModel)]="projectToEdit.link">
+                                <input type="checkbox" class="form-check-input" id="editEnabledLink" name="projectEnabledLink" [(ngModel)]="projectToEdit.enabled_link">
+                                <label class="form-check-label text-dark ms-1 mb-1" for="editEnabledLink">
+                                    Enable link
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-target="#projectsModal" data-bs-toggle="modal">Back</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

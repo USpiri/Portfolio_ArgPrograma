@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter, SimpleChange } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter, SimpleChange, ViewChild, ElementRef } from '@angular/core';
 import { Education } from 'src/app/model/educationEntity';
 
 @Component({
@@ -11,6 +11,8 @@ export class EducationModalComponent implements OnInit, OnChanges {
 
   @Input() education:Education = new Education( "","",false,"","","","",false );
   @Output() onUpdateEducation:EventEmitter<any> = new EventEmitter();
+  @ViewChild('educationInput',{ static : false}) InputEducation?:ElementRef;
+  @ViewChild('clsEducation') closeButton:any;
   
   educationSave:Education = new Education( "","",false,"","","","",false );
   educationActual:Education = new Education( "","",false,"","","","",false );
@@ -49,7 +51,7 @@ export class EducationModalComponent implements OnInit, OnChanges {
     return new Date(Number(year), Number(month) -1 , Number(day));
   }
 
-  onSubmit(){
+  onSubmit(educationForm:any){
     Object.assign( this.educationSave, this.educationActual );
     this.educationSave.start_date = this.datePipe.transform(this.formated_start_date, "dd/MM/yyyy")!;
     if (this.educationSave.is_actual) {
@@ -59,15 +61,20 @@ export class EducationModalComponent implements OnInit, OnChanges {
     }
     this.send.education = this.educationSave;
     this.send.file = this.file;
-    this.onUpdateEducation.emit(this.send)
+    this.onUpdateEducation.emit(this.send);
+    this.closeButton.nativeElement.click();
+    this.onClose(educationForm);
   }
 
-  onClose(){
+  onClose(educationForm:any){
     Object.assign( this.educationActual, this.education );
     this.formated_start_date = this.datePipe.transform(this.date(this.education.start_date), "yyyy-MM-dd");
     if (!this.educationActual.is_actual) {
       this.formated_end_date = this.datePipe.transform(this.date(this.education.end_date), "yyyy-MM-dd");
     }
+    this.file = null;
+    this.InputEducation!.nativeElement.value= "";
+    educationForm.resetForm();
   }
 
 }

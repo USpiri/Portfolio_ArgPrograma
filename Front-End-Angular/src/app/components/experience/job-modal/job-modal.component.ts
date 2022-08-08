@@ -28,7 +28,7 @@ export class JobModalComponent implements OnInit {
     );
   }
 
-  onSubmit(){
+  onSubmit(jobForm:any){
     this.jobType.name = this.jobTypeName;
     this.dataJobs.addJob(this.jobType).subscribe(
       data => {
@@ -37,6 +37,7 @@ export class JobModalComponent implements OnInit {
         this.submit.emit(jobAdd);
       }
     );
+    jobForm.resetForm();
   }
 
   onDelete(job:JobType){
@@ -46,8 +47,9 @@ export class JobModalComponent implements OnInit {
     this.delete.emit(job);
   }
 
-  onClose(){
+  onClose(jobForm:any){
     this.jobTypeName = "";
+    jobForm.resetForm();
   }
 
 }

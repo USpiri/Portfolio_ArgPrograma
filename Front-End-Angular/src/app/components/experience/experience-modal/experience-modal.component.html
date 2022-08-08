@@ -1,19 +1,48 @@
-<div class="modal" id="editExperienceModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="editExperienceModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" (ngSubmit)="onSubmit()">
+            <form action="" #experienceEditForm="ngForm" (ngSubmit)="experienceEditForm.form.valid && onSubmit(experienceEditForm)">
                 <div class="modal-header">
                     <h5 class="modal-title text-dark" id="editExperienceModalLabel">Edit experience</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+                    <button type="button" #clsEditExperience class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
                 </div>
                 <div class="modal-body">
                     <h5 class="text-dark mb-2">Job information</h5>
-                    <input type="text" class="form-control mb-2" id="editCompany" name="company" [(ngModel)]="experienceActual.company" placeholder="Company">
-                    <input type="text" class="form-control mb-2" id="editPosition" name="position" [(ngModel)]="experienceActual.job" placeholder="Position">
-                    <select class="form-select mb-4" id="editJobType" [(ngModel)]="experienceActual.job_type" name="job_type">
-                        <option selected class="text-dark" disabled>Job type</option>
-                        <option *ngFor="let job of jobs" [value]="job.name" class="text-dark" [selected]="experienceActual.job_type == job.name">{{job.name}}</option>
-                    </select>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="editCompany" name="company" 
+                            [(ngModel)]="experienceActual.company" placeholder="Company"
+                            #eeCompany="ngModel"
+                            [ngClass]="{ 'is-invalid': experienceEditForm.submitted && eeCompany.invalid }"
+                            required
+                        >
+                        <div class="invalid-feedback" *ngIf="experienceEditForm.submitted && eeCompany.invalid">
+                            <p *ngIf="eeCompany.errors" class="text-danger">Company name is required</p>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="editPosition" name="position" 
+                            [(ngModel)]="experienceActual.job" placeholder="Job"
+                            #eePosition="ngModel"
+                            [ngClass]="{ 'is-invalid': experienceEditForm.submitted && eePosition.invalid }"
+                            required
+                        >
+                        <div class="invalid-feedback" *ngIf="experienceEditForm.submitted && eePosition.invalid">
+                            <p *ngIf="eePosition.errors" class="text-danger">Job name is required</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <select class="form-select" id="editJobType" [(ngModel)]="experienceActual.job_type" name="job_type"
+                            #eeJobType="ngModel"
+                            [ngClass]="{ 'is-invalid': experienceEditForm.submitted && experienceActual.job_type === 'Job Type' }"
+                            required
+                        >
+                            <option selected value="Job type" class="text-dark" disabled>Job type</option>
+                            <option *ngFor="let job of jobs" [value]="job.name" class="text-dark" [selected]="experienceActual.job_type == job.name">{{job.name}}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="experienceEditForm.submitted && experienceActual.job_type === 'Job Type'">
+                            <p *ngIf="experienceActual.job_type === 'Job Type'" class="text-danger">"Job type" is not an assignable job</p>
+                        </div>
+                    </div>
                     <h5 class="text-dark">
                         Time
                         <input type="checkbox" class="form-check-input ms-4 fs-6" id="editCheckActual" name="is_actual" [(ngModel)]="experienceActual.is_actual">
@@ -24,16 +53,24 @@
                     <div class="row g-2 mb-4">
                         <div class="col-sm">
                             <label for="editStartDate" class="form-label fs-6 text-dark mb-0">Start date</label>
-                            <input type="date" class="form-control" id="editStartDate" name="start_date" [(ngModel)]="formated_start_date">
+                            <input type="date" class="form-control" id="editStartDate" name="start_date" 
+                                [(ngModel)]="formated_start_date"
+                            >
                         </div>
                         <div class="col-sm" *ngIf="!experienceActual.is_actual">
                             <label for="editEndDate" class="form-label fs-6 text-dark mb-0">End date</label>
-                            <input type="date" class="form-control" id="editEndDate" name="end_date" [(ngModel)]="formated_end_date">
+                            <input type="date" class="form-control" id="editEndDate" name="end_date" 
+                                [(ngModel)]="formated_end_date"
+                            >
                         </div>
                     </div>
                     <h5 class="text-dark mb-2">Links</h5>
                     <div class="form-text">Image</div>
-                    <input type="file" class="form-control mb-2" id="editExperienceImgUrl" placeholder="Image url" accept="image/jpeg" (change)="captureFile($event)">
+                    <div class="mb-2">
+                        <input type="file" class="form-control" id="editExperienceImgUrl" placeholder="Image url" accept="image/jpeg" 
+                            (change)="captureFile($event)" #experienceEditInput
+                        >
+                    </div>
                     <input type="text" class="form-control mb-1" id="editExperienceLink" placeholder="Link" name="link" [(ngModel)]="experienceActual.link">
                     <input type="checkbox" class="form-check-input" id="editExperienceEnabledLink" name="enabled_link" [(ngModel)]="experienceActual.enabled_link">
                     <label class="form-check-label text-dark ms-1 mb-1" for="editExperienceEnabledLink">
@@ -42,7 +79,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>

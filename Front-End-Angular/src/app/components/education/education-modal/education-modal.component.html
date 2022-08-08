@@ -1,15 +1,33 @@
 <div class="modal fade" id="editEducationModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" (ngSubmit)="onSubmit()">
+            <form action="" #educationForm="ngForm" (ngSubmit)="educationForm.form.valid && onSubmit(educationForm)">
                 <div class="modal-header">
                     <h5 class="modal-title text-dark" id="editEducationModalLabel">Edit education</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+                    <button type="button" #clsEducation class="btn-close" data-bs-dismiss="modal" (click)="onClose(educationForm)"></button>
                 </div>
                 <div class="modal-body">
                     <h5 class="text-dark mb-2">Education</h5>
-                    <input type="text" class="form-control mb-2" id="editEducationInstitute" placeholder="Institute Name" name="institute" [(ngModel)]="educationActual.where">
-                    <input type="text" class="form-control mb-4" id="editEducationTitle" placeholder="Title" name="title" [(ngModel)]="educationActual.degree">
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="editEducationInstitute" placeholder="Institute Name" name="institute" 
+                            [(ngModel)]="educationActual.where" #institute="ngModel"
+                            [ngClass]="{ 'is-invalid': educationForm.submitted && institute.invalid }"
+                            required
+                        >
+                        <div class="invalid-feedback" *ngIf="educationForm.submitted && institute.invalid">
+                            <p *ngIf="institute.errors" class="text-danger">Institute name is required</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="text" class="form-control" id="editEducationTitle" placeholder="Title" name="title" 
+                            [(ngModel)]="educationActual.degree" #degreeEdit="ngModel"
+                            [ngClass]="{ 'is-invalid': educationForm.submitted && degreeEdit.invalid }"
+                            required
+                        >
+                        <div class="invalid-feedback" *ngIf="educationForm.submitted && degreeEdit.invalid">
+                            <p *ngIf="degreeEdit.errors" class="text-danger">Degree is required</p>
+                        </div>
+                    </div>
                     <h5 class="text-dark">
                         Time
                         <input type="checkbox" class="form-check-input ms-4 fs-6" id="editEducationIsActual" name="is_actual" [(ngModel)]="educationActual.is_actual">
@@ -29,7 +47,11 @@
                     </div>
                     <h5 class="text-dark mb-2">Links</h5>
                     <div class="form-text">Image</div>
-                    <input type="file" class="form-control mb-2" id="editEducationImgUrl" placeholder="Image url" accept="image/jpeg" (change)="captureFile($event)">
+                    <div class="mb-2">
+                        <input type="file" class="form-control" id="editEducationImgUrl" placeholder="Image url" accept="image/jpeg" 
+                            (change)="captureFile($event)" #educationInput
+                        >
+                    </div>
                     <input type="text" class="form-control mb-1" id="editEducationLink" placeholder="Link" name="link" [(ngModel)]="educationActual.link">
                     <input type="checkbox" class="form-check-input" id="editEducationEnabledLink" name="enabled_link" [(ngModel)]="educationActual.enabled_link">
                     <label class="form-check-label text-dark ms-1 mb-1" for="editEducationEnabledLink">
@@ -37,8 +59,8 @@
                     </label>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()" >Close</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose(educationForm)" >Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>

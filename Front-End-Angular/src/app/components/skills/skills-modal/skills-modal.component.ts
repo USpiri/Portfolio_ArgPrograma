@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { Skill } from 'src/app/model/skillEntity';
 
 @Component({
@@ -9,6 +9,7 @@ import { Skill } from 'src/app/model/skillEntity';
 export class SkillsModalComponent implements OnInit, OnChanges {
 
   @Input() skill:Skill = new Skill( "","","" );
+  @ViewChild('clsEditSkill') closeButton:any;
 
   @Output() onUpdateSkill:EventEmitter<Skill> = new EventEmitter();
   @Output() onDeleteSkill:EventEmitter<Skill> = new EventEmitter();
@@ -32,10 +33,12 @@ export class SkillsModalComponent implements OnInit, OnChanges {
     }
   }
 
-  onSubmit(){
+  onSubmit(editSkillForm:any){
     Object.assign( this.skillSave, this.skillActual );
     this.skillSave.percentage = this.percentage.toString() + "%";
     this.onUpdateSkill.emit(this.skillSave);
+    this.closeButton.nativeElement.click();
+    editSkillForm.resetForm();
   }
 
   onClose(){

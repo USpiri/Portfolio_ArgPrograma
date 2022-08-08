@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { JobType } from 'src/app/model/jobTypeEntity';
 import { JobTypeService } from 'src/app/services/job-type.service';
 import { Experience } from '../../../model/experienceEntity';
@@ -13,6 +13,8 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
   @Input() experience:Experience = new Experience( "","",false,"","","","",false,"" );
   @Output() onUpdateExperience:EventEmitter<any> = new EventEmitter();
+  @ViewChild('experienceEditInput',{ static : false}) InputExperience?:ElementRef;
+  @ViewChild('clsEditExperience') closeButton:any;
 
   experienceSave:Experience = new Experience( "","",false,"","","","",false,"" );
   experienceActual:Experience = new Experience( "","",false,"","","","",false,"" );
@@ -58,7 +60,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     return new Date(Number(year), Number(month) -1 , Number(day));
   }
 
-  onSubmit(){
+  onSubmit(experienceEditForm:any){
     Object.assign( this.experienceSave, this.experienceActual );
     this.experienceSave.start_date = this.datePipe.transform(this.formated_start_date, "dd/MM/yyyy")!;
     if (this.experienceSave.is_actual) {
@@ -69,6 +71,10 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     this.send.experience = this.experienceSave;
     this.send.file = this.file;
     this.onUpdateExperience.emit(this.send);
+    this.closeButton.nativeElement.click();
+    experienceEditForm.resetForm();
+    this.file = null;
+    this.InputExperience!.nativeElement.value= "";
   }
 
   onClose(){
@@ -77,6 +83,8 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     if (!this.experienceActual.is_actual) {
       this.formated_end_date = this.datePipe.transform(this.date(this.experience.end_date), "yyyy-MM-dd");
     }
+    this.file = null;
+    this.InputExperience!.nativeElement.value= "";
   }
 
 }

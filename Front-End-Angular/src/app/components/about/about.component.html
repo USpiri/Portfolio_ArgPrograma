@@ -3,53 +3,103 @@
         <div class="image_container m-4 d-none d-lg-inline" *ngIf="images.about">
             <img [src]="images.about" alt="Foto de perfil de Uriel Spiridione" class="profile_img">
         </div>
-
         <div class="about_info_container p-4 p-lg-0">
             <div class="about_title_container d-flex flex-row align-items-center">
                 <h1 class="about_title">About</h1>
                 <i class="fa-solid fa-pen-to-square edit_button ico_about mb-3 ms-3" *ngIf="isLogged" data-bs-toggle="modal" data-bs-target="#aboutModal" (click)="updateAll()"></i>
             </div>
-
             <div class="modal fade" id="aboutModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="" (ngSubmit)="onSubmit()">
+                        <form action="" #aboutForm="ngForm" (ngSubmit)="aboutForm.form.valid && onSubmit(aboutForm)">
                             <div class="modal-header">
                                 <h5 class="modal-title text-dark" id="exampleModalLabel">Personal information</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                <button type="button" #clsAbout class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="modal-body">
                                 <h5 class="text-dark">Basic</h5>
                                 <div class="row g-2 mb-2">
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name" [(ngModel)]="dataToEdit.name">
+                                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name" 
+                                            [(ngModel)]="dataToEdit.name" #name="ngModel"
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && name.invalid }"
+                                            required
+                                        >
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && name.invalid">
+                                            <p *ngIf="name.errors" class="text-danger">Name is required</p>
+                                        </div>
                                     </div>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" id="InputLastName" placeholder="Last name" name="surname" [(ngModel)]="dataToEdit.surname">
+                                        <input type="text" class="form-control" id="InputLastName" placeholder="Last name" name="surname" 
+                                            [(ngModel)]="dataToEdit.surname" #surname="ngModel"
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && surname.invalid }"
+                                            required
+                                        >
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && surname.invalid">
+                                            <p *ngIf="surname.errors" class="text-danger">Your surname is required</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row g-2 mb-2">
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" id="InputAddress" placeholder="Address" name="address" [(ngModel)]="dataToEdit.address">
+                                        <input type="text" class="form-control" id="InputAddress" placeholder="Address" name="address" 
+                                            [(ngModel)]="dataToEdit.address" #address="ngModel"
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && address.invalid }"
+                                            required
+                                        >
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && address.invalid">
+                                            <p *ngIf="address.errors" class="text-danger">Address is required</p>
+                                        </div>
                                     </div>
                                     <div class="col-sm">
-                                        <input type="number" class="form-control" id="InputAge" placeholder="Age" name="age" [(ngModel)]="dataToEdit.age" >
+                                        <input type="number" class="form-control" id="InputAge" placeholder="Age" name="age" 
+                                            [(ngModel)]="dataToEdit.age" #age="ngModel"
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && age.invalid }"
+                                            required
+                                        >
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && age.invalid">
+                                            <p *ngIf="age.errors" class="text-danger">Your age is required</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mb-2">
-                                    <input type="text" class="form-control" id="InputPhone" placeholder="Phone" name="phone" [(ngModel)]="dataToEdit.phone">
+                                    <input type="text" class="form-control" id="InputPhone" placeholder="Phone" name="phone" 
+                                        [(ngModel)]="dataToEdit.phone" #phone="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && phone.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && phone.invalid">
+                                        <p *ngIf="phone.errors" class="text-danger">Phone is required</p>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" id="InputEmail" placeholder="Email" name="email" [(ngModel)]="dataToEdit.email">
+                                    <input type="email" class="form-control" id="InputEmail" placeholder="Email" name="email" 
+                                        [(ngModel)]="dataToEdit.email" #email="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && email.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && email.invalid">
+                                        <p *ngIf="email.errors" class="text-danger">Email is required</p>
+                                    </div>
                                 </div>
                                 <h6 class="text-dark">Birth Date</h6>
                                 <div class="row g-2 mb-3">
                                     <div class="col-sm">
-                                        <input type="number" class="form-control" id="InputBirthDay" placeholder="Day" name="day" [(ngModel)]="date.day">
+                                        <input type="number" class="form-control" id="InputBirthDay" placeholder="Day" name="day" 
+                                            [(ngModel)]="date.day" #day="ngModel"
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && day.invalid }"
+                                            required
+                                        >
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && day.invalid">
+                                            <p *ngIf="day.errors" class="text-danger">Day is required</p>
+                                        </div>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select" name="month" [(ngModel)]="date.month">
-                                            <option selected class="text-dark">Month</option>
+                                        <select class="form-select" name="month" [(ngModel)]="date.month" #month="ngModel" 
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && (date.month === 'Month' || date.month === '') }"
+                                            required
+                                        >
+                                            <option value="Month" disabled selected class="text-dark">Month</option>
                                             <option value="January" class="text-dark">January</option>
                                             <option value="February" class="text-dark">February</option>
                                             <option value="March" class="text-dark">March</option>
@@ -63,56 +113,139 @@
                                             <option value="November" class="text-dark">November</option>
                                             <option value="December" class="text-dark">December</option>
                                         </select>
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && (date.month === 'Month' || date.month === '')">
+                                            <p *ngIf="(date.month === 'Month' || date.month === '')" class="text-danger">"Month" is not valid</p>
+                                        </div>
                                     </div>
                                     <div class="col-sm">
-                                        <input type="number" min="1900" max="2099" step="1" class="form-control" id="InputBirthYear" placeholder="Year" name="year" [(ngModel)]="date.year">
+                                        <input type="number" min="1900" max="2099" step="1" class="form-control" id="InputBirthYear" placeholder="Year" name="year" 
+                                            [(ngModel)]="date.year" #year="ngModel"
+                                            [ngClass]="{ 'is-invalid': aboutForm.submitted && year.invalid && parseInt(date.year) < 1900 }"
+                                            required
+                                        >
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && year.invalid">
+                                            <p *ngIf="year.errors" class="text-danger">Year is required</p>
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="aboutForm.submitted && !(parseInt(date.year) < 1900)">
+                                            <p *ngIf="year.errors" class="text-danger">You are not too old!</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <h6 class="text-dark">Little description for header</h6>
+                                <h6 class="text-dark">Description for header</h6>
                                 <div class="mb-3">
-                                    <textarea class="form-control" id="FormTextareaLittle" name="lit_about" [(ngModel)]="dataToEdit.lit_about"></textarea>
+                                    <textarea class="form-control" id="FormTextareaLittle" name="lit_about" 
+                                        [(ngModel)]="dataToEdit.lit_about" #litAbout="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && litAbout.invalid }"
+                                        required
+                                    ></textarea>
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && litAbout.invalid">
+                                        <p *ngIf="litAbout.errors" class="text-danger">Little description is required</p>
+                                    </div>
                                 </div>
                                 <h6 class="text-dark">Description for about section</h6>
                                 <div class="mb-3">
-                                    <textarea class="form-control" id="FormTextareaAbout" name="about" [(ngModel)]="dataToEdit.about"></textarea>
+                                    <textarea class="form-control" id="FormTextareaAbout" name="about" 
+                                        [(ngModel)]="dataToEdit.about" #about="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && about.invalid }"
+                                        required
+                                    ></textarea>
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && about.invalid">
+                                        <p *ngIf="about.errors" class="text-danger">Description is required</p>
+                                    </div>
                                 </div>
                                 <h5 class="text-dark">Images</h5>
                                 <div class="mb-2">
                                     <div class="form-text">Header image</div>
-                                    <input type="file" class="form-control" accept="image/jpeg" id="InputHeaderImg" (change)="getHeaderImg($event)">
+                                    <input type="file" class="form-control" accept="image/jpeg" id="InputHeaderImg" 
+                                        (change)="getHeaderImg($event)" #headerInput
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && !hasImage(images.header) }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && !hasImage(images.header)">
+                                        <p *ngIf="!hasImage(images.header)" class="text-danger">Image is required</p>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-text">About image</div>
-                                    <input type="file" class="form-control" accept="image/jpeg" id="InputAboutImg" (change)="getAboutImg($event)">
+                                    <input type="file" class="form-control" accept="image/jpeg" id="InputAboutImg" 
+                                        (change)="getAboutImg($event)" #aboutInput
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && !hasImage(images.about) }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && !hasImage(images.about)">
+                                        <p *ngIf="!hasImage(images.about)" class="text-danger">Image is required</p>
+                                    </div>
                                 </div>
                                 <h5 class="text-dark">Social Media</h5>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="InputFacebookUrl">https://facebook.com/</span>
-                                    <input type="text" class="form-control" id="FacebookUrl" placeholder="Facebook user" name="facebook" [(ngModel)]="linksToEdit.facebook">
+                                    <input type="text" class="form-control" id="FacebookUrl" placeholder="Facebook user" name="facebook" 
+                                        [(ngModel)]="linksToEdit.facebook" #facebook="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && facebook.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && facebook.invalid">
+                                        <p *ngIf="facebook.errors" class="text-danger">Facebook is required</p>
+                                    </div>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="InputInstagramUrl">https://instagram.com/</span>
-                                    <input type="text" class="form-control" id="InstagramUrl" placeholder="Instagram user" name="instagram" [(ngModel)]="linksToEdit.instagram">
+                                    <input type="text" class="form-control" id="InstagramUrl" placeholder="Instagram user" name="instagram" 
+                                        [(ngModel)]="linksToEdit.instagram" #instagrm="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && instagrm.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && instagrm.invalid">
+                                        <p *ngIf="instagrm.errors" class="text-danger">Instagram is required</p>
+                                    </div>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="InputTwitterUrl">https://twitter.com/</span>
-                                    <input type="text" class="form-control" id="TwitterUrl" placeholder="Twitter user" name="twitter" [(ngModel)]="linksToEdit.twitter">
+                                    <input type="text" class="form-control" id="TwitterUrl" placeholder="Twitter user" name="twitter" 
+                                        [(ngModel)]="linksToEdit.twitter" #twitter="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && twitter.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && twitter.invalid">
+                                        <p *ngIf="twitter.errors" class="text-danger">Twitter is required</p>
+                                    </div>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="InputGithubUrl">https://github.com/</span>
-                                    <input type="text" class="form-control" id="GithubUrl" placeholder="Github user" name="github" [(ngModel)]="linksToEdit.github">
+                                    <input type="text" class="form-control" id="GithubUrl" placeholder="Github user" name="github" 
+                                        [(ngModel)]="linksToEdit.github" #github="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && github.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && github.invalid">
+                                        <p *ngIf="github.errors" class="text-danger">Github is required</p>
+                                    </div>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="InputLinkedinUrl">https://linkedin.com/in/</span>
-                                    <input type="text" class="form-control" id="LinkedinUrl" placeholder="Linkedin user" name="linkedin" [(ngModel)]="linksToEdit.linkedin">
+                                    <input type="text" class="form-control" id="LinkedinUrl" placeholder="Linkedin user" name="linkedin" 
+                                        [(ngModel)]="linksToEdit.linkedin" #linkedin="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && linkedin.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && linkedin.invalid">
+                                        <p *ngIf="linkedin.errors" class="text-danger">Linkedin is required</p>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="url" class="form-control" id="CvUrl" placeholder="CV downloadable link" name="cv" [(ngModel)]="linksToEdit.cv">
+                                    <input type="url" class="form-control" id="CvUrl" placeholder="CV downloadable link" name="cv" 
+                                        [(ngModel)]="linksToEdit.cv" #cv="ngModel"
+                                        [ngClass]="{ 'is-invalid': aboutForm.submitted && cv.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="aboutForm.submitted && cv.invalid">
+                                        <p *ngIf="cv.errors" class="text-danger">Cv downloadable link is required</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </form>
                     </div>

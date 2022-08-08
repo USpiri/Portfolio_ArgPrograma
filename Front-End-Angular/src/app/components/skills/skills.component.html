@@ -8,20 +8,39 @@
             <div class="modal fade" id="addSkillModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="" (ngSubmit)="addSkill()">
+                        <form action="" #skillForm="ngForm" (ngSubmit)="skillForm.form.valid && addSkill(skillForm)">
                             <div class="modal-header">
                                 <h5 class="modal-title text-dark" id="skillModalLabel">Add new skill</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+                                <button type="button" #clsSkill class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
                             </div>
                             <div class="modal-body">
                                 <h5 class="text-dark mb-2">Skill</h5>
-                                <input type="text" class="form-control mb-2" id="inputSkillName" placeholder="Skill name" name="name" [(ngModel)]="skillToAdd.name">
-                                <input type="text" class="form-control mb-2" id="inputIcon" placeholder="Icon" name="icon" [(ngModel)]="skillToAdd.icon">
-                                <input type="number" min="0" max="100" step="1" class="form-control" id="InputSkillPercentage" placeholder="Percentage" name="percentage" [(ngModel)]="percentage">
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="inputSkillName" placeholder="Skill name" name="name" 
+                                        [(ngModel)]="skillToAdd.name" #name="ngModel"
+                                        [ngClass]="{ 'is-invalid': skillForm.submitted && name.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="skillForm.submitted && name.invalid">
+                                        <p *ngIf="name.errors" class="text-danger">Name is required</p>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="inputIcon" placeholder="Icon" name="icon" 
+                                        [(ngModel)]="skillToAdd.icon" #icon="ngModel"
+                                        [ngClass]="{ 'is-invalid': skillForm.submitted && icon.invalid }"
+                                        required
+                                    >
+                                    <div class="invalid-feedback" *ngIf="skillForm.submitted && icon.invalid">
+                                        <p *ngIf="icon.errors" class="text-danger">Icon is required</p>
+                                    </div>
+                                </div>
+                                <input type="number" min="0" max="100" step="1" class="form-control mb-3" id="InputSkillPercentage" placeholder="Percentage" name="percentage" [(ngModel)]="percentage">
+                                <div id="skillHelp" class="form-text">** The <b class="text-black-50">icon</b> must be obtained from <a href="https://fontawesome.com/">fontawesome</a> **</div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </form>
                     </div>

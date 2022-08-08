@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import SwiperCore, { Keyboard, Pagination, Navigation, Autoplay, SwiperOptions } from 'swiper';
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 import { Project } from 'src/app/model/projectEntity';
@@ -13,14 +13,17 @@ import { StorageService } from 'src/app/services/auth/storage.service';
 export class ProjectsComponent implements OnInit {
 
   @Input() isLogged:boolean = false;
+  @ViewChild('projectInput',{ static : false}) InputProject?:ElementRef;
+  @ViewChild('clsProject') closeButton:any;
+  @ViewChild('clsEditProject') closeEditButton:any;
 
   data: Project[] = [];
 
   file:any;
   fileToEdit:any;
 
-  projectToEdit: Project = new Project( "","","","",false );
-  projectToAdd: Project = new Project( "","","","",false );
+  projectToEdit: Project = new Project( "","","","",true );
+  projectToAdd: Project = new Project( "","","","",true );
 
   config: SwiperOptions = {
     loopedSlides: 5,
@@ -83,9 +86,11 @@ export class ProjectsComponent implements OnInit {
       link: "",
       enabled_link: true
     }
+    this.file = null;
+    this.InputProject!.nativeElement.value= "";
   }
 
-  onAddProject(){
+  onAddProject(projectForm:any){
     const dataForm = new FormData();
     dataForm.append( "project", this.file, this.file.name );
     this.dataProject.addProject(this.projectToAdd).subscribe(
@@ -104,7 +109,9 @@ export class ProjectsComponent implements OnInit {
         );
       }
     );
+    this.closeButton.nativeElement.click();
     this.resetProject();
+    projectForm.resetForm();
   }
 
   onDelete(project:Project){
@@ -121,7 +128,7 @@ export class ProjectsComponent implements OnInit {
     Object.assign( this.projectToEdit, project );
   }
 
-  updateProject(){
+  updateProject(projectEditForm:any){
     if (this.fileToEdit) {
       const dataForm = new FormData();
       dataForm.append( "project", this.fileToEdit, this.fileToEdit.name );
@@ -159,6 +166,9 @@ export class ProjectsComponent implements OnInit {
         }
       );
     }
+    this.closeEditButton.nativeElement.click();
+    projectEditForm.resetForm();
+    this.fileToEdit =  null;
   }
 
   getImg(event:any){

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from 'src/app/services/auth/storage.service';
 import { EducationService } from 'src/app/services/education.service';
 import { Education } from '../../model/educationEntity';
@@ -12,6 +12,8 @@ import { Education } from '../../model/educationEntity';
 export class EducationComponent implements OnInit {
 
   @Input() isLogged:boolean = false;
+  @ViewChild('educationInput',{ static : false}) InputEducation?:ElementRef;
+  @ViewChild('clsEducation') closeButton:any;
 
   data: Education[] = [];
   file:any;
@@ -83,7 +85,7 @@ export class EducationComponent implements OnInit {
     }
   }
 
-  addEducation(){
+  addEducation(educationForm:any){
     const dataForm = new FormData();
     dataForm.append( "education", this.file, this.file.name );
 
@@ -103,7 +105,8 @@ export class EducationComponent implements OnInit {
         );
       }
     );
-    this.onClose();
+    this.closeButton.nativeElement.click();
+    this.onClose(educationForm);
   }
 
   date( date:String ){
@@ -111,8 +114,11 @@ export class EducationComponent implements OnInit {
     return new Date(Number(year), Number(month) -1 , Number(day));
   }
 
-  onClose(){
+  onClose(educationForm:any){
     this.educationToAdd = new Education( "","",false,"","","","",false );
+    this.file = null;
+    this.InputEducation!.nativeElement.value= "";
+    educationForm.resetForm();
   }
 
   onDelete( educationToDelete:Education ){

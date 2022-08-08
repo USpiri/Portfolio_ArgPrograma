@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Experience } from 'src/app/model/experienceEntity';
 import { JobType } from 'src/app/model/jobTypeEntity';
 import { StorageService } from 'src/app/services/auth/storage.service';
@@ -14,6 +14,8 @@ import { JobTypeService } from 'src/app/services/job-type.service';
 export class ExperienceComponent implements OnInit {
 
   @Input() isLogged:boolean = false;
+  @ViewChild('experienceInput',{ static : false}) InputExperience?:ElementRef;
+  @ViewChild('clsExperience') closeButton:any;
 
   data:Experience[] = [];
   jobs:JobType[] = [];
@@ -92,7 +94,7 @@ export class ExperienceComponent implements OnInit {
     }
   }
 
-  addExperience(){
+  addExperience(experienceForm:any){
     const dataForm = new FormData();
     dataForm.append( "experience", this.file, this.file.name );
     this.experienceToAdd.start_date = this.datePipe.transform(this.date(this.start_date), "dd/MM/yyyy")!;
@@ -111,7 +113,8 @@ export class ExperienceComponent implements OnInit {
         );
       }
     );
-    this.onClose();
+    this.closeButton.nativeElement.click();
+    this.onClose(experienceForm);
   }
 
   date( date:String ){
@@ -119,8 +122,11 @@ export class ExperienceComponent implements OnInit {
     return new Date(Number(year), Number(month) -1 , Number(day));
   }
 
-  onClose(){
+  onClose(experienceForm:any){
     this.experienceToAdd = new Experience( "","",false,"","","","",false,"Job type" );
+    this.file = null;
+    this.InputExperience!.nativeElement.value= "";
+    experienceForm.resetForm();
   }
 
   onDelete( experienceToDelete:Experience ){

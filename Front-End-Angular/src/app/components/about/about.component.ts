@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Social } from 'src/app/model/socialMediaEntity';
 import { Person } from 'src/app/model/personEntity';
 import { PersonService } from 'src/app/services/person.service';
@@ -16,6 +16,9 @@ export class AboutComponent implements OnInit {
 
   @Input() isLogged:boolean = false;
   @Output() onUpdate:EventEmitter<{ person:Person, links:Social, images:Image }> = new EventEmitter();
+  @ViewChild('headerInput',{ static : false}) InputHeader?:ElementRef;
+  @ViewChild('aboutInput',{ static : false}) InputAbout?:ElementRef;
+  @ViewChild('clsAbout') closeButton:any;
 
   updatePerson:Person = new Person( "","","","","","","","","" );
   updateLinks:Social = new Social( "","","","","","" );
@@ -88,6 +91,14 @@ export class AboutComponent implements OnInit {
     Object.assign( dataTo, dataFrom );
   }
 
+  parseInt(string:String){
+    return Number(string);
+  }
+
+  hasImage(string:String){
+    return string.length !== 0;
+  }
+
   getLastIndex( links:Social ){
     this.links.facebook = (links.facebook).substring((links.facebook).lastIndexOf('/')+1);
     this.links.instagram = (links.instagram).substring((links.instagram).lastIndexOf('/')+1);
@@ -111,7 +122,7 @@ export class AboutComponent implements OnInit {
     return Object.keys(object).length === 0;
   }
 
-  onSubmit(){
+  onSubmit(aboutForm:any){
     //Actualizar Servidor
     this.dataToEdit.birth_date = this.formateBirthDate()
     this.completeLinks();
@@ -180,6 +191,8 @@ export class AboutComponent implements OnInit {
       links: this.updateLinks,
       images: this.updateImages }
     );
+    this.closeButton.nativeElement.click();
+    aboutForm.resetForm();
   }
 
   updateAll(){

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Skill } from 'src/app/model/skillEntity';
 import { StorageService } from 'src/app/services/auth/storage.service';
 import { SkillService } from 'src/app/services/skill.service';
@@ -11,6 +11,7 @@ import { SkillService } from 'src/app/services/skill.service';
 export class SkillsComponent implements OnInit {
 
   @Input() isLogged:boolean = false;
+  @ViewChild('clsSkill') closeButton:any;
 
   data:Skill[] = [];
 
@@ -63,14 +64,16 @@ export class SkillsComponent implements OnInit {
     );
   }
 
-  addSkill(){
+  addSkill(skillForm:any){
     this.skillToAdd.percentage = this.percentage.toString() + "%";
     this.dataSkill.addSkill(this.skillToAdd).subscribe(
       skill => {
         this.data.push(skill);
       }
     )
+    this.closeButton.nativeElement.click();
     this.onClose();
+    skillForm.resetForm();
   }
 
   onClose(){
