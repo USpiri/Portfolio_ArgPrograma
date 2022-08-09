@@ -43,13 +43,56 @@
                 </div>
             </div>
 
-            <div class="contact_info_inputs d-flex flex-column ms-lg-4">
-                <input type="Name" class="contact_input input_name mb-4" placeholder="Your name" name="name" [(ngModel)]="email.name">
-                <input type="Email" class="contact_input input_email mb-4" placeholder="Email"  name="email" [(ngModel)]="email.email">
-                <input type="Subject" class="contact_input input_subject mb-4" placeholder="Subject"  name="subject" [(ngModel)]="email.subject">
-                <textarea name="Message" id="message" class="contact_input input_message mb-4" placeholder="Message"  name="msj" [(ngModel)]="email.message"></textarea>
-                <button class="button p-2" type="submit" (click)="sendEmail()">SEND MESSAGE</button>
-            </div>
+            <form action="" #contactForm="ngForm" (ngSubmit)="contactForm.form.valid && sendEmail(contactForm)">
+                <div class="contact_info_inputs d-flex flex-column ms-lg-4">
+                    <div class="mb-4">
+                        <input type="Name" class="contact_input input_name w-100" placeholder="Your name" name="name" 
+                            [(ngModel)]="email.name" #cName="ngModel"
+                            [ngClass]="{    'is-invalid': contactForm.submitted && cName.invalid,
+                                            'is-valid': contactForm.submitted && cName.valid && mailSend   }"
+                            required
+                        >
+                        <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cName.invalid">
+                            <p *ngIf="cName.errors" class="text-danger mb-0">Name is required</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="Email" class="contact_input input_email w-100" placeholder="Email"  name="email" 
+                            [(ngModel)]="email.email" #cEmail="ngModel"
+                            [ngClass]="{    'is-invalid': contactForm.submitted && cEmail.invalid,
+                                            'is-valid': contactForm.submitted && cEmail.valid && mailSend   }"
+                            required
+                            >
+                            <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cEmail.invalid">
+                                <p *ngIf="cEmail.errors" class="text-danger mb-0">Email is required</p>
+                            </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="Subject" class="contact_input input_subject w-100" placeholder="Subject"  name="subject" 
+                            [(ngModel)]="email.subject" #cSubject="ngModel"
+                            [ngClass]="{    'is-invalid': contactForm.submitted && cSubject.invalid,
+                                            'is-valid': contactForm.submitted && cSubject.valid && mailSend   }"
+                            required
+                        >
+                        <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cSubject.invalid">
+                            <p *ngIf="cSubject.errors" class="text-danger mb-0">Subject is required</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <textarea name="Message" id="message" class="contact_input input_message w-100" placeholder="Message"  name="msj" 
+                            [(ngModel)]="email.message" #cMessage="ngModel"
+                            [ngClass]="{    'is-invalid': contactForm.submitted && cMessage.invalid,
+                                            'is-valid': contactForm.submitted && cMessage.valid && mailSend   }"
+                            required
+                        >
+                        ></textarea>
+                        <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cMessage.invalid">
+                            <p *ngIf="cMessage.errors" class="text-danger mb-0">Message is required</p>
+                        </div>
+                    </div>
+                    <button class="button p-2" type="submit">SEND MESSAGE</button>
+                </div>
+            </form>
             <div class="contact_h_title_container d-none d-lg-inline">
                 <h1 class="contact_h_title">Contact Me</h1>
             </div>

@@ -19,6 +19,7 @@ export class ContactComponent implements OnInit {
   };
   send:Email = new Email("","","");
 
+  mailSend:boolean = false;
 
   constructor(
     private emailSender:EmailService
@@ -27,10 +28,26 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sendEmail(){
+  sendEmail(contactForm:any){
     this.send.subject = this.email.subject;
     this.send.message = this.formatMessage(this.email);
-    this.emailSender.sendEmail(this.send).subscribe();
+    this.emailSender.sendEmail(this.send).subscribe(
+      () => {
+        this.mailSend = true;
+        alert("Email sent successfully");
+      },
+      err => {
+        this.mailSend = false;
+        alert("Something wrong happened, please try again later");
+      }
+    );
+    this.email = {
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    };
+    contactForm.resetForm();
   }
 
   formatMessage(data:any){

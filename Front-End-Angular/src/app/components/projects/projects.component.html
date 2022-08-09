@@ -167,7 +167,7 @@
                             <p class="project_card_text lh-sm mt-3 mb-6" id="text">
                                 {{project.description}}
                             </p>
-                            <div class="project_button_container"><a [href]="project.link" class="button d-block p-3">WEB / GITHUB</a></div>
+                            <div class="project_button_container" *ngIf="project.enabled_link"><a [href]="project.link" class="button d-block p-3">WEB / GITHUB</a></div>
                         </div>
                     </div></div>
                 </ng-template>

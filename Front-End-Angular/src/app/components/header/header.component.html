@@ -16,11 +16,11 @@
                   </div>
                   <input type="text" class="form-control mb-3" id="InputUsername" placeholder="Username" name="username" 
                     [(ngModel)]="login.username" required *ngIf="!isLogged" #username="ngModel"
-                    [ngClass]="{ 'is-invalid': username.valid || logFail }"
+                    [ngClass]="{ 'is-invalid': userForm.submitted && (username.valid || logFail) }"
                   >
                   <input type="password" class="form-control mb-3" id="InputPass" placeholder="Password" name="password" 
                     [(ngModel)]="login.password" required *ngIf="!isLogged" autocomplete="on" #password="ngModel"
-                    [ngClass]="{ 'is-invalid': password.valid || logFail }"
+                    [ngClass]="{ 'is-invalid': userForm.submitted && (password.valid || logFail) }"
                   >
                   <div class="invalid-feedback w-100 " *ngIf="logFail">
                     <p *ngIf="logFail" class="text-danger text-center">Username or password is incorrect</p>
