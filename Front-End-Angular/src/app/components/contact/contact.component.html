@@ -49,7 +49,7 @@
                         <input type="Name" class="contact_input input_name w-100" placeholder="Your name" name="name" 
                             [(ngModel)]="email.name" #cName="ngModel"
                             [ngClass]="{    'is-invalid': contactForm.submitted && cName.invalid,
-                                            'is-valid': contactForm.submitted && cName.valid && mailSend   }"
+                                            'is-valid': contactForm.submitted && cName.valid }"
                             required
                         >
                         <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cName.invalid">
@@ -60,7 +60,7 @@
                         <input type="Email" class="contact_input input_email w-100" placeholder="Email"  name="email" 
                             [(ngModel)]="email.email" #cEmail="ngModel"
                             [ngClass]="{    'is-invalid': contactForm.submitted && cEmail.invalid,
-                                            'is-valid': contactForm.submitted && cEmail.valid && mailSend   }"
+                                            'is-valid': contactForm.submitted && cEmail.valid }"
                             required
                             >
                             <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cEmail.invalid">
@@ -71,7 +71,7 @@
                         <input type="Subject" class="contact_input input_subject w-100" placeholder="Subject"  name="subject" 
                             [(ngModel)]="email.subject" #cSubject="ngModel"
                             [ngClass]="{    'is-invalid': contactForm.submitted && cSubject.invalid,
-                                            'is-valid': contactForm.submitted && cSubject.valid && mailSend   }"
+                                            'is-valid': contactForm.submitted && cSubject.valid }"
                             required
                         >
                         <div class="invalid-feedback mb-0" *ngIf="contactForm.submitted && cSubject.invalid">
@@ -82,7 +82,7 @@
                         <textarea name="Message" id="message" class="contact_input input_message w-100" placeholder="Message"  name="msj" 
                             [(ngModel)]="email.message" #cMessage="ngModel"
                             [ngClass]="{    'is-invalid': contactForm.submitted && cMessage.invalid,
-                                            'is-valid': contactForm.submitted && cMessage.valid && mailSend   }"
+                                            'is-valid': contactForm.submitted && cMessage.valid }"
                             required
                         >
                         ></textarea>

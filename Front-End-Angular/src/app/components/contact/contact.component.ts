@@ -19,8 +19,6 @@ export class ContactComponent implements OnInit {
   };
   send:Email = new Email("","","");
 
-  mailSend:boolean = false;
-
   constructor(
     private emailSender:EmailService
   ) { }
@@ -33,12 +31,7 @@ export class ContactComponent implements OnInit {
     this.send.message = this.formatMessage(this.email);
     this.emailSender.sendEmail(this.send).subscribe(
       () => {
-        this.mailSend = true;
         alert("Email sent successfully");
-      },
-      err => {
-        this.mailSend = false;
-        alert("Something wrong happened, please try again later");
       }
     );
     this.email = {
