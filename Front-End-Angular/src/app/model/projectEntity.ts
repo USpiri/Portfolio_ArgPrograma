@@ -4,6 +4,7 @@ export class Project {
     name: String;
     description: String;
     img_url: String;
+    imageId?:String;
     link: String;
     enabled_link: boolean;
 

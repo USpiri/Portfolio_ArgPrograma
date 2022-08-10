@@ -7,6 +7,7 @@ export class Education {
     start_date: String;
     end_date: String;
     img_url: String;
+    imageId?:String;
     link: String;
     enabled_link: boolean;
 
