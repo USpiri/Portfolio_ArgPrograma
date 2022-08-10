@@ -210,5 +210,13 @@ El proyecto ya esta listo para el Deploy, quedan algunas tareas referidas a la v
 Me gustaría, en un futuro, agregar un componente para poner una galería de imágenes o algo del estilo.  
 **“Lista de tareas”:**
     +	~~**Agregar Validaciones**~~  
-+ **[ 08/08/22 ]:** Agregué las validaciones y la Documentación! Doy por terminado el portfolio y mas tarde hago el Deploy en las diferentes páginas. Si me doy cuenta de algún detalle me pondré con ello y será debidamente documentado.
++ **[ 08/08/22 ]:** Agregué las validaciones y la Documentación! Doy por terminado el portfolio y mas tarde hago el Deploy en las diferentes páginas. Si me doy cuenta de algún detalle me pondré con ello y será debidamente documentado.  
+Varios problemas, varios cambios y un par de detalles. El primer gran problema es que Heroku no admite la escritura de archivos en su sistema, por lo que no puedo usar los métodos de ImageApi. Voy a optar por guardar la base64 de momento, no es lo ideal, pero va a solucionar el problema. Otra posible solución sería buscar otro servidor para el Backend que me permita la escritura de archivos.  
+La mayoría de estos problemas son relacionados a Heroku, el segundo es que funciona con java 8 y el Backend está en java 17. La solución es creas un system.properties en la ruta principal y agregar “java.runtime.version=17”.  
+Cambios a mencionar, agregué validaciones al envío de mails y arreglé un problemita en el modal de iniciar sesión.  
+Para solucionar la administración de imágenes y Heroku voy a modificar solo el Backend, cambiando ImageEntity y su controlador. La utilidad de FileUpload va a pasar a generar la imagen en base64.  
+Otro cambio de planes, opte por el registro en Cloudinary. Del mismo modo que mecioné en el párrafo anterior, solo modificaré el backend en lo posible, pero esta vez agregaré la conexión a Cloudinary.  
++ **[ 09/08/22 ]:** Hoy trabajé en pruebas y errores, encontré y los solucioné. Tuve que hacer pequeños cambios a las entidades, para el Front solo agregué las variables, pero a modo opcional, cosa que el mismo Front funcione con cualquier Backend. Tambien cambié las url de Cloudinary, ahora se guardan las “secure_url”. Y otros problemas relacionados a Cloudinary y Heroku. Fue un éxito la implementación de este servicio y si bien es cierto que no estaba en el plan inicial utilizar servicios de terceros, el uso de Heroku me llevo a cambiar los planes. Pero es muy comodo! Ya cuenta con su propia Api para agregar como dependencia en Spring Boot, solo hay que asignarle su configuración.
+Mañana terminaré de agregar datos y entregaré el proyecto.
+
 
