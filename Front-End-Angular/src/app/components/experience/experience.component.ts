@@ -21,7 +21,7 @@ export class ExperienceComponent implements OnInit {
   jobs:JobType[] = [];
   file:any;
 
-  experienceToEdit : Experience = new Experience( "","",false,"","","","",false,"" );
+  experienceToEdit : Experience = new Experience( "","",false,"","","","",false,"Job type" );
   experienceToAdd : Experience = new Experience( "","",false,"","","","",false,"Job type" );
 
   start_date: String = this.datePipe.transform( new Date() , "yyyy-MM-dd")!;
