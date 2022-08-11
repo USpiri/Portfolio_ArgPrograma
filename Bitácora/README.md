@@ -1,8 +1,14 @@
 # **Bitácora**
 **Título del proyecto:** Uriel Spiridione – Arg. Programa Portfolio.   
 **Autor:** Uriel Spiridione.  
-**Github**: **https://github.com/USpiri/Portfolio_ArgPrograma**  
-**Github Pages**: **https://uspiri.github.io/** (static page only for preview)
+**Page:** https://uriel-spiridione.web.app/  
+**API:** https://uspiri-backend.herokuapp.com/  
+**FrontEnd:** https://github.com/USpiri/Portfolio_ArgPrograma/  
+**BackEnd:** https://github.com/USpiri/Portfolio_ArgPrograma_Backend/  
+**Backend without Image Managment:** https://github.com/USpiri/Portfolio_Backend_NoImage/  
+**Preview:** https://uspiri.github.io/  
+**Dev Journal:** https://github.com/USpiri/Portfolio_ArgPrograma/tree/master/Bit%C3%A1cora  
+#
 
 * * * 
 ## **Aclaraciones**
@@ -217,6 +223,5 @@ Cambios a mencionar, agregué validaciones al envío de mails y arreglé un prob
 Para solucionar la administración de imágenes y Heroku voy a modificar solo el Backend, cambiando ImageEntity y su controlador. La utilidad de FileUpload va a pasar a generar la imagen en base64.  
 Otro cambio de planes, opte por el registro en Cloudinary. Del mismo modo que mecioné en el párrafo anterior, solo modificaré el backend en lo posible, pero esta vez agregaré la conexión a Cloudinary.  
 + **[ 09/08/22 ]:** Hoy trabajé en pruebas y errores, encontré y los solucioné. Tuve que hacer pequeños cambios a las entidades, para el Front solo agregué las variables, pero a modo opcional, cosa que el mismo Front funcione con cualquier Backend. Tambien cambié las url de Cloudinary, ahora se guardan las “secure_url”. Y otros problemas relacionados a Cloudinary y Heroku. Fue un éxito la implementación de este servicio y si bien es cierto que no estaba en el plan inicial utilizar servicios de terceros, el uso de Heroku me llevo a cambiar los planes. Pero es muy comodo! Ya cuenta con su propia Api para agregar como dependencia en Spring Boot, solo hay que asignarle su configuración.
-Mañana terminaré de agregar datos y entregaré el proyecto.
-
-
+Mañana terminaré de agregar datos y entregaré el proyecto.  
++ **[ 10/08/22 ]:** Subí los datos y entregué el proyecto. También me encontré con un raro problema, realmente desconozco el origen, pero supongo proviene de Heroku ya que ejecutando el Backend en local nunca lo tuve este inconveniente. Al añadir un objeto con su respectiva imágen, a veces el servidor no devolvia el objeto correspondiente, pero si lo guardaba en la base de datos. Igualmente no volvió a aparecer.
