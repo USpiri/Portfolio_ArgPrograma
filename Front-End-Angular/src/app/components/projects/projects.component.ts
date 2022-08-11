@@ -78,14 +78,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   resetProject(){
-    this.projectToAdd = {
-      id: 0,
-      name: "",
-      description: "",
-      img_url: "",
-      link: "",
-      enabled_link: true
-    }
+    this.projectToAdd = new Project( "","","","",true );
     this.file = null;
     this.InputProject!.nativeElement.value= "";
   }

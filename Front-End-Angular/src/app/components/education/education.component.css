@@ -15,7 +15,8 @@
     margin-bottom: 30px;
 }
 .education_card_img{
-    max-width: 100%;
+    width: 105px;
+    height: 105px;
 }
 .education_card{
     box-shadow: 0 0px 15px rgba(0,0,0,0.35);
@@ -46,10 +47,10 @@
 a{
     text-decoration: none;
 }
-.education_card_header > img{
+.education_card_img > img{
     object-fit: cover;
-    height: 100%;
-    width: 100px;
+    height: 105px;
+    width: 105px;
 }
 .education_card_content{
     background-color: #24283d;

@@ -14,8 +14,9 @@
     border-color: #dc3545;
     margin-bottom: 30px;
 }
-.experience_card_img, .education_card_img{
-    max-width: 100%;
+.experience_card_img{
+    width: 105px;
+    height: 105px;
 }
 .experience_card{
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -46,7 +47,7 @@
 a{
     text-decoration: none;
 }
-.experience_card_header > img{
+.experience_card_img > img{
     object-fit: cover;
     height: 100%;
     width: 100px;

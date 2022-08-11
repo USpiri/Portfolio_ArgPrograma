@@ -1,5 +1,5 @@
 <section class="education min-vh-100 d-flex justify-content-center align-items-center pt-5 pb-5" id="education">
-    <div class="education_container d-flex flex-column h-100 justify-content-center align-items-center">
+    <div class="education_container d-flex flex-column h-100 justify-content-center align-items-center mt-5 mb-5">
         <div class="education_header d-flex flex-row justify-content-center">
             <h1 class="education_title">Education</h1>
             <div class="ico_container">
@@ -80,12 +80,12 @@
                 </div>
             </div>
         </div>
-        <hr class="education_hr opacity-100">
+        <hr class="education_hr opacity-100 mb-5">
         <div class="education_cards_container mt-2">
             <ul class="education_cards">
                 <li class="education_card position-relative" *ngFor="let education of data">
                     <a class="education_link d-flex flex-row" [href]="education?.link">
-                        <div class="education_card_header animated_bg education_card_img" id="education_header">
+                        <div class="education_card_img" id="education_header">
                             <img [src]="education?.img_url" alt="Imagen del proyecto">
                         </div>
                         <div class="education_card_content">

@@ -99,11 +99,11 @@
             <ul class="experience_cards">
                 <li class="experience_card position-relative" *ngFor="let experience of data">
                     <a class="experience_link d-flex flex-row" [href]="experience.link">
-                        <div class="experience_card_header animated_bg experience_card_img" id="experience_header">
+                        <div class="experience_card_img" id="experience_header">
                             <img [src]="experience.img_url" alt="Imagen del proyecto">
                         </div>
                         <div class="experience_card_content">
-                            <h3 class="experience_card_title animated_bg animated_bg_title fs-5" id="title">
+                            <h3 class="experience_card_title fs-5" id="title">
                                 {{experience.job}}
                             </h3>
                             <p class="experience_card_text" id="text">
