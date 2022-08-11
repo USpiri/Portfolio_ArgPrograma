@@ -1,7 +1,9 @@
 # **Personal Portfolio**
-**Page:**  
+**Page:** https://uriel-spiridione.web.app/  
+**API:** https://uspiri-backend.herokuapp.com/  
 **FrontEnd:** https://github.com/USpiri/Portfolio_ArgPrograma/  
 **BackEnd:** https://github.com/USpiri/Portfolio_ArgPrograma_Backend/  
+**Backend without Image Managment:** https://github.com/USpiri/Portfolio_Backend_NoImage/  
 **Preview:** https://uspiri.github.io/  
 **Dev Journal:** https://github.com/USpiri/Portfolio_ArgPrograma/tree/master/Bit%C3%A1cora  
 #
@@ -81,5 +83,3 @@ Ejecutar `ng build` para compilar el proyecto, este se guarda en `/dist/`.
 ## Más Angular  
 
 Para obtener más información sobre el funcionamiento de Angular, dirigirse a ["Angular CLI Overview and Command Reference"](https://angular.io/cli) o ejecutar `ng help`.
-
-To get more help on the Angular CLI use  or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
